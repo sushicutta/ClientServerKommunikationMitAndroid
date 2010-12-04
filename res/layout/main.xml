@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+		<TableLayout android:id="@+id/TableLayout01"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:stretchColumns="1">
+			
+		    <TableRow>
+						
+				<Button android:id="@+id/Button01" android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Refresh"></Button>
+					
+								
+				<Button android:id="@+id/Button02" android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Insert"></Button>
+					
+				<Button android:id="@+id/Button03" android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Delete"></Button>
+				    
+		    </TableRow>
+
+		</TableLayout>
+
+	<ScrollView android:id="@+id/ScrollView01"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+	
+		<TableLayout android:id="@+id/TableLayout02"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:stretchColumns="0">
+	
+		</TableLayout>
+		
+	</ScrollView>
+
+</LinearLayout>
