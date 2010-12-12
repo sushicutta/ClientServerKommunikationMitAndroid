@@ -1,0 +1,177 @@
+%
+%  Antrag, Aufgabenstellung Semesterarbeit
+%
+%  Created by Roman Wuersch on 2010-12-04.
+%
+\documentclass[]{scrreprt}
+\usepackage[ngerman]{babel}
+
+% Use utf-8 encoding for foreign characters
+\usepackage[applemac]{inputenc}
+
+% Setup for fullpage use
+\usepackage{fullpage}
+
+% Running Headers and footers
+%\usepackage{fancyhdr}
+
+% Multipart figures
+%\usepackage{subfigure}
+
+% More symbols
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{latexsym}
+
+% Surround parts of graphics with box
+\usepackage{boxedminipage}
+
+% Package for including code in the document
+\usepackage{listings}
+
+% If you want to generate a toc for each chapter (use with book)
+\usepackage{minitoc}
+
+% This is now the recommended way for checking for PDFLaTeX:
+\usepackage{ifpdf}
+
+\ifpdf
+    \usepackage[pdftex]{graphicx}
+\else
+    \usepackage{graphicx}
+\fi
+
+\title{Aufgabenstellung\\
+    Semesterarbeit in Informatik}
+    
+\author{Studierender - Roman WŸrsch\\
+    Projektbetreuer - Beat Seeliger\\
+    \\
+    HSZ-T - Technische Hochschule ZŸrich}
+    
+\date{6. Dezember 2010}
+
+\begin{document}
+
+    \ifpdf
+        \DeclareGraphicsExtensions{.pdf, .jpg, .tif}
+    \else
+        \DeclareGraphicsExtensions{.eps, .jpg}
+    \fi
+
+    \maketitle
+
+    \pagenumbering{arabic}
+
+    % \tableofcontents
+
+    \chapter{Aufgabenstellung Semesterarbeit}
+
+    \section{Thema}
+    Client-Server-Kommunikation mit Android
+    
+    \section{Ausgangslage}
+    Die App-Stores der Mobil-Hersteller boomen. Die Art und Weise wie man Apps
+    programmieren soll wird von den Mobil-Hersteller meist klar vorgegeben.
+    Sobald jedoch eine App mit einem Server im Internet kommunizieren soll,
+    gibt es keine Vorschriften zur Implementierung.
+
+    \section{Ziel der Arbeit}
+    Es soll eine Client-Server-Kommunikation am Beispiel des Android
+    Betriebsystems gezeigt werden. Das Android Betriebsystem nimmt den
+    Platz des Clients ein. Als Server wird ein Java EE Applikationsserver verwendet.\newline
+    
+    Folgende Ziele sollen erreicht werden:
+    
+    \begin{itemize}
+        \item Es sollen zwei gŠngige plattformunabhŠngigen Arten von Daten-Kommunikation
+            miteinander verglichen werden.
+        \item Es soll ein Prototyp fŸr Daten-Kommunikation implementiert werden.
+            Der Prototyp soll beim Server Daten lesen, erstellen, aktualisieren und lšschen
+            kšnnen. Der Prototyp soll auf einem Android-GerŠt lauffŠhig sein.
+    \end{itemize}
+    
+    Folgende Punkte werden abgegrenzt, da es den Rahmen der Arbeit sprengen 
+    wŸrde:
+    
+    \begin{itemize}
+        \item Der Vergleich der Daten-Kommunikation soll auf zwei Protokolle beschrŠnkt
+            werden, die in der Praxis eingesetzt werden, REST\footnote{
+                Der Begriff Representational State Transfer (mit dem Akronym REST) bezeichnet
+                einen Softwarearchitekturstil fŸr verteilte Hypermedia-Informationssysteme wie
+                das World Wide Web}
+            und Hessian\footnote{
+                Hessian ist ein binŠres Netzwerkprotokoll, mit dessen Hilfe Daten zwischen
+                Systemen ausgetauscht und Remote Procedure Calls durchgefŸhrt werden kšnnen.}
+            .
+        \item Der Prototyp des Clients wird fŸr die Android Version 2.2 (Froyo) entwickelt
+            und soll mit dem Protokoll REST und Hessian implementiert werden.
+        \item Es werden keine Umfragen, Erhebungen und Feldstudien durchgefŸhrt.
+    \end{itemize}
+
+    \newpage
+    
+    \section{Aufgabenstellung}
+    
+    \begin{itemize}
+        \item GegenŸberstellung der beiden Protokollkonzepte
+        \item GegenŸberstellung der Einsatzgebiete der beiden Protokolle
+        \item PrŸfen ob eine Implementierung fŸr Android mšglich ist
+        \item Testszenarien fŸr die beiden Prototypen ausarbeiten
+        \item Entwicklung eines Prototypen fŸr beide Protokolle REST und Hessian
+        \item DurchfŸhren der definierten Tests der beiden Prototypen
+    \end{itemize}
+
+    \section{Erwartete Resultate}
+    Die erwarteten Resultate ergeben sich aus der Aufgabenstellung:
+
+    \begin{itemize}    
+        \item Es wird die Versionskontrolle auf der Basis von GIT bei Github.com verwendet.
+        \item Planung, Arbeitsnachweis und weitere Informationen werden im WIKI von
+            Github.com gefŸhrt.
+        \item Technischer Bericht
+        \begin{itemize}
+            \item Beschreibung der Ausgangslage
+            \item Konzeptionelle GegenŸberstellung von REST und Hessian
+            \item GegenŸberstellung der Einsatzgebiete von REST und Hessian
+            \item Definition der Anforderungen an den Prototyp 
+            \item Zusammenfassung zur Entwicklung des Prototypen
+            \item Ergebnisse der Tests und Abdeckung der Testszenarios
+            
+        \end{itemize}
+    	\item LauffŠhiger Prototyp:
+    	\begin{itemize}
+            \item Es soll ein lauffŠhiger Prototyp auf der Basis von Android 2.2 (Froyo)
+                fŸr beide Protokolle gemacht werden.
+             \item Der Prototyp soll bei einem Server Daten lesen, erstellen, aktualisieren und lšschen
+                kšnnen.
+        \end{itemize}
+    \end{itemize}
+
+    \section{Geplante Termine}
+    Die Termine kšnnen zum Zeitpunkt des Antrages noch nicht definitiv 
+    festgelegt werden. Sofern jedoch die Planung eingehalten werden kann und 
+    freie Termine zur VerfŸgung stehen, sollten die Termine innerhalb der 
+    angegebenen Monate liegen.
+
+    \begin{tabbing}
+        \hspace*{4cm}\= \kill
+    	Kick-Off:               \> Dezember 2010 \\
+    	Review:                 \> Januar 2011 \\
+    	SchlussprŠsentation:    \> Februar 2011 \\
+    \end{tabbing}
+
+    \section{Genehmigung}
+    Der Studierende, sein Projektbetreuer und der Studiengangsleiter 
+    Informatik erklŠren sich mit der Aufgabenstellung einverstanden und geben 
+    die Arbeit frei zur Erfassung im Einschreibesystem der Hochschule fŸr 
+    Technik ZŸrich.
+
+    \begin{tabbing}
+        \hspace*{10cm}\= \kill
+    	Roman WŸrsch, Studierender \> Beat Seeliger, Projektbetreuer \\\\\\
+        \line(1,0){150} \> \line(1,0){150} \\\\\\
+    	Dr. Olaf Stern, Studiengangsleiter Informatik \\\\\\
+        \line(1,0){150}
+    \end{tabbing}    
+\end{document}

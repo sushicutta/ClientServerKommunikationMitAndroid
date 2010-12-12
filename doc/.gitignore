@@ -1,0 +1,9 @@
+Middleware/
+*.aux
+*.bbl
+*.bib
+*.blg
+*.log
+*.maf
+*.mtc*
+
