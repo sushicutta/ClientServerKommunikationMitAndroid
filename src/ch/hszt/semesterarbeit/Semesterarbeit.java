@@ -1,4 +1,4 @@
-package ch.hszt.oml;
+package ch.hszt.semesterarbeit;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class OmlTest extends Activity implements OnClickListener {
+public class Semesterarbeit extends Activity implements OnClickListener {
 
 //	private final String TAG = "OmlTest";
 	

@@ -1,4 +1,4 @@
-package ch.hszt.oml;
+package ch.hszt.semesterarbeit;
 
 public class Movie {
 

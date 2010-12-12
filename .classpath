@@ -4,7 +4,5 @@
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="lib" path="lib/jackson-all-1.6.2.jar"/>
-	<classpathentry kind="lib" path="lib/jersey-client-1.4.jar" sourcepath="C:/Dokumente und Einstellungen/Roman/workspace/OmlTest/lib/src/jersey-client-1.4-sources.jar"/>
-	<classpathentry kind="lib" path="lib/jersey-core-1.4.jar" sourcepath="C:/Dokumente und Einstellungen/Roman/workspace/OmlTest/lib/src/jersey-core-1.4-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

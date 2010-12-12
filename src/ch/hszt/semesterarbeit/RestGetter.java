@@ -1,4 +1,4 @@
-package ch.hszt.oml;
+package ch.hszt.semesterarbeit;
 
 import java.io.BufferedReader;
 import java.io.IOException;

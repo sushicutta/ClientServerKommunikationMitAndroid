@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="ch.hszt.oml"
-      android:versionCode="1"
-      android:versionName="1.0">
+			package="ch.hszt.semesterarbeit">
       
-      <uses-permission android:name="android.permission.INTERNET" />
-      
+	<uses-permission android:name="android.permission.INTERNET" />
+     
     <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name=".OmlTest"
+    
+        <activity android:name=".Semesterarbeit"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,6 +15,5 @@
         </activity>
 
     </application>
-
 
 </manifest> 
