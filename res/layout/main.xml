@@ -14,8 +14,7 @@
 						
 				<Button android:id="@+id/Button01" android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Refresh"></Button>
-					
+					android:text="Refresh"></Button>					
 								
 				<Button android:id="@+id/Button02" android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
@@ -24,6 +23,10 @@
 				<Button android:id="@+id/Button03" android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="Delete"></Button>
+					
+				<Button android:id="@+id/Button04" android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Update"></Button>
 				    
 		    </TableRow>
 

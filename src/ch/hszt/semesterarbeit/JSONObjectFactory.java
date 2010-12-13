@@ -39,5 +39,33 @@ public class JSONObjectFactory {
 		return null;
 		
 	}
+	
+	public static JSONObject produceFromMovie(Movie movie) {
+		
+		try {
+			
+			String jsonMovieString = mapper.writeValueAsString(movie);
+			
+			JSONObject jsonMovieObject = new JSONObject(jsonMovieString);
+			
+			JSONObject jsonObject = new JSONObject();
+			
+			jsonObject.put(Movie.OBJECT_NAME, jsonMovieObject);
+			
+			return jsonObject;
+			
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
 
 }
