@@ -282,7 +282,9 @@
   Clientapplikation hat. Normalerweise hat ein Anwender keinerleit technische
   Hintergründe.
   
-  \begin{itemize}
+  \newcounter{userStoriesZaehler}
+  
+  \begin{enumerate}
     \item Ich als Anwender lege keinerlei Wert auf das Aussehen eines
     \ac{GUI}'s
     \item Ich als Anwender lege keinerlei Wert auf die Art und Weise der
@@ -301,7 +303,8 @@
     können. Dieses Datenobjekt soll für zukünftige Zugriffe auf dem Server
     gespeichert werden.
     \item Ich als Anwender will über Übertragungsfehler informiert werden.
-  \end{itemize}
+    \setcounter{userStoriesZaehler}{\value{enumi}}
+  \end{enumerate}
   
   \subsection{Anforderungen an den Prototyp aus Sicht des Informatikstudenten}
   
@@ -312,7 +315,8 @@
   
   \subsubsection{Clientapplikation}
   
-  \begin{itemize}
+  \begin{enumerate}
+    \setcounter{enumi}{\value{userStoriesZaehler}}
     \item Ich als Informatikstudenten lege keinerlei Wert auf das Aussehen
     eines \ac{GUI}'s
     \item Ich als Informatikstudenten will, dass für die Übertragung eines
@@ -321,11 +325,13 @@
     Geräte mit der Android Version 2.2 lauffähig ist.
     \item Ich als Informatikstudenten will, dass die Clientapplikation
     unabhängig von der Serverapplikation ausgeliefert werden kann.
-  \end{itemize}
+    \setcounter{userStoriesZaehler}{\value{enumi}}
+  \end{enumerate}
   
   \subsubsection{Serverapplikation}
   
-  \begin{itemize}
+  \begin{enumerate}
+    \setcounter{enumi}{\value{userStoriesZaehler}}
     \item Ich als Informatikstudenten will, dass die Serverapplikation immer
     verfügbar ist.
     \item Ich als Informatikstudenten will, dass mehrere Clientapplikationen
@@ -334,8 +340,10 @@
     auf dem Internet zugänglich ist.
     \item Ich als Informatikstudenten will, dass die Serverapplikation
     unabhängig von der Clientapplikation ausgeliefert werden kann.
-  \end{itemize}
+    \setcounter{userStoriesZaehler}{\value{enumi}}
+  \end{enumerate}
   
+  \subsection{Akzeptanztests, abgeleitet von den User Stories}
   
   \newpage
   
