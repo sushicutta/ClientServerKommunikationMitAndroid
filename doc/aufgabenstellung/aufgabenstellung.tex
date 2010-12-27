@@ -3,11 +3,18 @@
 %
 %  Created by Roman Wuersch on 2010-12-04.
 %
-\documentclass[]{scrreprt}
+% =============================================================================
+% Documentdefinition  beginns here
+% =============================================================================
+
+\documentclass[listof=totoc,bibliography=totoc]{scrreprt}
 \usepackage[ngerman]{babel}
 
+\usepackage{tocbasic}
+
 % Use utf-8 encoding for foreign characters
-\usepackage[applemac]{inputenc}
+\usepackage[utf8]{inputenc}
+% \usepackage[applemac]{inputenc}
 
 % Setup for fullpage use
 \usepackage{fullpage}
@@ -41,15 +48,19 @@
     \usepackage{graphicx}
 \fi
 
+% =============================================================================
+% Documenttext beginns here
+% =============================================================================
+
 \title{Aufgabenstellung\\
     Semesterarbeit in Informatik}
     
-\author{Studierender - Roman W웦sch\\
+\author{Studierender - Roman W체rsch\\
     Projektbetreuer - Beat Seeliger\\
     \\
-    HSZ-T - Technische Hochschule Z웦ich}
+    HSZ-T - Technische Hochschule Z체rich}
     
-\date{6. Dezember 2010}
+\date{14. Dezember 2010}
 
 \begin{document}
 
@@ -79,34 +90,42 @@
     \section{Ziel der Arbeit}
     Es soll eine Client-Server-Kommunikation am Beispiel des Android
     Betriebsystems gezeigt werden. Das Android Betriebsystem nimmt den
-    Platz des Clients ein. Als Server wird ein Java EE Applikationsserver verwendet.\newline
+    Platz des Clients ein. Als Server wird ein Java EE Applikationsserver
+    verwendet.\newline
     
     Folgende Ziele sollen erreicht werden:
     
     \begin{itemize}
-        \item Es sollen zwei g둵gige plattformunabh둵gigen Arten von Daten-Kommunikation
-            miteinander verglichen werden.
-        \item Es soll ein Prototyp f웦 Daten-Kommunikation implementiert werden.
-            Der Prototyp soll beim Server Daten lesen, erstellen, aktualisieren und l쉝chen
-            k쉗nen. Der Prototyp soll auf einem Android-Ger둻 lauff둯ig sein.
+        \item Es sollen zwei g채ngige plattformunabh채ngigen Arten von
+            Daten-Kommunikation miteinander verglichen werden.
+        \item Es solle eine detaillierte Anforderungsanalyse an einen
+            Prototypen durchgef체hrt werden.
+        \item Es soll ein Prototyp f체r Daten-Kommunikation implementiert
+            werden. Der Prototyp soll beim Server Daten lesen, erstellen,
+            aktualisieren und l철schen k철nnen. Der Prototyp soll auf einem
+            Android-Ger채t lauff채hig sein.
     \end{itemize}
     
     Folgende Punkte werden abgegrenzt, da es den Rahmen der Arbeit sprengen 
-    w웦de:
+    w체rde:
     
     \begin{itemize}
-        \item Der Vergleich der Daten-Kommunikation soll auf zwei Protokolle beschr둵kt
-            werden, die in der Praxis eingesetzt werden, REST\footnote{
-                Der Begriff Representational State Transfer (mit dem Akronym REST) bezeichnet
-                einen Softwarearchitekturstil f웦 verteilte Hypermedia-Informationssysteme wie
-                das World Wide Web}
+        \item Der Vergleich der Daten-Kommunikation soll auf zwei Protokolle
+            beschr채nkt werden, die in der Praxis eingesetzt werden,
+            REST\footnote{
+                Der Begriff Representational State Transfer (mit dem Akronym
+                REST) bezeichnet einen Softwarearchitekturstil f체r verteilte
+                Hypermedia-Informationssysteme wie das World Wide Web}
             und Hessian\footnote{
-                Hessian ist ein bin둹es Netzwerkprotokoll, mit dessen Hilfe Daten zwischen
-                Systemen ausgetauscht und Remote Procedure Calls durchgef웘rt werden k쉗nen.}
+                Hessian ist ein bin채res Netzwerkprotokoll, mit dessen Hilfe
+                Daten zwischen Systemen ausgetauscht und Remote Procedure Calls
+                durchgef체hrt werden k철nnen.}
             .
-        \item Der Prototyp des Clients wird f웦 die Android Version 2.2 (Froyo) entwickelt
-            und soll mit dem Protokoll REST und Hessian implementiert werden.
-        \item Es werden keine Umfragen, Erhebungen und Feldstudien durchgef웘rt.
+        \item Der Prototyp des Clients wird f체r die Android Version 2.2 (Froyo)
+            entwickelt und soll mit dem Protokoll REST und Hessian
+            implementiert werden.
+        \item Es werden keine Umfragen, Erhebungen und Feldstudien
+            durchgef체hrt.
     \end{itemize}
 
     \newpage
@@ -114,64 +133,72 @@
     \section{Aufgabenstellung}
     
     \begin{itemize}
-        \item Gegen웑erstellung der beiden Protokollkonzepte
-        \item Gegen웑erstellung der Einsatzgebiete der beiden Protokolle
-        \item Pr웖en ob eine Implementierung f웦 Android m쉍lich ist
-        \item Testszenarien f웦 die beiden Prototypen ausarbeiten
-        \item Entwicklung eines Prototypen f웦 beide Protokolle REST und Hessian
-        \item Durchf웘ren der definierten Tests der beiden Prototypen
+        \item Gegen체berstellung der beiden Protokollkonzepte
+        \item Gegen체berstellung der Einsatzgebiete der beiden Protokolle
+        \item Pr체fen ob eine Implementierung f체r Android m철glich ist
+        \item Testszenarien f체r die beiden Prototypen ausarbeiten
+        \item Entwicklung eines Prototypen f체r beide Protokolle REST und
+            Hessian
+        \item Durchf체hren der definierten Tests der beiden Prototypen
     \end{itemize}
 
     \section{Erwartete Resultate}
     Die erwarteten Resultate ergeben sich aus der Aufgabenstellung:
 
     \begin{itemize}    
-        \item Es wird die Versionskontrolle auf der Basis von GIT bei Github.com verwendet.
-        \item Planung, Arbeitsnachweis und weitere Informationen werden im WIKI von
-            Github.com gef웘rt.
+        \item Es wird die Versionskontrolle auf der Basis von GIT bei
+            Github.com verwendet.
+        \item Planung, Arbeitsnachweis und weitere Informationen werden im WIKI
+            von Github.com gef체hrt.
         \item Technischer Bericht
         \begin{itemize}
             \item Beschreibung der Ausgangslage
-            \item Konzeptionelle Gegen웑erstellung von REST und Hessian
-            \item Gegen웑erstellung der Einsatzgebiete von REST und Hessian
+            \item Konzeptionelle Gegen체berstellung von REST und Hessian
+            \item Gegen체berstellung der Einsatzgebiete von REST und Hessian
             \item Definition der Anforderungen an den Prototyp 
             \item Zusammenfassung zur Entwicklung des Prototypen
             \item Ergebnisse der Tests und Abdeckung der Testszenarios
             
         \end{itemize}
-    	\item Lauff둯iger Prototyp:
+    	\item Lauff채higer Prototyp:
     	\begin{itemize}
-            \item Es soll ein lauff둯iger Prototyp auf der Basis von Android 2.2 (Froyo)
-                f웦 beide Protokolle gemacht werden.
-             \item Der Prototyp soll bei einem Server Daten lesen, erstellen, aktualisieren und l쉝chen
-                k쉗nen.
+            \item Es soll ein lauff채higer Prototyp auf der Basis von
+                Android 2.2 (Froyo) f체r beide Protokolle gemacht werden.
+             \item Der Prototyp soll bei einem Server Daten lesen, erstellen,
+                aktualisieren und l철schen k철nnen.
         \end{itemize}
     \end{itemize}
 
     \section{Geplante Termine}
-    Die Termine k쉗nen zum Zeitpunkt des Antrages noch nicht definitiv 
+    Die Termine k철nnen zum Zeitpunkt des Antrages noch nicht definitiv 
     festgelegt werden. Sofern jedoch die Planung eingehalten werden kann und 
-    freie Termine zur Verf웗ung stehen, sollten die Termine innerhalb der 
+    freie Termine zur Verf체gung stehen, sollten die Termine innerhalb der 
     angegebenen Monate liegen.
 
     \begin{tabbing}
         \hspace*{4cm}\= \kill
-    	Kick-Off:               \> Dezember 2010 \\
-    	Review:                 \> Januar 2011 \\
-    	Schlusspr둺entation:    \> Februar 2011 \\
+    	Kick-Off:               \> 14. Dezember 2010 \\
+    	Review:                 \> 12. Januar 2011 \\
+    	Schlusspr채sentation:    \> im Februar 2011 \\
     \end{tabbing}
 
     \section{Genehmigung}
     Der Studierende, sein Projektbetreuer und der Studiengangsleiter 
-    Informatik erkl둹en sich mit der Aufgabenstellung einverstanden und geben 
-    die Arbeit frei zur Erfassung im Einschreibesystem der Hochschule f웦 
-    Technik Z웦ich.
+    Informatik erkl채ren sich mit der Aufgabenstellung einverstanden und geben 
+    die Arbeit frei zur Erfassung im Einschreibesystem der Hochschule f체r 
+    Technik Z체rich.
 
     \begin{tabbing}
         \hspace*{10cm}\= \kill
-    	Roman W웦sch, Studierender \> Beat Seeliger, Projektbetreuer \\\\\\
-        \line(1,0){150} \> \line(1,0){150} \\\\\\
-    	Dr. Olaf Stern, Studiengangsleiter Informatik \\\\\\
+    	Roman W체rsch, Studierender \> Beat Seeliger, Projektbetreuer \\
+    	\\
+    	\\
+        \line(1,0){150} \> \line(1,0){150} \\
+        \\
+        \\
+    	Dr. Olaf Stern, Studiengangsleiter Informatik \\
+    	\\
+    	\\
         \line(1,0){150}
     \end{tabbing}    
 \end{document}

@@ -1,9 +1,12 @@
 Middleware/
 *.aux
 *.bbl
-*.bib
 *.blg
+*.dvi
 *.log
+*.lof
+*.lot
+*.toc
 *.maf
 *.mtc*
 
