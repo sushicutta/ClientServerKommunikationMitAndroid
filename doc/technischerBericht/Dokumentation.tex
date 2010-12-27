@@ -47,6 +47,27 @@
 % This is now the recommended way for checking for PDFLaTeX:
 \usepackage{ifpdf}
 
+\usepackage[hyperfootnotes=false]{hyperref}
+\hypersetup{
+  bookmarks=true,         % show bookmarks bar?
+  unicode=true,           % non-Latin characters in Acrobat’s bookmarks
+  pdftoolbar=true,        % show Acrobat’s toolbar?
+  pdfmenubar=true,        % show Acrobat’s menu?
+  pdffitwindow=true,      % window fit to page when opened
+  pdfstartview={FitH},    % fits the width of the page to the window
+  pdftitle={Semesterarbeit},   
+  pdfauthor={Roman Würsch},
+  pdfsubject={Client-Server-Kommunikation mit Android},
+  pdfcreator={TeXnicCenter 1.0 RC1},
+  pdfproducer={MiKTeX 2.9},
+  pdfnewwindow=true,      % links in new window
+  colorlinks=false,       % false: boxed links; true: colored links
+  linkcolor=red,          % color of internal links
+  citecolor=green,        % color of links to bibliography
+  filecolor=magenta,      % color of file links
+  urlcolor=cyan          % color of external links
+}
+
 \ifpdf
     \usepackage[pdftex]{graphicx}
 \else
@@ -60,7 +81,7 @@
 	\\
 	HSZ-T - Technische Hochschule Zürich}
 
-\date{27. Dezember 2010}
+\date{\today}
 
 % =============================================================================
 % Documenttext beginns here
@@ -136,11 +157,11 @@
   Folgende Ziele sollen erreicht werden:
   
   \begin{itemize}
-      \item Es sollen zwei gängige plattformunabhängigen Arten von
+    \item Es sollen zwei gängige plattformunabhängigen Arten von
           Daten-Kommunikation miteinander verglichen werden.
-      \item Es solle eine detaillierte Anforderungsanalyse an einen
+    \item Es solle eine detaillierte Anforderungsanalyse an einen
           Prototypen durchgeführt werden.
-      \item Es soll ein Prototyp für Daten-Kommunikation implementiert
+    \item Es soll ein Prototyp für Daten-Kommunikation implementiert
           werden. Der Prototyp soll beim Server Daten lesen, erstellen,
           aktualisieren und löschen können. Der Prototyp soll auf einem
           Android-Gerät lauffähig sein.
@@ -150,21 +171,21 @@
   würde:
   
   \begin{itemize}
-      \item Der Vergleich der Daten-Kommunikation soll auf zwei Protokolle
+    \item Der Vergleich der Daten-Kommunikation soll auf zwei Protokolle
           beschränkt werden, die in der Praxis eingesetzt werden,
-          REST\footnote{
-              Der Begriff Representational State Transfer (mit dem Akronym
-              REST) bezeichnet einen Softwarearchitekturstil für verteilte
-              Hypermedia-Informationssysteme wie das World Wide Web}
-          und Hessian\footnote{
-              Hessian ist ein binäres Netzwerkprotokoll, mit dessen Hilfe
-              Daten zwischen Systemen ausgetauscht und Remote Procedure Calls
-              durchgeführt werden können.}
+          \ac{REST}\footnote[1]{
+            Der Begriff Representational State Transfer (mit dem Akronym
+            REST) bezeichnet einen Softwarearchitekturstil für verteilte
+            Hypermedia-Informationssysteme wie das World Wide Web}
+          und Hessian\footnote[2]{
+            Hessian ist ein binäres Netzwerkprotokoll, mit dessen Hilfe
+            Daten zwischen Systemen ausgetauscht und Remote Procedure Calls
+            durchgeführt werden können.}
           .
-      \item Der Prototyp des Clients wird für die Android Version 2.2 (Froyo)
-          entwickelt und soll mit dem Protokoll REST und Hessian
-          implementiert werden.
-      \item Es werden keine Umfragen, Erhebungen und Feldstudien
+    \item Der Prototyp des Clients wird für die Android Version 2.2 (Froyo)
+          entwickelt und soll mit dem Protokoll \ac{REST}\footnotemark[1] und
+          Hessian\footnotemark[2] implementiert werden.
+    \item Es werden keine Umfragen, Erhebungen und Feldstudien
           durchgeführt.
   \end{itemize}
   
@@ -173,69 +194,155 @@
   \subsection{Aufgabenstellung}
   
   \begin{itemize}
-      \item Gegenüberstellung der beiden Protokollkonzepte
-      \item Gegenüberstellung der Einsatzgebiete der beiden Protokolle
-      \item Prüfen ob eine Implementierung für Android möglich ist
-      \item Testszenarien für die beiden Prototypen ausarbeiten
-      \item Entwicklung eines Prototypen für beide Protokolle REST und
+    \item Gegenüberstellung der beiden Protokollkonzepte
+    \item Gegenüberstellung der Einsatzgebiete der beiden Protokolle
+    \item Prüfen ob eine Implementierung für Android möglich ist
+    \item Testszenarien für die beiden Prototypen ausarbeiten
+    \item Entwicklung eines Prototypen für beide Protokolle \ac{REST} und
           Hessian
-      \item Durchführen der definierten Tests der beiden Prototypen
+    \item Durchführen der definierten Tests der beiden Prototypen
   \end{itemize}
   
   \subsection{Erwartete Resultate}
   Die erwarteten Resultate ergeben sich aus der Aufgabenstellung:
   
-  \begin{itemize}    
-      \item Es wird die Versionskontrolle auf der Basis von GIT bei
+  \begin{itemize}
+    \item Es wird die Versionskontrolle auf der Basis von GIT bei
           Github.com verwendet.
-      \item Planung, Arbeitsnachweis und weitere Informationen werden im WIKI
+    \item Planung, Arbeitsnachweis und weitere Informationen werden im WIKI
           von Github.com geführt.
-      \item Technischer Bericht
-      \begin{itemize}
-          \item Beschreibung der Ausgangslage
-          \item Konzeptionelle Gegenüberstellung von REST und Hessian
-          \item Gegenüberstellung der Einsatzgebiete von REST und Hessian
-          \item Definition der Anforderungen an den Prototyp 
-          \item Zusammenfassung zur Entwicklung des Prototypen
-          \item Ergebnisse der Tests und Abdeckung der Testszenarios
-          
-      \end{itemize}
-      \item Lauffähiger Prototyp:
-      \begin{itemize}
-          \item Es soll ein lauffähiger Prototyp auf der Basis von
-              Android 2.2 (Froyo) für beide Protokolle gemacht werden.
-           \item Der Prototyp soll bei einem Server Daten lesen, erstellen,
-              aktualisieren und löschen können.
-      \end{itemize}
+    \item Technischer Bericht
+    \begin{itemize}
+      \item Beschreibung der Ausgangslage
+      \item Konzeptionelle Gegenüberstellung von \ac{REST} und Hessian
+      \item Gegenüberstellung der Einsatzgebiete von \ac{REST} und Hessian
+      \item Definition der Anforderungen an den Prototyp 
+      \item Zusammenfassung zur Entwicklung des Prototypen
+      \item Ergebnisse der Tests und Abdeckung der Testszenarios
+    \end{itemize}
+    \item Lauffähiger Prototyp:
+    \begin{itemize}
+      \item Es soll ein lauffähiger Prototyp auf der Basis von
+            Android 2.2 (Froyo) für beide Protokolle gemacht werden.
+      \item Der Prototyp soll bei einem Server Daten lesen, erstellen,
+            aktualisieren und löschen können.
+    \end{itemize}
   \end{itemize}
   
   \section{Termine}
   
   \begin{tabbing}
-      \hspace*{4cm}\= \kill
+    \hspace*{4cm}\= \kill
     Kick-Off:               \> 14. Dezember 2010 \\
     Review:                 \> 12. Januar 2011 \\
     Schlusspräsentation:    \> im Februar 2011 (termin noch nicht bekannt)\\
   \end{tabbing}
   
-  \chapter{Inhalt}
+  \chapter{Technischer Bericht}
   
   \pagenumbering{arabic}
   
   \section{Beschreibung der Ausgangslage}
   
   
+  \newpage
+  
   \section{Konzeptionelle Gegenüberstellung von REST und Hessian}
   
+  
+  \newpage
   
   \section{Gegenüberstellung der Einsatzgebiete von REST und Hessian}
   
   
+  \newpage
+  
   \section{Definition der Anforderungen an den Prototyp}
   
+  Die Definition der Anforderungen an die beiden Prototypen werden mit der
+  Technik der User Stories\cite{UserStories} gemacht.
+  
+  \subsection{Was sind User Stories}
+  
+  User Stories beschreiben Anforderungen an eine Software in eine für Jedermann
+  verständlichen Sprache. Es sollen keine technischen Details genannt, sondern
+  viel eher Eigenschaften erläutert werden die jeder versteht. Oft werden User
+  Stories als Aktionen in einem \ac{GUI} verfasst. Aus den User Stories kann
+  man die jeweiligen Akzeptanztests\cite{AcceptanceTests} ableiten.
+  
+  Eine User Story sollte nicht mehr als drei Sätze haben. Das kommt daher, dass
+  eine User Story nie zu komplex sein darf. Wenn man mehr als drei Sätz für die
+  Beschreibung einer User Story braucht, sollte diese in mehrere kleinere User
+  Stories aufgeteilt werden, welche genug simpel sind, um wiederum in drei
+  Sätzen beschrieben zu werden.
+  
+  \subsection{Anforderungen an den Prototyp aus Sicht des Anwenders}
+  
+  Der Anwender stellt ein Mensch dar, der nur die Sicht auf die
+  Clientapplikation hat. Normalerweise hat ein Anwender keinerleit technische
+  Hintergründe.
+  
+  \begin{itemize}
+    \item Ich als Anwender lege keinerlei Wert auf das Aussehen eines
+    \ac{GUI}'s
+    \item Ich als Anwender lege keinerlei Wert auf die Art und Weise der
+    Übertragung der Daten.
+    \item Ich als Anwender will meine Applikation überall verwenden können.
+    \item Ich als Anwender will eine stabile Applikation.
+    \item Ich als Anwender will ein ausgewähltes Datenobjekt vom Server an mein
+    Androidgerät übertragen und darstellen können.
+    \item Ich als Anwender will eine komplette Liste von Datenobjekten vom
+    Server an mein Androidgerät übertragen und darstellen können.
+    \item Ich als Anwender will ein ausgewähltes Datenobjekt auf dem Server
+    löschen können.
+    \item Ich als Anwender will ein ausgewähltes Datenobjekt auf dem Server
+    editieren können.
+    \item Ich als Anwender will ein neues Datenobjekt an den Server übertragen
+    können. Dieses Datenobjekt soll für zukünftige Zugriffe auf dem Server
+    gespeichert werden.
+    \item Ich als Anwender will über Übertragungsfehler informiert werden.
+  \end{itemize}
+  
+  \subsection{Anforderungen an den Prototyp aus Sicht des Informatikstudenten}
+  
+  Der Informatikstudent stellt ein Mensch dar, der sowohl die Sicht auf den
+  Client, wie auch auf den Server der Applikation hat. Der Informatikstudent
+  versucht durch technische Hilfsmittel die Anforderungen eines Anwenders zu
+  erfüllen.
+  
+  \subsubsection{Clientapplikation}
+  
+  \begin{itemize}
+    \item Ich als Informatikstudenten lege keinerlei Wert auf das Aussehen
+    eines \ac{GUI}'s
+    \item Ich als Informatikstudenten will, dass für die Übertragung eines
+    Datenobjekts möglichst wenig Rohdaten gesendet und empfangen werden.
+    \item Ich als Informatikstudenten will, dass die Clientapplikation für
+    Geräte mit der Android Version 2.2 lauffähig ist.
+    \item Ich als Informatikstudenten will, dass die Clientapplikation
+    unabhängig von der Serverapplikation ausgeliefert werden kann.
+  \end{itemize}
+  
+  \subsubsection{Serverapplikation}
+  
+  \begin{itemize}
+    \item Ich als Informatikstudenten will, dass die Serverapplikation immer
+    verfügbar ist.
+    \item Ich als Informatikstudenten will, dass mehrere Clientapplikationen
+    gleichzeitig mit der Serverapplikation bedient werden können.
+    \item Ich als Informatikstudenten will, dass die Serverapplikation
+    auf dem Internet zugänglich ist.
+    \item Ich als Informatikstudenten will, dass die Serverapplikation
+    unabhängig von der Clientapplikation ausgeliefert werden kann.
+  \end{itemize}
+  
+  
+  \newpage
   
   \section{Zusammenfassung zur Entwicklung des Prototypen}
   
+  
+  \newpage
   
   \section{Ergebnisse der Tests und Abdeckung der Testszenarios}
   
@@ -258,6 +365,8 @@
   \chapter{Abkürzungsverzeichnis}
   \begin{acronym}
     \setlength{\itemsep}{-\parsep}
+    \acro{GUI}{Graphical User Interface}
+    \acro{REST}{Representational State Transfer}
     \acro{XML}{Extensible Markup Language}
     \acro{JSON}{JavaScript Object Notation}
   \end{acronym}
