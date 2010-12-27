@@ -7,7 +7,8 @@
 % Documentdefinition  beginns here
 % =============================================================================
 
-\documentclass[listof=totoc,bibliography=totoc]{scrreprt}
+\documentclass[listof=totocnumbered, bibliography=totocnumbered]{scrreprt}
+% \documentclass[listof=totoc,bibliography=totoc]{scrreprt}
 \usepackage[ngerman]{babel}
 
 \usepackage{tocbasic}
@@ -39,6 +40,10 @@
 % If you want to generate a toc for each chapter (use with book)
 \usepackage{minitoc}
 
+% Abkürzungsverzeichnis erstellen.
+\usepackage{acronym}
+% \usepackage[printonlyused]{acronym}
+
 % This is now the recommended way for checking for PDFLaTeX:
 \usepackage{ifpdf}
 
@@ -47,10 +52,6 @@
 \else
     \usepackage{graphicx}
 \fi
-
-% =============================================================================
-% Documenttext beginns here
-% =============================================================================
 
 \title{Client-Server-Kommunikation mit Android}
 
@@ -61,6 +62,10 @@
 
 \date{27. Dezember 2010}
 
+% =============================================================================
+% Documenttext beginns here
+% =============================================================================
+
 \begin{document}
 
   \ifpdf
@@ -68,15 +73,27 @@
   \else
     \DeclareGraphicsExtensions{.eps, .jpg}
   \fi
-
+  
+  % ===========================================================================
+  % Titelblatt beginns here
+  % ===========================================================================
+  
   \maketitle
-
+  
   \pagenumbering{Roman}
-
+  
+  % ===========================================================================
+  % Inahltsverzeichnis beginns here
+  % ===========================================================================
+  
   \tableofcontents
-
+  
+  % ===========================================================================
+  % Kapitel Administratives beginns here
+  % ===========================================================================
+  
   \chapter{Administratives}
-
+  
   \section{Personalienblatt}
   \begin{tabbing}
     \hspace*{6cm}\= \kill
@@ -103,13 +120,13 @@
   \newpage
   
   \section{Aufgabenstellung}
-
+  
   \subsection{Ausgangslage}
   Die App-Stores der Mobil-Hersteller boomen. Die Art und Weise wie man Apps
   programmieren soll wird von den Mobil-Hersteller meist klar vorgegeben.
   Sobald jedoch eine App mit einem Server im Internet kommunizieren soll, gibt
   es keine Vorschriften zur Implementierung.
-
+  
   \subsection{Ziel der Arbeit}
   Es soll eine Client-Server-Kommunikation am Beispiel des Android
   Betriebsystems gezeigt werden. Das Android Betriebsystem nimmt den
@@ -206,11 +223,26 @@
   \pagenumbering{arabic}
   
   \section{Beschreibung der Ausgangslage}
+  
+  
   \section{Konzeptionelle Gegenüberstellung von REST und Hessian}
+  
+  
   \section{Gegenüberstellung der Einsatzgebiete von REST und Hessian}
+  
+  
   \section{Definition der Anforderungen an den Prototyp}
+  
+  
   \section{Zusammenfassung zur Entwicklung des Prototypen}
+  
+  
   \section{Ergebnisse der Tests und Abdeckung der Testszenarios}
+  
+  
+  % ===========================================================================
+  % Anhang beginns here
+  % ===========================================================================
   
   \appendix
   
@@ -219,16 +251,40 @@
   Im Anhang kann auf Implementierungsaspekte wie Datenbankschemata
   oder Programmcode eingegangen werden.
   
-  % Abbildungsverzeichnis (kann auch nach dem Inhaltsverzeichnis kommen)
+  % ===========================================================================
+  % Abkürzungsverzeichnis beginns here
+  % ===========================================================================
+  
+  \chapter{Abkürzungsverzeichnis}
+  \begin{acronym}
+    \setlength{\itemsep}{-\parsep}
+    \acro{XML}{Extensible Markup Language}
+    \acro{JSON}{JavaScript Object Notation}
+  \end{acronym}
+  
+  % ===========================================================================
+  % Abbildungsverzeichnis beginns here
+  % ===========================================================================
+  
+  % Abbildungsverzeichnis
   \listoffigures
   
-  % Tabellenverzeichnis (kann auch nach dem Inhaltsverzeichnis kommen)
+  % ===========================================================================
+  % Tabellenverzeichnis beginns here
+  % ===========================================================================
+  
+  % Tabellenverzeichnis
   \listoftables
   
-  % Literaturverzeichnis
-  % verwendet literaturverzeichnis.bib
-  \bibliography{literaturverzeichnis}
-  % verwendet plain
+  % ===========================================================================
+  % Literaturverzeichnis beginns here
+  % ===========================================================================
+  
+  % verwendet alpha
   \bibliographystyle{alpha}
+  % verwendet literaturverzeichnis.bib
+  % \renewcommand\bibname{Literaturverzeichnis} % Titel überschreiben
+  \cleardoublepage
+  \bibliography{literaturverzeichnis}
 
 \end{document}
