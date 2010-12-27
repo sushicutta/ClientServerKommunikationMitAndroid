@@ -3,11 +3,12 @@ Middleware/
 *.bbl
 *.blg
 *.dvi
-*.log
 *.lof
+*.log
 *.lot
-*.toc
 *.maf
 *.mtc*
+*.out
 *.pdf
+*.toc
 
