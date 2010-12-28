@@ -41,8 +41,10 @@
 \usepackage{minitoc}
 
 % Abkürzungsverzeichnis erstellen.
-\usepackage{acronym}
-% \usepackage[printonlyused]{acronym}
+\usepackage[printonlyused]{acronym}
+
+% schöne Tabelle zeichnen
+\usepackage{booktabs}
 
 % This is now the recommended way for checking for PDFLaTeX:
 \usepackage{ifpdf}
@@ -176,15 +178,18 @@
           \ac{REST}\footnote[1]{
             Der Begriff Representational State Transfer (mit dem Akronym
             REST) bezeichnet einen Softwarearchitekturstil für verteilte
-            Hypermedia-Informationssysteme wie das World Wide Web}
-          und Hessian\footnote[2]{
-            Hessian ist ein binäres Netzwerkprotokoll, mit dessen Hilfe
-            Daten zwischen Systemen ausgetauscht und Remote Procedure Calls
-            durchgeführt werden können.}
-          .
-    \item Der Prototyp des Clients wird für die Android Version 2.2 (Froyo)
-          entwickelt und soll mit dem Protokoll \ac{REST}\footnotemark[1] und
-          Hessian\footnotemark[2] implementiert werden.
+            Hypermedia-Informationssysteme wie das World Wide Web} und
+          Hessian\footnote[2]{
+            Hessian ist ein binäres Netzwerkprotokoll, mit
+            dessen Hilfe Daten zwischen Systemen ausgetauscht und Remote
+            Procedure Calls durchgeführt werden können.}.
+    \item Der Prototyp des Clients wird für die Android Version 2.2
+          (Froyo\footnote[3]{
+            Die Android Entwickler geben den verschiedenen Versionen
+            ihres Betriebsystems jeweils Namen von süssen Speisen FroYo
+            ist ein Akronym für Frozen yogurt}) entwickelt und soll mit dem
+          Protokoll \ac{REST}\footnotemark[1] und Hessian\footnotemark[2]
+          implementiert werden.
     \item Es werden keine Umfragen, Erhebungen und Feldstudien
           durchgeführt.
   \end{itemize}
@@ -234,7 +239,7 @@
   \begin{tabbing}
     \hspace*{4cm}\= \kill
     Kick-Off:               \> 14. Dezember 2010 \\
-    Review:                 \> 12. Januar 2011 \\
+    Design-Review:          \> 12. Januar 2011 \\
     Schlusspräsentation:    \> im Februar 2011 (termin noch nicht bekannt)\\
   \end{tabbing}
   
@@ -259,8 +264,8 @@
   
   \section{Definition der Anforderungen an den Prototyp}
   
-  Die Definition der Anforderungen an die beiden Prototypen werden mit der
-  Technik der User Stories\cite{UserStories} gemacht.
+  Die Definition der Anforderungen an die Prototypen werden mit der Technik der
+  User Sto\-ries\cite{UserStories} gemacht.
   
   \subsection{Was sind User Stories}
   
@@ -276,7 +281,18 @@
   Stories aufgeteilt werden, welche genug simpel sind, um wiederum in drei
   Sätzen beschrieben zu werden.
   
-  \subsection{Anforderungen an den Prototyp aus Sicht des Anwenders}
+  \subsection{Anforderungen an den Prototyp}
+  
+  Im folgenden werden die Anforderungen an den Prototypen spezifziert. Die
+  Anforderungen werden aus zwei Blickwinkeln definiert. Aus der Sicht eines
+  Anwenders und aus der Sicht eines Informatikstudenten. Diese beiden
+  Sichtweisen werde jeweils ich vertreten, da ich mich davon abgegrenzt habe,
+  irgenwelche Erhebungen durchzuführen.
+  
+  Nachfolgend ist die Rede von Datenobjekten. Bei einem Datenobjekt wie es hier
+  aufgeführt wird, handelt es sich um ein \ac{POJO}. 
+  
+  \subsection{Aus der Sicht des Anwenders}
   
   Der Anwender stellt ein Mensch dar, der nur die Sicht auf die
   Clientapplikation hat. Normalerweise hat ein Anwender keinerleit technische
@@ -285,10 +301,7 @@
   \newcounter{userStoriesZaehler}
   
   \begin{enumerate}
-    \item Ich als Anwender lege keinerlei Wert auf das Aussehen eines
-    \ac{GUI}'s
-    \item Ich als Anwender lege keinerlei Wert auf die Art und Weise der
-    Übertragung der Daten.
+    \item Ich als Anwender will ein hochwertiges \ac{GUI}.
     \item Ich als Anwender will meine Applikation überall verwenden können.
     \item Ich als Anwender will eine stabile Applikation.
     \item Ich als Anwender will ein ausgewähltes Datenobjekt vom Server an mein
@@ -306,7 +319,7 @@
     \setcounter{userStoriesZaehler}{\value{enumi}}
   \end{enumerate}
   
-  \subsection{Anforderungen an den Prototyp aus Sicht des Informatikstudenten}
+  \subsection{Aus der Sicht des Informatikstudenten}
   
   Der Informatikstudent stellt ein Mensch dar, der sowohl die Sicht auf den
   Client, wie auch auf den Server der Applikation hat. Der Informatikstudent
@@ -317,8 +330,6 @@
   
   \begin{enumerate}
     \setcounter{enumi}{\value{userStoriesZaehler}}
-    \item Ich als Informatikstudenten lege keinerlei Wert auf das Aussehen
-    eines \ac{GUI}'s
     \item Ich als Informatikstudenten will, dass für die Übertragung eines
     Datenobjekts möglichst wenig Rohdaten gesendet und empfangen werden.
     \item Ich als Informatikstudenten will, dass die Clientapplikation für
@@ -332,18 +343,117 @@
   
   \begin{enumerate}
     \setcounter{enumi}{\value{userStoriesZaehler}}
-    \item Ich als Informatikstudenten will, dass die Serverapplikation immer
-    verfügbar ist.
-    \item Ich als Informatikstudenten will, dass mehrere Clientapplikationen
+    \item Ich als Informatikstudent will, dass die Serverapplikation auf einem
+    GlassFish Applikationsserver läuft.
+    \item Ich als Informatikstudent will, dass die Serverapplikation sowohl
+    Requests über das \ac{REST} Protokoll wie auch über das Hessian
+    Protokoll bearbeiten kann.
+    \item Ich als Informatikstudent will, dass Datenobjekte auf der
+    Serverapplikation gespeichert werden können. Diese Daten sollen nur solange
+    gespeichert sein, wie der Server läuft.
+    \item Ich als Informatikstudent will, dass mehrere Clientapplikationen
     gleichzeitig mit der Serverapplikation bedient werden können.
-    \item Ich als Informatikstudenten will, dass die Serverapplikation
+    \item Ich als Informatikstudent will, dass die Serverapplikation
     auf dem Internet zugänglich ist.
-    \item Ich als Informatikstudenten will, dass die Serverapplikation
+    \item Ich als Informatikstudent will, dass die Serverapplikation immer
+    verfügbar ist.
+    \item Ich als Informatikstudent will, dass die Serverapplikation
     unabhängig von der Clientapplikation ausgeliefert werden kann.
     \setcounter{userStoriesZaehler}{\value{enumi}}
   \end{enumerate}
   
-  \subsection{Akzeptanztests, abgeleitet von den User Stories}
+  \subsection{Priorisierung aller User Stories}
+  
+  Da es sich bei dieser Arbeit und eine Semesterarbeit handelt, kann nicht auf
+  jede Anforderung eingegangen werden. Die User Stories werden aus meiner Sicht
+  priorisiert. Für jede Story, die in dieser Semesterarbeit nicht umgesetzt
+  wird, werde ich eine kurze Begründung dazu abgeben.
+  
+  \subsubsection{Aus der Sicht des Anwenders}
+  
+  \begin{tabular}{ccc}
+    \toprule
+    User Story & Umsetzung & Priorisierung \\
+    \midrule
+    1 & Nein & --- \\
+    2 & Ja & mittel \\
+    3 & Ja & tief \\
+    4 & Ja & hoch \\
+    5 & Ja & hoch \\
+    6 & Ja & hoch \\
+    7 & Ja & hoch \\
+    8 & Ja & hoch \\
+    9 & Ja & tief \\
+    \bottomrule
+  \end{tabular}
+  
+  \subsubsection{Aus der Sicht des Informatikstudenten}
+  
+  \begin{tabular}{ccc}
+    \toprule
+    User Story & Umsetzung & Priorisierung \\
+    \midrule
+    10 & Ja & mittel \\
+    11 & Ja & mittel \\
+    12 & Ja & tief \\
+    13 & Ja & mittel \\
+    14 & Ja & hoch \\
+    15 & Ja & hoch \\
+    16 & Ja & tief \\
+    17 & Nein & --- \\
+    18 & Nein & --- \\
+    19 & Ja & tief \\
+    \bottomrule
+  \end{tabular}
+  
+  \subsubsection{Stories die nicht umgesetzt werden}
+  
+  \begin{itemize}
+    \item User Story 1: Es wurde auf die Umsetzung eines hochwertigen
+    \ac{GUI}'s für den Androidclient verzichtet, da es den Aufwand einer
+    Semesterarbeit übersteigt.
+    \item User Story 17: Der Server soll nicht über das Internet zugänglich
+    sein, da eine lauffähige Instanz eines GlassFish Servers, der von überall
+    her im Internet zugänglich ist, Geld kosten würde. Ich bin nicht bereit für
+    eine Semesterarbeit einen solchen Hosting Vertrag abzuschliessen.
+    \item User Story 18: Der Server kann nicht immer verfügbar sein, da die
+    Instanz des GlassFish Servers auf meinen Notebook laufen wird.
+  \end{itemize}
+  
+  \subsection{Planung der User Stories die umgesetzt werden}
+  
+  Es werden alle User Stories mit der Priorität hoch und mittel umgesetzt. Die
+  Reihenfolge der Umsetztung wird von mir festgelegt. Ich versuche die
+  Reihenfolge so festzulegen, damit es ein Sinnvoller Ablauf in der Entwicklung
+  der einzelnen User Stories gibt.
+  
+  Falls die Zeit reicht, werden auch noch die tief priorisierten Users Stories
+  umgesetzt. Es wird keine Reihenfolge für tief priorisierte User Stories
+  festgelegt. Die Reihenfolge der Umsetzung darf somit frei gewählt werden.\newline
+  
+  Es wird folgende Reihenfolge für die Umsetzung definiert:
+
+  \subsubsection{Priorität hoch}
+  
+  \begin{itemize}
+    \item User Story 15
+    \item User Story 14
+    \item User Story 4
+    \item User Story 5
+    \item User Story 8
+    \item User Story 6
+    \item User Story 7
+  \end{itemize}
+  
+  \subsubsection{Priorität mittel}
+  
+  \begin{itemize}
+    \item User Story 13
+    \item User Story 11
+    \item User Story 10
+    \item User Story 2
+  \end{itemize}
+  
   
   \newpage
   
@@ -361,7 +471,7 @@
   
   \appendix
   
-  \chapter{Ein Anhang}
+  \chapter{Ein Testanhang}
   
   Im Anhang kann auf Implementierungsaspekte wie Datenbankschemata
   oder Programmcode eingegangen werden.
@@ -375,6 +485,7 @@
     \setlength{\itemsep}{-\parsep}
     \acro{GUI}{Graphical User Interface}
     \acro{REST}{Representational State Transfer}
+    \acro{POJO}{Plain Old Java Object}
     \acro{XML}{Extensible Markup Language}
     \acro{JSON}{JavaScript Object Notation}
   \end{acronym}
