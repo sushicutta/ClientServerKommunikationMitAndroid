@@ -14,13 +14,35 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int Button01=0x7f050001;
-        public static final int Button02=0x7f050002;
-        public static final int Button03=0x7f050003;
-        public static final int Button04=0x7f050004;
-        public static final int ScrollView01=0x7f050005;
-        public static final int TableLayout01=0x7f050000;
-        public static final int TableLayout02=0x7f050006;
+        public static final int Button01=0x7f050003;
+        public static final int Button02=0x7f050014;
+        public static final int Button03=0x7f050004;
+        public static final int Button04=0x7f05001c;
+        public static final int EditText01=0x7f05000c;
+        public static final int EditText02=0x7f050012;
+        public static final int EditText03=0x7f05001a;
+        public static final int ScrollView01=0x7f050000;
+        public static final int TableLayout01=0x7f050001;
+        public static final int TableLayout02=0x7f050005;
+        public static final int TableLayout03=0x7f050006;
+        public static final int TableLayout04=0x7f050008;
+        public static final int TableLayout05=0x7f05000e;
+        public static final int TableLayout06=0x7f050016;
+        public static final int TableRow01=0x7f050007;
+        public static final int TableRow02=0x7f050013;
+        public static final int TableRow03=0x7f05000d;
+        public static final int TableRow04=0x7f050002;
+        public static final int TableRow05=0x7f050009;
+        public static final int TableRow06=0x7f05000b;
+        public static final int TableRow07=0x7f050011;
+        public static final int TableRow08=0x7f05000f;
+        public static final int TableRow09=0x7f050015;
+        public static final int TableRow10=0x7f050017;
+        public static final int TableRow11=0x7f050019;
+        public static final int TableRow12=0x7f05001b;
+        public static final int TextView01=0x7f05000a;
+        public static final int TextView02=0x7f050010;
+        public static final int TextView03=0x7f050018;
     }
     public static final class layout {
         public static final int main=0x7f030000;

@@ -1,48 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-
-		<TableLayout android:id="@+id/TableLayout01"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:stretchColumns="1">
-			
-		    <TableRow>
-						
-				<Button android:id="@+id/Button01" android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="Refresh"></Button>					
-								
-				<Button android:id="@+id/Button02" android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="Insert"></Button>
-					
-				<Button android:id="@+id/Button03" android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="Delete"></Button>
-					
-				<Button android:id="@+id/Button04" android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="Update"></Button>
-				    
-		    </TableRow>
-
-		</TableLayout>
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
 
 	<ScrollView android:id="@+id/ScrollView01"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content">
-	
-		<TableLayout android:id="@+id/TableLayout02"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:stretchColumns="0">
-	
-		</TableLayout>
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
 		
-	</ScrollView>
+		
+	<TableLayout android:id="@+id/TableLayout01" android:layout_width="fill_parent" android:stretchColumns="1" android:layout_height="wrap_content"><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow04"><Button android:layout_width="wrap_content" android:id="@+id/Button01" android:text="Refresh" android:layout_height="wrap_content"></Button>
+<Button android:layout_width="wrap_content" android:id="@+id/Button03" android:text="Delete" android:layout_height="wrap_content"></Button>
+
+</TableRow>
+<TableLayout android:id="@+id/TableLayout02" android:stretchColumns="0" android:layout_width="fill_parent" android:layout_height="wrap_content"></TableLayout>
+<TableLayout android:id="@+id/TableLayout03" android:layout_width="wrap_content" android:layout_height="wrap_content"><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow01"><TableLayout android:id="@+id/TableLayout04" android:layout_width="wrap_content" android:layout_height="wrap_content"><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow05"><TextView android:layout_width="wrap_content" android:text="Name" android:id="@+id/TextView01" android:layout_height="wrap_content"></TextView>
+</TableRow>
+<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow06"><EditText android:layout_width="wrap_content" android:text="inputName" android:id="@+id/EditText01" android:layout_height="wrap_content"></EditText>
+</TableRow>
+</TableLayout>
+</TableRow><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow03"><TableLayout android:id="@+id/TableLayout05" android:layout_width="wrap_content" android:layout_height="wrap_content"><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow08"><TextView android:layout_width="wrap_content" android:text="numberOfUnits" android:id="@+id/TextView02" android:layout_height="wrap_content"></TextView>
+</TableRow>
+<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow07"><EditText android:layout_width="wrap_content" android:numeric="decimal" android:text="inputNumberOfUnits" android:id="@+id/EditText02" android:layout_height="wrap_content"></EditText>
+</TableRow>
+</TableLayout>
+</TableRow><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow02"><Button android:layout_width="wrap_content" android:id="@+id/Button02" android:text="Insert" android:layout_height="wrap_content"></Button>
+</TableRow><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow09"><TableLayout android:id="@+id/TableLayout06" android:layout_width="wrap_content" android:layout_height="wrap_content"><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow10"><TextView android:layout_width="wrap_content" android:text="ID to Update" android:id="@+id/TextView03" android:layout_height="wrap_content"></TextView>
+</TableRow>
+<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow11"><EditText android:layout_width="wrap_content" android:numeric="decimal" android:text="inputNumberOfUnits" android:id="@+id/EditText03" android:layout_height="wrap_content"></EditText>
+</TableRow>
+</TableLayout>
+</TableRow><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow12"><Button android:layout_width="wrap_content" android:id="@+id/Button04" android:text="Update" android:layout_height="wrap_content"></Button>
+</TableRow>
+
+
+
+
+
+
+
+
+
+
+
+
+</TableLayout>
+</TableLayout>
+</ScrollView>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </LinearLayout>

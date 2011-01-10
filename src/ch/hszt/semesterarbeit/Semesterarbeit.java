@@ -2,9 +2,7 @@ package ch.hszt.semesterarbeit;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -34,13 +33,13 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 	private Button buttonDelete;
 	private Button buttonUpdate;
 	
+	private EditText nameEditText;
+	private EditText numberOfUnitsEditText;
+	private EditText idToUpdateEditText;
+	
 	private Integer productDeleteId;
 	
-	private Integer timesUpdated = 0;
-	
-	private Integer productUpdateId = 1;
-
-//	/** Called when the activity is first created. */
+	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,6 +61,10 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 		
 		table = (TableLayout)findViewById(R.id.TableLayout02);
 		
+		nameEditText = (EditText)findViewById(R.id.EditText01);
+		numberOfUnitsEditText = (EditText)findViewById(R.id.EditText02);
+		idToUpdateEditText = (EditText)findViewById(R.id.EditText03);
+		
 		JSONObject jsonObject = restClient.getJsonObject(1);
 		
 		addProductToTable(ProductFactory.produceFromJson(jsonObject));
@@ -73,8 +76,8 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 			refreshTable();			
 		} else if (view == buttonPost) {
 			Product product = new Product();
-			product.setName("Test POST from Android");
-			product.setNumberOfUnits(123);
+			product.setName(nameEditText.getText().toString());
+			product.setNumberOfUnits(Integer.valueOf(numberOfUnitsEditText.getText().toString()));
 			
 			JSONObject jsonObject = JSONObjectFactory.produceFromProduct(product);
 			
@@ -105,14 +108,20 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 			}
 			refreshTable();
 		} else if (view == buttonUpdate) {
-			Product productUpdate = new Product();
-			productUpdate.setName("Updated");
-			productUpdate.setNumberOfUnits(++timesUpdated);
+			Integer idToUpdate = Integer.valueOf(idToUpdateEditText.getText().toString());
+			JSONObject jsonPostObject = restClient.getJsonObject(idToUpdate);
 			
-			JSONObject jsonObject = JSONObjectFactory.produceFromProduct(productUpdate);
-			if (jsonObject != null) {				
-				restClient.updateJSONObject(productUpdateId, jsonObject);			
+			// Transfer into JAVA
+			Product productToUpdate = ProductFactory.produceFromJson(jsonPostObject);
+			productToUpdate.setName("Updated: " + productToUpdate.getName());
+			productToUpdate.setNumberOfUnits(productToUpdate.getNumberOfUnits() + 1);
+			
+			jsonPostObject = JSONObjectFactory.produceFromProduct(productToUpdate);
+			
+			if (jsonPostObject != null) {				
+				restClient.updateJSONObject(idToUpdate, jsonPostObject);			
 			}
+			
 			refreshTable();
 		} else {
 			throw new IllegalStateException("Hierhin dürfte ich nicht kommen. Es wird eine Button Action nicht implementiert. [" + view +"]");
