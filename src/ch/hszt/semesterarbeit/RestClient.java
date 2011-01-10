@@ -23,19 +23,19 @@ public class RestClient {
 
 	private static HttpClient httpClient = new DefaultHttpClient();
 	
-	private static String JSON_EXTENSION = ".json";
-	
 	private final String ressource;
 	
-	public RestClient (String application, String language, String path) {
-		ressource = application + "/" + language + "/" + path;
+	public RestClient (String application, String path) {
+		ressource = application + "/" + path;
 	}
 
 	public JSONObject getJsonObject(Integer id) {
 		
-		String url = ressource + "/" + id + JSON_EXTENSION;
+		String url = ressource + "/" + id;
 		
 		HttpGet httpGet = new HttpGet(url);
+		httpGet.setHeader("Accept", "application/json");
+		
 		HttpResponse response;
 
 		try {
@@ -54,7 +54,7 @@ public class RestClient {
 
 				String line = null;
 				while ((line = reader.readLine()) != null)
-					sb.append(line + "n");
+					sb.append(line + "\n");
 
 				String result = sb.toString();
 
@@ -79,40 +79,52 @@ public class RestClient {
 		return null;
 	}
 	
-	public JSONArray getJsonArray() {
+	public JSONArray getJsonArray(String objectName) {
 		
-		String url = ressource + JSON_EXTENSION;
+		String url = ressource;
 		
 		HttpGet httpGet = new HttpGet(url);
-		HttpResponse response;
+		httpGet.setHeader("Accept", "application/json");
 		
 		try {
-			response = httpClient.execute(httpGet);
+
+			HttpResponse response = httpClient.execute(httpGet);
+			Integer responseCode = response.getStatusLine().getStatusCode();
 			
+			if (responseCode == 200) {
+				
+				HttpEntity entity = response.getEntity();
+				
+				if (entity != null) {
+					
+					InputStream instream = entity.getContent();
+					BufferedReader reader = new BufferedReader(
+							new InputStreamReader(instream));
+					StringBuilder sb = new StringBuilder();
+					
+					String line = null;
+					while ((line = reader.readLine()) != null)
+						sb.append(line + "\n");
+					
+					String result = sb.toString();
+					
+					instream.close();
+					
+					JSONObject jsonObject = new JSONObject(result);
+					
+					JSONArray jsonArray = jsonObject.optJSONArray(objectName);					
+
+					return jsonArray;
+				}
+				
 			// TODO: HTTP-Status (z.B. 404) in eigener Anwendung verarbeiten.
-			
-			HttpEntity entity = response.getEntity();
-			
-			if (entity != null) {
+			} else if (responseCode == 404) {
 				
-				InputStream instream = entity.getContent();
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(instream));
-				StringBuilder sb = new StringBuilder();
+			// TODO: HTTP-Status unbekannt, in eigener Anwendung verarbeiten.
+			} else {
 				
-				String line = null;
-				while ((line = reader.readLine()) != null)
-					sb.append(line + "n");
-				
-				String result = sb.toString();
-				
-				instream.close();
-				
-				// get JSON Object
-				JSONArray jsonArray = new JSONArray(result);
-				
-				return jsonArray;
 			}
+
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -127,8 +139,8 @@ public class RestClient {
 		return null;
 	}
 	
-	public void insertJSONObject(JSONObject data) {
-		HttpPost postMethod = new HttpPost(ressource + JSON_EXTENSION);
+	public String insertJSONObject(JSONObject data) {
+		HttpPost postMethod = new HttpPost(ressource);
 		postMethod.setHeader("Content-type", "application/json");
 
 		try {
@@ -137,7 +149,13 @@ public class RestClient {
 			postMethod.setEntity(stringEntity);
 			
 			HttpResponse response = httpClient.execute(postMethod);
-			response.getStatusLine().getStatusCode();
+			Integer responseCode = response.getStatusLine().getStatusCode();
+			
+			if (responseCode == 201) {
+				return response.getFirstHeader("Location").getValue();
+			} else {
+				return null;
+			}
 
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
@@ -148,16 +166,25 @@ public class RestClient {
 		} finally {
 			postMethod.abort();
 		}
+		
+		return null;
 	}
 	
-	public void deleteJSONObject(String id) {
+	public void deleteJSONObject(Integer id) {
 		HttpDelete deleteMethod = new HttpDelete(ressource + "/" + id);
-		deleteMethod.setHeader("Content-type", "application/json");
 
 		try {
 			
 			HttpResponse response = httpClient.execute(deleteMethod);
 			Integer responseCode = response.getStatusLine().getStatusCode();
+			
+			if (responseCode == 200) {
+				// Everythins All Right.... Write log or do something
+			} else if (responseCode == 404) {
+				// TODO throw new ProductNotFoundException
+			} else {
+				// TODO throw new Exception
+			}
 
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
@@ -171,9 +198,9 @@ public class RestClient {
 		
 	}
 	
-	public void updateJSONObject(String id, JSONObject data) {
+	public void updateJSONObject(Integer id, JSONObject data) {
 		
-		HttpPut putMethod = new HttpPut(ressource + "/" + id + JSON_EXTENSION);
+		HttpPut putMethod = new HttpPut(ressource + "/" + id);
 		putMethod.setHeader("Content-type", "application/json");
 		
 		try {
@@ -183,6 +210,14 @@ public class RestClient {
 			
 			HttpResponse response = httpClient.execute(putMethod);
 			Integer responseCode = response.getStatusLine().getStatusCode();
+			
+			if (responseCode == 200) {
+				// Everythins All Right.... Write log or do something
+			} else if (responseCode == 404) {
+				// TODO throw new ProductNotFoundException
+			} else {
+				// TODO throw new Exception
+			}
 			
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();

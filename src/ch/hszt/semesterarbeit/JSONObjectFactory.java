@@ -8,23 +8,21 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ch.hszt.semesterarbeit.entity.Product;
+
 public class JSONObjectFactory {
 	
 	private static ObjectMapper mapper = new ObjectMapper();
 	
-	public static JSONObject produceFromMovie(MoviePost movie) {
+	public static JSONObject produceFromProduct(Product product) {
 
 		try {
 
-			String jsonMovieString = mapper.writeValueAsString(movie);
+			String jsonProductString = mapper.writeValueAsString(product);
 		
-			JSONObject jsonMovieObject = new JSONObject(jsonMovieString);
+			JSONObject jsonProductObject = new JSONObject(jsonProductString);
 			
-			JSONObject jsonObject = new JSONObject();
-			
-			jsonObject.put(Movie.OBJECT_NAME, jsonMovieObject);
-			
-			return jsonObject;
+			return jsonProductObject;
 
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -40,32 +38,4 @@ public class JSONObjectFactory {
 		
 	}
 	
-	public static JSONObject produceFromMovie(Movie movie) {
-		
-		try {
-			
-			String jsonMovieString = mapper.writeValueAsString(movie);
-			
-			JSONObject jsonMovieObject = new JSONObject(jsonMovieString);
-			
-			JSONObject jsonObject = new JSONObject();
-			
-			jsonObject.put(Movie.OBJECT_NAME, jsonMovieObject);
-			
-			return jsonObject;
-			
-		} catch (JSONException e) {
-			e.printStackTrace();
-		} catch (JsonGenerationException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return null;
-		
-	}
-
 }

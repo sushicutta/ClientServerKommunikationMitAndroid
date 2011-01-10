@@ -1,7 +1,12 @@
 package ch.hszt.semesterarbeit;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -15,12 +20,13 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import ch.hszt.semesterarbeit.entity.Product;
 
 public class Semesterarbeit extends Activity implements OnClickListener {
 
 //	private final String TAG = "OmlTest";
 	
-	RestClient restClient = new RestClient("http://oml.orwell.ch", "de", "movies");
+	RestClient restClient = new RestClient("http://192.168.0.135:8080/Semesterarbeit", "products");
 	
 	private TableLayout table;
 	private Button buttonRefresh;
@@ -28,9 +34,11 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 	private Button buttonDelete;
 	private Button buttonUpdate;
 	
-	private Movie movieDelete;
+	private Integer productDeleteId;
 	
-	private Movie movieUpdate;
+	private Integer timesUpdated = 0;
+	
+	private Integer productUpdateId = 1;
 
 //	/** Called when the activity is first created. */
 	@Override
@@ -47,6 +55,7 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 		
 		buttonDelete = (Button)findViewById(R.id.Button03);
 		buttonDelete.setOnClickListener(this);
+		buttonDelete.setEnabled(false);
 		
 		buttonUpdate = (Button)findViewById(R.id.Button04);
 		buttonUpdate.setOnClickListener(this);
@@ -54,59 +63,75 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 		table = (TableLayout)findViewById(R.id.TableLayout02);
 		
 		JSONObject jsonObject = restClient.getJsonObject(1);
-		movieUpdate = MovieFactory.produceFromJson(jsonObject);
 		
-		addMovieToTable(movieUpdate);
+		addProductToTable(ProductFactory.produceFromJson(jsonObject));
 	}
 
 	// run when the button is clicked
 	public void onClick(View view) {
 		if (view == buttonRefresh) {
-			table.removeAllViews();
-			JSONArray jsonArray = restClient.getJsonArray();
-			List<Movie> movies = MovieFactory.produceFromJson(jsonArray);
-			for (Movie movie : movies) {
-				addMovieToTable(movie);
-			}			
-			movieDelete = movies.get(movies.size()-1);
+			refreshTable();			
 		} else if (view == buttonPost) {
-			MoviePost moviePost = new MoviePost();
-			moviePost.setTitle("Test POST from Android");
-			moviePost.setDescription("Beschreibung");
+			Product product = new Product();
+			product.setName("Test POST from Android");
+			product.setNumberOfUnits(123);
 			
-			JSONObject jsonObject = JSONObjectFactory.produceFromMovie(moviePost);
+			JSONObject jsonObject = JSONObjectFactory.produceFromProduct(product);
 			
-			restClient.insertJSONObject(jsonObject);			
+			String location = restClient.insertJSONObject(jsonObject);
+			URI uri = null;
+			try {
+				uri = new URI (location);
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+			
+			if (uri != null) {
+				Pattern p = Pattern.compile("\\d+");
+				Matcher m = p.matcher(uri.getPath());
+				if (m.find()) {
+					String foundInteger = m.group();
+					productDeleteId = Integer.valueOf(foundInteger);
+					buttonDelete.setEnabled(true);
+				}
+			} else {
+				// TODO something went wrong .. throw new Exception
+			}
+			refreshTable();
 		} else if (view == buttonDelete) {
-			JSONObject jsonObject = null;
-			if (movieDelete != null) {
-				jsonObject = JSONObjectFactory.produceFromMovie(movieDelete);
+			if (productDeleteId != null) {
+				restClient.deleteJSONObject(productDeleteId);
+				buttonDelete.setEnabled(false);
 			}
-			if (jsonObject != null) {				
-				restClient.deleteJSONObject(movieDelete.getId());			
-			}
+			refreshTable();
 		} else if (view == buttonUpdate) {
-			JSONObject jsonObject = null;
-			if (movieUpdate != null) {
-				
-				MoviePost moviePost = new MoviePost();
-				moviePost.setTitle(String.valueOf(new Date().getTime()));
-				moviePost.setDescription(movieUpdate.getDescription());
-
-				jsonObject = JSONObjectFactory.produceFromMovie(moviePost);
-			}
+			Product productUpdate = new Product();
+			productUpdate.setName("Updated");
+			productUpdate.setNumberOfUnits(++timesUpdated);
+			
+			JSONObject jsonObject = JSONObjectFactory.produceFromProduct(productUpdate);
 			if (jsonObject != null) {				
-				restClient.updateJSONObject(movieUpdate.getId(), jsonObject);			
+				restClient.updateJSONObject(productUpdateId, jsonObject);			
 			}
+			refreshTable();
 		} else {
 			throw new IllegalStateException("Hierhin dürfte ich nicht kommen. Es wird eine Button Action nicht implementiert. [" + view +"]");
 		}
 	}
 	
-	private void addMovieToTable(Movie movie) {
+	private void refreshTable() {
+		table.removeAllViews();
+		JSONArray jsonArray = restClient.getJsonArray(Product.OBJECT_NAME);
+		List<Product> products = ProductFactory.produceFromJson(jsonArray);
+		for (Product product : products) {
+			addProductToTable(product);
+		}		
+	}
+	
+	private void addProductToTable(Product product) {
 		
 		TextView textView = new TextView(this);
-		textView.setText(movie.toString());
+		textView.setText(product.toString());
 
 		TableRow row = new TableRow(this);
 		row.addView(textView);
