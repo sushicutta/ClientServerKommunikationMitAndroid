@@ -3,6 +3,8 @@ package ch.hszt.semesterarbeit.entity;
 public class Product implements Comparable<Product> {
 	
 	public static String OBJECT_NAME = "product";
+	
+	private Long id;
 
 	private String name;
 
@@ -11,7 +13,9 @@ public class Product implements Comparable<Product> {
 	public Product() {
 	}
 
-	public Product(final String name, final int numberOfUnits) {
+	public Product(Long id, String name, int numberOfUnits) {
+		super();
+		this.id = id;
 		this.name = name;
 		this.numberOfUnits = numberOfUnits;
 	}
@@ -32,9 +36,17 @@ public class Product implements Comparable<Product> {
 		this.numberOfUnits = numberOfUnits;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
-		return "Product{" + "name=" + name + ", numberOfUnits=" + numberOfUnits
+		return "Product{id=" + id + ", name=" + name + ", units=" + numberOfUnits
 				+ "}";
 	}
 
