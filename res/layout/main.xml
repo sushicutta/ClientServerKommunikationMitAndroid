@@ -1,63 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+<TabHost android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:id="@+id/tabHost"
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<ScrollView android:id="@+id/ScrollView01"
-		android:layout_width="wrap_content" android:layout_height="wrap_content">
-		
-		
-	<TableLayout android:id="@+id/TableLayout01" android:layout_width="fill_parent" android:stretchColumns="1" android:layout_height="wrap_content"><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow04"><Button android:layout_width="wrap_content" android:id="@+id/Button01" android:text="Refresh" android:layout_height="wrap_content"></Button>
-<Button android:layout_width="wrap_content" android:id="@+id/Button03" android:text="Delete" android:layout_height="wrap_content"></Button>
+	<TabWidget android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:id="@android:id/tabs" />
 
-</TableRow>
-<TableLayout android:id="@+id/TableLayout02" android:stretchColumns="0" android:layout_width="fill_parent" android:layout_height="wrap_content"></TableLayout>
-<TableLayout android:id="@+id/TableLayout03" android:layout_width="wrap_content" android:layout_height="wrap_content"><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow01"><TableLayout android:id="@+id/TableLayout04" android:layout_width="wrap_content" android:layout_height="wrap_content"><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow05"><TextView android:layout_width="wrap_content" android:text="Name" android:id="@+id/TextView01" android:layout_height="wrap_content"></TextView>
-</TableRow>
-<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow06"><EditText android:layout_width="wrap_content" android:text="inputName" android:id="@+id/EditText01" android:layout_height="wrap_content"></EditText>
-</TableRow>
-</TableLayout>
-</TableRow><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow03"><TableLayout android:id="@+id/TableLayout05" android:layout_width="wrap_content" android:layout_height="wrap_content"><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow08"><TextView android:layout_width="wrap_content" android:text="numberOfUnits" android:id="@+id/TextView02" android:layout_height="wrap_content"></TextView>
-</TableRow>
-<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow07"><EditText android:layout_width="wrap_content" android:numeric="decimal" android:text="inputNumberOfUnits" android:id="@+id/EditText02" android:layout_height="wrap_content"></EditText>
-</TableRow>
-</TableLayout>
-</TableRow><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow02"><Button android:layout_width="wrap_content" android:id="@+id/Button02" android:text="Insert" android:layout_height="wrap_content"></Button>
-</TableRow><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow09"><TableLayout android:id="@+id/TableLayout06" android:layout_width="wrap_content" android:layout_height="wrap_content"><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow10"><TextView android:layout_width="wrap_content" android:text="ID to Update" android:id="@+id/TextView03" android:layout_height="wrap_content"></TextView>
-</TableRow>
-<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow11"><EditText android:layout_width="wrap_content" android:numeric="decimal" android:text="inputNumberOfUnits" android:id="@+id/EditText03" android:layout_height="wrap_content"></EditText>
-</TableRow>
-</TableLayout>
-</TableRow><TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TableRow12"><Button android:layout_width="wrap_content" android:id="@+id/Button04" android:text="Update" android:layout_height="wrap_content"></Button>
-</TableRow>
+	<FrameLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:id="@android:id/tabcontent">
+
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:orientation="vertical" android:id="@+id/Rest"
+			android:paddingTop="70px" android:layout_width="fill_parent"
+			android:layout_height="fill_parent">
+
+			<ScrollView android:id="@+id/RestScrollView01"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+				<TableLayout android:id="@+id/RestTableLayout01"
+					android:layout_width="fill_parent" android:stretchColumns="1"
+					android:layout_height="wrap_content">
+					<TableRow android:layout_width="fill_parent" 
+						android:layout_height="wrap_content" android:id="@+id/RestTableRow04">
+						<Button android:layout_width="wrap_content" android:id="@+id/RestButton01"
+							android:text="Refresh" android:layout_height="wrap_content"></Button>
+					</TableRow>
+					<TableLayout android:id="@+id/RestTableLayout02"
+						android:stretchColumns="0" android:layout_width="fill_parent"
+						android:layout_height="wrap_content"></TableLayout>
+					<TableLayout android:id="@+id/RestTableLayout03" android:paddingTop="20px"
+						android:layout_width="fill_parent" android:layout_height="wrap_content">
+						<TableRow android:layout_width="fill_parent"
+							android:layout_height="wrap_content" android:id="@+id/RestTableRow01">
+							<TableLayout android:id="@+id/RestTableLayout04"
+								android:layout_width="fill_parent" android:layout_height="wrap_content">
+								<TableRow android:layout_width="fill_parent" 
+									android:layout_height="wrap_content" android:id="@+id/RestTableRow05">
+									<TextView android:layout_width="wrap_content"
+										android:text="Name" android:id="@+id/RestTextView01"
+										android:layout_height="wrap_content"></TextView>
+								</TableRow>
+								<TableRow android:layout_width="fill_parent" 
+									android:layout_height="wrap_content" android:id="@+id/RestTableRow06">
+									<EditText android:text="Add text here" android:id="@+id/RestEditText01" android:layout_weight="1"
+										android:layout_height="wrap_content" android:layout_width="fill_parent"></EditText>
+								</TableRow>
+							</TableLayout>
+						</TableRow>
+						<TableRow android:layout_width="fill_parent" 
+							android:layout_height="wrap_content" android:id="@+id/RestTableRow03">
+							<TableLayout android:id="@+id/RestTableLayout05"
+								android:layout_width="fill_parent" android:layout_height="wrap_content">
+								<TableRow android:layout_width="wrap_content"
+									android:layout_height="wrap_content" android:id="@+id/RestTableRow08">
+									<TextView android:layout_width="fill_parent" 
+										android:text="numberOfUnits" android:id="@+id/RestTextView02"
+										android:layout_height="wrap_content"></TextView>
+								</TableRow>
+								<TableRow android:layout_width="fill_parent"
+									android:layout_height="wrap_content" android:id="@+id/RestTableRow07">
+									<EditText android:layout_width="fill_parent" android:layout_weight="1"
+										android:numeric="decimal" android:text="Add number here"
+										android:id="@+id/RestEditText02" android:layout_height="wrap_content"></EditText>
+								</TableRow>
+							</TableLayout>
+						</TableRow>
+						<TableRow android:layout_width="fill_parent" 
+							android:layout_height="wrap_content" android:id="@+id/RestTableRow02">
+							<Button android:layout_width="wrap_content" android:id="@+id/RestButton02"
+								android:text="Insert" android:layout_height="wrap_content"></Button>
+						</TableRow>
+						<TableRow android:layout_width="fill_parent" 
+							android:layout_height="wrap_content" android:id="@+id/RestTableRow09">
+							<TableLayout android:id="@+id/RestTableLayout06" android:paddingTop="20px"
+								android:layout_width="fill_parent" android:layout_height="wrap_content">
+								<TableRow android:layout_width="fill_parent" 
+									android:layout_height="wrap_content" android:id="@+id/RestTableRow10">
+									<TextView android:layout_width="fill_parent" 
+										android:text="ID to Update" android:id="@+id/RestTextView03"
+										android:layout_height="wrap_content"></TextView>
+								</TableRow>
+								<TableRow android:layout_width="fill_parent" 
+									android:layout_height="wrap_content" android:id="@+id/RestTableRow11">
+									<EditText android:layout_width="fill_parent" android:layout_weight="1"
+										android:numeric="decimal" android:text="Add number here"
+										android:id="@+id/RestEditText03" android:layout_height="wrap_content"></EditText>
+								</TableRow>
+							</TableLayout>
+						</TableRow>
+						<TableRow android:layout_width="fill_parent" 
+							android:layout_height="wrap_content" android:id="@+id/RestTableRow12">
+							<Button android:layout_width="wrap_content" android:id="@+id/RestButton04"
+								android:text="Update" android:layout_height="wrap_content"></Button>
+						</TableRow>
+						<TableRow android:layout_width="fill_parent"
+							android:layout_height="wrap_content" android:id="@+id/RestTableRow13">
+							<TableLayout android:id="@+id/RestTableLayout07" android:paddingTop="20px"
+								android:layout_width="fill_parent" android:layout_height="wrap_content">
+								<TableRow android:layout_width="fill_parent" 
+									android:layout_height="wrap_content" android:id="@+id/RestTableRow14">
+									<TextView android:layout_width="fill_parent" 
+										android:text="ID to Delete" android:id="@+id/RestTextView04"
+										android:layout_height="wrap_content"></TextView>
+								</TableRow>
+								<TableRow android:layout_width="fill_parent" 
+									android:layout_height="wrap_content" android:id="@+id/RestTableRow15">
+									<EditText android:layout_width="fill_parent" android:layout_weight="1"
+										android:numeric="decimal" android:text="Add number here"
+										android:id="@+id/RestEditText04" android:layout_height="wrap_content"></EditText>
+								</TableRow>
+							</TableLayout>
+						</TableRow>
+						<TableRow android:layout_width="fill_parent" 
+							android:layout_height="wrap_content" android:id="@+id/RestTableRow16">
+	            <Button android:layout_width="wrap_content" android:id="@+id/RestButton03"
+	              android:text="Delete" android:layout_height="wrap_content"></Button>
+						</TableRow>
+					</TableLayout>
+				</TableLayout>
+			</ScrollView>
+		</LinearLayout>
+
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:orientation="vertical" android:id="@+id/Hessian"
+			android:paddingTop="70px" android:layout_width="fill_parent"
+			android:layout_height="fill_parent">
+
+			<ScrollView android:id="@+id/HessianScrollView01"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+				<TableLayout android:id="@+id/HessianTableLayout01"
+					android:layout_width="fill_parent" android:stretchColumns="1"
+					android:layout_height="wrap_content">
+					<TableRow android:layout_width="wrap_content"
+						android:layout_height="wrap_content" android:id="@+id/HessianTableRow04">
+						<Button android:layout_width="wrap_content" android:id="@+id/HessianButton01"
+							android:text="Refresh" android:layout_height="wrap_content"></Button>
+						<Button android:layout_width="wrap_content" android:id="@+id/HessianButton03"
+							android:text="Delete" android:layout_height="wrap_content"></Button>
+
+					</TableRow>
+					<TableLayout android:id="@+id/HessianTableLayout02"
+						android:stretchColumns="0" android:layout_width="fill_parent"
+						android:layout_height="wrap_content"></TableLayout>
+					<TableLayout android:id="@+id/HessianTableLayout03"
+						android:layout_width="wrap_content" android:layout_height="wrap_content">
+						<TableRow android:layout_width="wrap_content"
+							android:layout_height="wrap_content" android:id="@+id/HessianTableRow01">
+							<TableLayout android:id="@+id/HessianTableLayout04"
+								android:layout_width="wrap_content" android:layout_height="wrap_content">
+								<TableRow android:layout_width="wrap_content"
+									android:layout_height="wrap_content" android:id="@+id/HessianTableRow05">
+									<TextView android:layout_width="wrap_content"
+										android:text="Name" android:id="@+id/HessianTextView01"
+										android:layout_height="wrap_content"></TextView>
+								</TableRow>
+								<TableRow android:layout_width="wrap_content"
+									android:layout_height="wrap_content" android:id="@+id/HessianTableRow06">
+									<EditText android:layout_width="wrap_content"
+										android:text="inputName" android:id="@+id/HessianEditText01"
+										android:layout_height="wrap_content"></EditText>
+								</TableRow>
+							</TableLayout>
+						</TableRow>
+						<TableRow android:layout_width="wrap_content"
+							android:layout_height="wrap_content" android:id="@+id/HessianTableRow03">
+							<TableLayout android:id="@+id/HessianTableLayout05"
+								android:layout_width="wrap_content" android:layout_height="wrap_content">
+								<TableRow android:layout_width="wrap_content"
+									android:layout_height="wrap_content" android:id="@+id/HessianTableRow08">
+									<TextView android:layout_width="wrap_content"
+										android:text="numberOfUnits" android:id="@+id/HessianTextView02"
+										android:layout_height="wrap_content"></TextView>
+								</TableRow>
+								<TableRow android:layout_width="wrap_content"
+									android:layout_height="wrap_content" android:id="@+id/HessianTableRow07">
+									<EditText android:layout_width="wrap_content"
+										android:numeric="decimal" android:text="inputNumberOfUnits"
+										android:id="@+id/HessianEditText02" android:layout_height="wrap_content"></EditText>
+								</TableRow>
+							</TableLayout>
+						</TableRow>
+						<TableRow android:layout_width="wrap_content"
+							android:layout_height="wrap_content" android:id="@+id/HessianTableRow02">
+							<Button android:layout_width="wrap_content" android:id="@+id/HessianButton02"
+								android:text="Insert" android:layout_height="wrap_content"></Button>
+						</TableRow>
+						<TableRow android:layout_width="wrap_content"
+							android:layout_height="wrap_content" android:id="@+id/HessianTableRow09">
+							<TableLayout android:id="@+id/HessianTableLayout06"
+								android:layout_width="wrap_content" android:layout_height="wrap_content">
+								<TableRow android:layout_width="wrap_content"
+									android:layout_height="wrap_content" android:id="@+id/HessianTableRow10">
+									<TextView android:layout_width="wrap_content"
+										android:text="ID to Update" android:id="@+id/HessianTextView03"
+										android:layout_height="wrap_content"></TextView>
+								</TableRow>
+								<TableRow android:layout_width="wrap_content"
+									android:layout_height="wrap_content" android:id="@+id/HessianTableRow11">
+									<EditText android:layout_width="wrap_content"
+										android:numeric="decimal" android:text="inputNumberOfUnits"
+										android:id="@+id/HessianEditText03" android:layout_height="wrap_content"></EditText>
+								</TableRow>
+							</TableLayout>
+						</TableRow>
+						<TableRow android:layout_width="wrap_content"
+							android:layout_height="wrap_content" android:id="@+id/HessianTableRow12">
+							<Button android:layout_width="wrap_content" android:id="@+id/HessianButton04"
+								android:text="Update" android:layout_height="wrap_content"></Button>
+						</TableRow>
+					</TableLayout>
+				</TableLayout>
+			</ScrollView>
+		</LinearLayout>
+	</FrameLayout>
+</TabHost>
 
 
-
-
-
-
-
-
-
-
-
-
-</TableLayout>
-</TableLayout>
-</ScrollView>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</LinearLayout>
