@@ -1,6 +1,11 @@
-package ch.hszt.semesterarbeit.entity;
+package ch.hszt.semesterarbeit;
 
-public class Product implements Comparable<Product> {
+import java.io.Serializable;
+
+
+public class Product implements Serializable, Comparable<Product> {
+	
+	private static final long serialVersionUID = 667L;
 	
 	public static String OBJECT_NAME = "product";
 	

@@ -23,7 +23,7 @@
 					android:layout_height="wrap_content">
 					<TableRow android:layout_width="fill_parent" 
 						android:layout_height="wrap_content" android:id="@+id/RestTableRow04">
-						<Button android:layout_width="wrap_content" android:id="@+id/RestButton01"
+						<Button android:layout_width="fill_parent" android:id="@+id/RestButton01" android:layout_weight="1"
 							android:text="Refresh" android:layout_height="wrap_content"></Button>
 					</TableRow>
 					<TableLayout android:id="@+id/RestTableLayout02"
@@ -37,7 +37,7 @@
 								android:layout_width="fill_parent" android:layout_height="wrap_content">
 								<TableRow android:layout_width="fill_parent" 
 									android:layout_height="wrap_content" android:id="@+id/RestTableRow05">
-									<TextView android:layout_width="wrap_content"
+									<TextView android:layout_width="fill_parent"
 										android:text="Name" android:id="@+id/RestTextView01"
 										android:layout_height="wrap_content"></TextView>
 								</TableRow>
@@ -52,7 +52,7 @@
 							android:layout_height="wrap_content" android:id="@+id/RestTableRow03">
 							<TableLayout android:id="@+id/RestTableLayout05"
 								android:layout_width="fill_parent" android:layout_height="wrap_content">
-								<TableRow android:layout_width="wrap_content"
+								<TableRow android:layout_width="fill_parent"
 									android:layout_height="wrap_content" android:id="@+id/RestTableRow08">
 									<TextView android:layout_width="fill_parent" 
 										android:text="numberOfUnits" android:id="@+id/RestTextView02"
@@ -68,7 +68,7 @@
 						</TableRow>
 						<TableRow android:layout_width="fill_parent" 
 							android:layout_height="wrap_content" android:id="@+id/RestTableRow02">
-							<Button android:layout_width="wrap_content" android:id="@+id/RestButton02"
+							<Button android:layout_width="fill_parent" android:id="@+id/RestButton02" android:layout_weight="1"
 								android:text="Insert" android:layout_height="wrap_content"></Button>
 						</TableRow>
 						<TableRow android:layout_width="fill_parent" 
@@ -91,7 +91,7 @@
 						</TableRow>
 						<TableRow android:layout_width="fill_parent" 
 							android:layout_height="wrap_content" android:id="@+id/RestTableRow12">
-							<Button android:layout_width="wrap_content" android:id="@+id/RestButton04"
+							<Button android:layout_width="fill_parent" android:id="@+id/RestButton04" android:layout_weight="1"
 								android:text="Update" android:layout_height="wrap_content"></Button>
 						</TableRow>
 						<TableRow android:layout_width="fill_parent"
@@ -114,7 +114,7 @@
 						</TableRow>
 						<TableRow android:layout_width="fill_parent" 
 							android:layout_height="wrap_content" android:id="@+id/RestTableRow16">
-	            <Button android:layout_width="wrap_content" android:id="@+id/RestButton03"
+	            <Button android:layout_width="fill_parent" android:id="@+id/RestButton03" android:layout_weight="1"
 	              android:text="Delete" android:layout_height="wrap_content"></Button>
 						</TableRow>
 					</TableLayout>
@@ -128,88 +128,110 @@
 			android:layout_height="fill_parent">
 
 			<ScrollView android:id="@+id/HessianScrollView01"
-				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
 
 				<TableLayout android:id="@+id/HessianTableLayout01"
 					android:layout_width="fill_parent" android:stretchColumns="1"
 					android:layout_height="wrap_content">
-					<TableRow android:layout_width="wrap_content"
+					<TableRow android:layout_width="fill_parent"
 						android:layout_height="wrap_content" android:id="@+id/HessianTableRow04">
-						<Button android:layout_width="wrap_content" android:id="@+id/HessianButton01"
+						<Button android:layout_width="fill_parent" android:id="@+id/HessianButton01" android:layout_weight="1"
 							android:text="Refresh" android:layout_height="wrap_content"></Button>
-						<Button android:layout_width="wrap_content" android:id="@+id/HessianButton03"
-							android:text="Delete" android:layout_height="wrap_content"></Button>
-
 					</TableRow>
 					<TableLayout android:id="@+id/HessianTableLayout02"
 						android:stretchColumns="0" android:layout_width="fill_parent"
 						android:layout_height="wrap_content"></TableLayout>
-					<TableLayout android:id="@+id/HessianTableLayout03"
-						android:layout_width="wrap_content" android:layout_height="wrap_content">
-						<TableRow android:layout_width="wrap_content"
+					<TableLayout android:id="@+id/HessianTableLayout03" android:paddingTop="20px"
+						android:layout_width="fill_parent" android:layout_height="wrap_content">
+						<TableRow android:layout_width="fill_parent"
 							android:layout_height="wrap_content" android:id="@+id/HessianTableRow01">
 							<TableLayout android:id="@+id/HessianTableLayout04"
-								android:layout_width="wrap_content" android:layout_height="wrap_content">
-								<TableRow android:layout_width="wrap_content"
+								android:layout_width="fill_parent" android:layout_height="wrap_content">
+								<TableRow android:layout_width="fill_parent"
 									android:layout_height="wrap_content" android:id="@+id/HessianTableRow05">
-									<TextView android:layout_width="wrap_content"
+									<TextView android:layout_width="fill_parent"
 										android:text="Name" android:id="@+id/HessianTextView01"
 										android:layout_height="wrap_content"></TextView>
 								</TableRow>
-								<TableRow android:layout_width="wrap_content"
+								<TableRow android:layout_width="fill_parent"
 									android:layout_height="wrap_content" android:id="@+id/HessianTableRow06">
-									<EditText android:layout_width="wrap_content"
-										android:text="inputName" android:id="@+id/HessianEditText01"
+									<EditText android:layout_width="fill_parent" android:layout_weight="1"
+										android:text="Add text here" android:id="@+id/HessianEditText01"
 										android:layout_height="wrap_content"></EditText>
 								</TableRow>
 							</TableLayout>
 						</TableRow>
-						<TableRow android:layout_width="wrap_content"
+						<TableRow android:layout_width="fill_parent"
 							android:layout_height="wrap_content" android:id="@+id/HessianTableRow03">
 							<TableLayout android:id="@+id/HessianTableLayout05"
-								android:layout_width="wrap_content" android:layout_height="wrap_content">
-								<TableRow android:layout_width="wrap_content"
+								android:layout_width="fill_parent" android:layout_height="wrap_content">
+								<TableRow android:layout_width="fill_parent"
 									android:layout_height="wrap_content" android:id="@+id/HessianTableRow08">
-									<TextView android:layout_width="wrap_content"
+									<TextView android:layout_width="fill_parent"
 										android:text="numberOfUnits" android:id="@+id/HessianTextView02"
 										android:layout_height="wrap_content"></TextView>
 								</TableRow>
-								<TableRow android:layout_width="wrap_content"
+								<TableRow android:layout_width="fill_parent"
 									android:layout_height="wrap_content" android:id="@+id/HessianTableRow07">
-									<EditText android:layout_width="wrap_content"
-										android:numeric="decimal" android:text="inputNumberOfUnits"
+									<EditText android:layout_width="fill_parent" android:layout_weight="1"
+										android:numeric="decimal" android:text="Add number here"
 										android:id="@+id/HessianEditText02" android:layout_height="wrap_content"></EditText>
 								</TableRow>
 							</TableLayout>
 						</TableRow>
-						<TableRow android:layout_width="wrap_content"
+						<TableRow android:layout_width="fill_parent"
 							android:layout_height="wrap_content" android:id="@+id/HessianTableRow02">
-							<Button android:layout_width="wrap_content" android:id="@+id/HessianButton02"
+							<Button android:layout_width="fill_parent" android:id="@+id/HessianButton02" android:layout_weight="1"
 								android:text="Insert" android:layout_height="wrap_content"></Button>
 						</TableRow>
-						<TableRow android:layout_width="wrap_content"
+						<TableRow android:layout_width="fill_parent"
 							android:layout_height="wrap_content" android:id="@+id/HessianTableRow09">
-							<TableLayout android:id="@+id/HessianTableLayout06"
-								android:layout_width="wrap_content" android:layout_height="wrap_content">
-								<TableRow android:layout_width="wrap_content"
+							<TableLayout android:id="@+id/HessianTableLayout06" android:paddingTop="20px"
+								android:layout_width="fill_parent" android:layout_height="wrap_content">
+								<TableRow android:layout_width="fill_parent"
 									android:layout_height="wrap_content" android:id="@+id/HessianTableRow10">
-									<TextView android:layout_width="wrap_content"
+									<TextView android:layout_width="fill_parent"
 										android:text="ID to Update" android:id="@+id/HessianTextView03"
 										android:layout_height="wrap_content"></TextView>
 								</TableRow>
-								<TableRow android:layout_width="wrap_content"
+								<TableRow android:layout_width="fill_parent"
 									android:layout_height="wrap_content" android:id="@+id/HessianTableRow11">
-									<EditText android:layout_width="wrap_content"
-										android:numeric="decimal" android:text="inputNumberOfUnits"
+									<EditText android:layout_width="fill_parent" android:layout_weight="1"
+										android:numeric="decimal" android:text="Add number here"
 										android:id="@+id/HessianEditText03" android:layout_height="wrap_content"></EditText>
 								</TableRow>
 							</TableLayout>
 						</TableRow>
-						<TableRow android:layout_width="wrap_content"
+						<TableRow android:layout_width="fill_parent"
 							android:layout_height="wrap_content" android:id="@+id/HessianTableRow12">
-							<Button android:layout_width="wrap_content" android:id="@+id/HessianButton04"
+							<Button android:layout_width="fill_parent" android:id="@+id/HessianButton04" android:layout_weight="1"
 								android:text="Update" android:layout_height="wrap_content"></Button>
 						</TableRow>
+						
+            <TableRow android:layout_width="fill_parent"
+              android:layout_height="wrap_content" android:id="@+id/HessianTableRow13">
+              <TableLayout android:id="@+id/HessianTableLayout07" android:paddingTop="20px"
+                android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <TableRow android:layout_width="fill_parent" 
+                  android:layout_height="wrap_content" android:id="@+id/HessianTableRow14">
+                  <TextView android:layout_width="fill_parent" 
+                    android:text="ID to Delete" android:id="@+id/HessianTextView04"
+                    android:layout_height="wrap_content"></TextView>
+                </TableRow>
+                <TableRow android:layout_width="fill_parent" 
+                  android:layout_height="wrap_content" android:id="@+id/HessianTableRow15">
+                  <EditText android:layout_width="fill_parent" android:layout_weight="1"
+                    android:numeric="decimal" android:text="Add number here"
+                    android:id="@+id/HessianEditText04" android:layout_height="wrap_content"></EditText>
+                </TableRow>
+              </TableLayout>
+            </TableRow>
+            <TableRow android:layout_width="fill_parent" 
+              android:layout_height="wrap_content" android:id="@+id/HessianTableRow16">
+              <Button android:layout_width="fill_parent" android:id="@+id/HessianButton03" android:layout_weight="1"
+                android:text="Delete" android:layout_height="wrap_content"></Button>
+            </TableRow>						
+						
 					</TableLayout>
 				</TableLayout>
 			</ScrollView>

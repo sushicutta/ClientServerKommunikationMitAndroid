@@ -1,5 +1,6 @@
 package ch.hszt.semesterarbeit;
 
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -13,7 +14,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -24,21 +24,22 @@ import android.widget.TabHost.TabSpec;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import ch.hszt.semesterarbeit.entity.Product;
+import ch.hszt.semesterarbeit.hessian.HessianClient;
 
 public class Semesterarbeit extends Activity implements OnClickListener {
 
-//	private final String TAG = "OmlTest";
-	
 	private static String TEXT_ADD_MESSAGE = "Add text here";
 	private static String NUMBER_ADD_MESSAGE = "Add number here";
 	private static String EMPTY_MESSAGE = "";
 	
-	RestClient restClient = new RestClient("http://192.168.0.135:8080/Semesterarbeit", "products");
+	RestClient restClient;
+	
+	HessianClient hessianClient;
 	
 	private View.OnFocusChangeListener textFocusChangeListener;
 	private View.OnFocusChangeListener numberFocusChangeListener;
-	private View.OnKeyListener numberKeyListener;
+	private TextWatcher restNumberTextWatcher;
+	private TextWatcher hessianNumberTextWatcher;
 	
 	private TableLayout restTable;
 	private Button restButtonRefresh;
@@ -60,6 +61,7 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 	private EditText hessianNameEditText;
 	private EditText hessianNumberOfUnitsEditText;
 	private EditText hessianIdToUpdateEditText;
+	private EditText hessianIdToDeleteEditText;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -115,17 +117,46 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 		        }
 		    }
 		};
-
-		numberKeyListener = new View.OnKeyListener() {
+		
+		restNumberTextWatcher = new TextWatcher() {
 			@Override
-			public boolean onKey(View v, int keyCode, KeyEvent event) {
-	    		restButtonDelete.setEnabled(!(((EditText)v).getText().toString().equals(NUMBER_ADD_MESSAGE) || ((EditText)v).getText().toString().equals(EMPTY_MESSAGE)));
-				return false;
+			public void afterTextChanged(Editable s) {
+				restButtonDelete.setEnabled(!(s.toString().equals(NUMBER_ADD_MESSAGE) || s.toString().equals(EMPTY_MESSAGE)));
+			}
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// do nothing
+			}
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// do nothing
 			}
 		};
+		
+		hessianNumberTextWatcher = new TextWatcher() {
+			@Override
+			public void afterTextChanged(Editable s) {
+				hessianButtonDelete.setEnabled(!(s.toString().equals(NUMBER_ADD_MESSAGE) || s.toString().equals(EMPTY_MESSAGE)));
+			}
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// do nothing
+			}
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// do nothing
+			}
+		};
+		
 	}
 	
 	private void setupRest() {
+		
+		restClient = new RestClient("http://192.168.0.135:8080/Semesterarbeit", "products");
 		
 		restButtonRefresh = (Button)findViewById(R.id.RestButton01);
 		restButtonRefresh.setOnClickListener(this);
@@ -150,31 +181,22 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 		restIdToUpdateEditText.setOnFocusChangeListener(numberFocusChangeListener);
 		restIdToDeleteEditText = (EditText)findViewById(R.id.RestEditText04);
 		restIdToDeleteEditText.setOnFocusChangeListener(numberFocusChangeListener);
-		
-		restIdToDeleteEditText.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void afterTextChanged(Editable s) {
-				restButtonDelete.setEnabled(!(s.toString().equals(NUMBER_ADD_MESSAGE) || s.toString().equals(EMPTY_MESSAGE)));
-			}
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-				// do nothing
-			}
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-				// do nothing
-			}
-		});
+		restIdToDeleteEditText.addTextChangedListener(restNumberTextWatcher);
 		
 		JSONObject jsonObject = restClient.getJsonObject(1);
 		
-		addProductToRestTable(ProductFactory.produceFromJson(jsonObject));
-		
+		if (jsonObject != null) {
+			addProductToRestTable(ProductFactory.produceFromJson(jsonObject));
+		}
 	}
 
 	private void setupHessian() {
+		
+		try {
+			hessianClient = new HessianClient();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 		
 		hessianButtonRefresh = (Button)findViewById(R.id.HessianButton01);
 		hessianButtonRefresh.setOnClickListener(this);
@@ -198,9 +220,20 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 		hessianIdToUpdateEditText = (EditText)findViewById(R.id.HessianEditText03);
 		hessianIdToUpdateEditText.setOnFocusChangeListener(numberFocusChangeListener);
 		
-//		JSONObject jsonObject = hessianClient.getJsonObject(1);
-//		
-//		addProductToHessianTable(ProductFactory.produceFromJson(jsonObject));
+		hessianIdToDeleteEditText = (EditText)findViewById(R.id.HessianEditText04);
+		hessianIdToDeleteEditText.setOnFocusChangeListener(numberFocusChangeListener);
+		hessianIdToDeleteEditText.addTextChangedListener(hessianNumberTextWatcher);
+		
+		Product product = null;
+		try {
+			product = hessianClient.get(1l);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (product != null) {
+			addProductToHessianTable(product);
+		}
 		
 	}
 	
@@ -252,6 +285,16 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 	}
 	
 	
+	private void refreshHessianTable() {
+		
+		hessianTable.removeAllViews();
+		List<Product> products = hessianClient.allProducts();
+		for (Product product : products) {
+			addProductToHessianTable(product);
+		}
+		
+	}
+	
 	private void addProductToHessianTable(Product product) {
 		
 		TextView textView = new TextView(this);
@@ -293,7 +336,8 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 				Integer addedProductId = Integer.valueOf(foundInteger);
 			}
 		} else {
-			// TODO something went wrong .. throw new Exception
+			// something went wrong ..
+			// throw new Exception
 		}
 		refreshRestTable();
 	}
@@ -323,19 +367,44 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 	}
 
 	private void onHessianButtonRefreshClicked () {
-		
+		refreshHessianTable();
 	}
 	
 	private void onHessianButtonInsertClicked () {
-		
+		try {
+			Product product = new Product();
+			product.setName(hessianNameEditText.getText().toString());
+			product.setNumberOfUnits(Integer.valueOf(hessianNumberOfUnitsEditText.getText().toString()));
+			hessianClient.register(product);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		refreshHessianTable();
 	}
 	
 	private void onHessianButtonDeleteClicked () {
-		
+		Integer idToDelete = Integer.valueOf(hessianIdToDeleteEditText.getText().toString());
+		try {
+			hessianClient.delete((long)idToDelete);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		refreshHessianTable();	
 	}
 	
 	private void onHessianButtonUpdateClicked () {
+		Integer idToUpdate = Integer.valueOf(hessianIdToUpdateEditText.getText().toString());
 		
+		Product productToUpdate;
+		try {
+			productToUpdate = hessianClient.get((long)idToUpdate);
+			productToUpdate.setName("Updated: " + productToUpdate.getName());
+			productToUpdate.setNumberOfUnits(productToUpdate.getNumberOfUnits() + 1);
+			hessianClient.update((long)idToUpdate, productToUpdate);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		refreshHessianTable();		
 	}
 	
 }

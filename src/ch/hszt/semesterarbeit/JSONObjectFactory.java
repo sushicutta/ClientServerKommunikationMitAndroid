@@ -8,7 +8,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import ch.hszt.semesterarbeit.entity.Product;
+import ch.hszt.semesterarbeit.Product;
 
 public class JSONObjectFactory {
 	
