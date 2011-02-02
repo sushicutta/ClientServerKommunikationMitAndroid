@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -52,6 +53,8 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 	private EditText restIdToUpdateEditText;
 	private EditText restIdToDeleteEditText;
 	
+	private TextView restStatus;
+	
 	private TableLayout hessianTable;
 	private Button hessianButtonRefresh;
 	private Button hessianButtonInsert;
@@ -62,6 +65,8 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 	private EditText hessianNumberOfUnitsEditText;
 	private EditText hessianIdToUpdateEditText;
 	private EditText hessianIdToDeleteEditText;
+	
+	private TextView hessianStatus;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -158,6 +163,8 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 		
 		restClient = new RestClient("http://192.168.0.135:8080/Semesterarbeit", "products");
 		
+		restStatus = (TextView)findViewById(R.id.RestTextView06);
+		
 		restButtonRefresh = (Button)findViewById(R.id.RestButton01);
 		restButtonRefresh.setOnClickListener(this);
 
@@ -197,6 +204,8 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
+
+		hessianStatus = (TextView)findViewById(R.id.HessianTextView06);
 		
 		hessianButtonRefresh = (Button)findViewById(R.id.HessianButton01);
 		hessianButtonRefresh.setOnClickListener(this);
@@ -228,11 +237,12 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 		try {
 			product = hessianClient.get(1l);
 		} catch (Exception e) {
-			e.printStackTrace();
+			setHessianStatusText("Select " + 1l + " fehlgeschlagen.", true);
 		}
 		
 		if (product != null) {
 			addProductToHessianTable(product);
+			setHessianStatusText("Produkt geladen.", false);
 		}
 		
 	}
@@ -284,6 +294,14 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 		
 	}
 	
+	private void setRestStatusText(String statusText, boolean error) {
+		restStatus.setText(statusText);
+		if (error) {
+			restStatus.setTextColor(Color.RED);
+		} else {
+			restStatus.setTextColor(Color.GREEN);
+		}
+	}
 	
 	private void refreshHessianTable() {
 		
@@ -308,6 +326,15 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 		
 	}
 	
+	private void setHessianStatusText(String statusText, boolean error) {
+		hessianStatus.setText(statusText);
+		if (error) {
+			hessianStatus.setTextColor(Color.RED);
+		} else {
+			hessianStatus.setTextColor(Color.GREEN);
+		}
+	}
+
 	
 	private void onRestButtonRefreshClicked() {
 		refreshRestTable();			
@@ -368,6 +395,7 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 
 	private void onHessianButtonRefreshClicked () {
 		refreshHessianTable();
+		setHessianStatusText("Alle Produkte geladen.", false);
 	}
 	
 	private void onHessianButtonInsertClicked () {
@@ -377,9 +405,10 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 			product.setNumberOfUnits(Integer.valueOf(hessianNumberOfUnitsEditText.getText().toString()));
 			hessianClient.register(product);
 		} catch (Exception e) {
-			e.printStackTrace();
+			setHessianStatusText("Save fehlgeschlagen.", true);
 		}
 		refreshHessianTable();
+		setHessianStatusText("Produkt gespeichert.", false);
 	}
 	
 	private void onHessianButtonDeleteClicked () {
@@ -387,9 +416,10 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 		try {
 			hessianClient.delete((long)idToDelete);
 		} catch (Exception e) {
-			e.printStackTrace();
+			setHessianStatusText("Delete fehlgeschlagen.", true);
 		}
 		refreshHessianTable();	
+		setHessianStatusText("Produkt " + idToDelete + " gelöscht.", false);
 	}
 	
 	private void onHessianButtonUpdateClicked () {
@@ -402,9 +432,10 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 			productToUpdate.setNumberOfUnits(productToUpdate.getNumberOfUnits() + 1);
 			hessianClient.update((long)idToUpdate, productToUpdate);			
 		} catch (Exception e) {
-			e.printStackTrace();
+			setHessianStatusText("Update fehlgeschlagen.", true);
 		}
-		refreshHessianTable();		
+		refreshHessianTable();
+		setHessianStatusText("Produkt " + idToUpdate + " aktualisiert.", false);
 	}
 	
 }
