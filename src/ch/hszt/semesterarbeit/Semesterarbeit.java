@@ -2,7 +2,6 @@ package ch.hszt.semesterarbeit;
 
 import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,6 +24,7 @@ import android.widget.TabHost.TabSpec;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import ch.hszt.semesterarbeit.exception.ProductNotFoundException;
 import ch.hszt.semesterarbeit.hessian.HessianClient;
 
 public class Semesterarbeit extends Activity implements OnClickListener {
@@ -190,11 +190,18 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 		restIdToDeleteEditText.setOnFocusChangeListener(numberFocusChangeListener);
 		restIdToDeleteEditText.addTextChangedListener(restNumberTextWatcher);
 		
-		JSONObject jsonObject = restClient.getJsonObject(1);
-		
-		if (jsonObject != null) {
-			addProductToRestTable(ProductFactory.produceFromJson(jsonObject));
+		try {
+			JSONObject jsonObject = restClient.getJsonObject(1);
+			if (jsonObject != null) {
+				addProductToRestTable(ProductFactory.produceFromJson(jsonObject));
+				setRestStatusText(restClient.getStatusCode() + " >>> Produkt " + 1 + " gelesen.", false);
+			}
+		} catch (ProductNotFoundException e) {
+			setRestStatusText(restClient.getStatusCode() + " >>> Produkt " + 1 + " nicht gefunden.", true);
+		} catch (Exception e) {
+			setRestStatusText(restClient.getStatusCode() + " >>> Fehler aufgetreten.", true);
 		}
+		
 	}
 
 	private void setupHessian() {
@@ -272,11 +279,17 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 	
 	private void refreshRestTable() {
 		
-		restTable.removeAllViews();
-		JSONArray jsonArray = restClient.getJsonArray(Product.OBJECT_NAME);
-		List<Product> products = ProductFactory.produceFromJson(jsonArray);
-		for (Product product : products) {
-			addProductToRestTable(product);
+		try {
+			restTable.removeAllViews();
+			JSONArray jsonArray = restClient.getJsonArray(Product.OBJECT_NAME);
+			List<Product> products = ProductFactory.produceFromJson(jsonArray);
+			for (Product product : products) {
+				addProductToRestTable(product);
+			}
+		} catch (ProductNotFoundException e) {
+			setRestStatusText(restClient.getStatusCode() + " >>> Produkte nicht gefunden.", true);
+		} catch (Exception e) {
+			setRestStatusText(restClient.getStatusCode() + " >>> Fehler aufgetreten.", true);
 		}
 		
 	}
@@ -337,7 +350,8 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 
 	
 	private void onRestButtonRefreshClicked() {
-		refreshRestTable();			
+		refreshRestTable();
+		setRestStatusText(restClient.getStatusCode() + " >>> Alle Produkt gelesen.", false);
 	}
 	
 	private void onRestButtonPostClicked() {
@@ -346,48 +360,84 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 		product.setNumberOfUnits(Integer.valueOf(restNumberOfUnitsEditText.getText().toString()));
 		
 		JSONObject jsonObject = JSONObjectFactory.produceFromProduct(product);
-		
-		String location = restClient.insertJSONObject(jsonObject);
-		URI uri = null;
+
 		try {
-			uri = new URI (location);
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-		
-		if (uri != null) {
-			Pattern p = Pattern.compile("\\d+");
-			Matcher m = p.matcher(uri.getPath());
-			if (m.find()) {
-				String foundInteger = m.group();
-				Integer addedProductId = Integer.valueOf(foundInteger);
+				
+			String location = restClient.insertJSONObject(jsonObject);
+			if (location != null) {
+				URI uri = new URI (location);
+				Pattern p = Pattern.compile("\\d+");
+				Matcher m = p.matcher(uri.getPath());
+				if (m.find()) {
+					String foundInteger = m.group();
+					Integer addedProductId = Integer.valueOf(foundInteger);
+					setRestStatusText(restClient.getStatusCode() + " >>> Produkt " + addedProductId + " erfasst.", false);
+				} else {
+					throw new Exception("Das Produkt wurde erfasst, aber im Header wurde keine Location angegeben.");
+				}
 			}
-		} else {
-			// something went wrong ..
-			// throw new Exception
+
+		} catch (Exception e) {
+			setRestStatusText(restClient.getStatusCode() + " >>> Fehler aufgetreten.", true);
+			return;
 		}
+
 		refreshRestTable();
 	}
 	
 	private void onRestButtonDeleteClicked() {
 		Integer idToDelete = Integer.valueOf(restIdToDeleteEditText.getText().toString());
-		restClient.deleteJSONObject(idToDelete);
+		try {
+			restClient.deleteJSONObject(idToDelete);
+			setRestStatusText(restClient.getStatusCode() + " >>> Produkt " + idToDelete + " gelöscht.", false);
+		} catch (ProductNotFoundException e) {
+			setRestStatusText(restClient.getStatusCode() + " >>> Produkt " + idToDelete + " nicht gefunden.", true);
+			return;
+		} catch (Exception e) {
+			setRestStatusText(restClient.getStatusCode() + " >>> Fehler aufgetreten.", true);
+			return;
+		}
 		refreshRestTable();		
 	}
 	
 	private void onRestButtonUpdateClicked() {
 		Integer idToUpdate = Integer.valueOf(restIdToUpdateEditText.getText().toString());
-		JSONObject jsonPostObject = restClient.getJsonObject(idToUpdate);
 		
-		// Transfer into JAVA
-		Product productToUpdate = ProductFactory.produceFromJson(jsonPostObject);
-		productToUpdate.setName("Updated: " + productToUpdate.getName());
-		productToUpdate.setNumberOfUnits(productToUpdate.getNumberOfUnits() + 1);
+		JSONObject jsonPostObject = null;
 		
-		jsonPostObject = JSONObjectFactory.produceFromProduct(productToUpdate);
+		try {
+			jsonPostObject = restClient.getJsonObject(idToUpdate);
+		} catch (ProductNotFoundException e) {
+			setRestStatusText(restClient.getStatusCode() + " >>> Produkt " + idToUpdate + " nicht gefunden.", true);
+			return;
+		} catch (Exception e) {
+			setRestStatusText(restClient.getStatusCode() + " >>> Fehler aufgetreten.", true);
+			return;
+		}
 		
-		if (jsonPostObject != null) {				
-			restClient.updateJSONObject(idToUpdate, jsonPostObject);			
+		if (jsonPostObject != null) {
+			// Transfer into JAVA
+			Product productToUpdate = ProductFactory.produceFromJson(jsonPostObject);
+			productToUpdate.setName("Updated: " + productToUpdate.getName());
+			productToUpdate.setNumberOfUnits(productToUpdate.getNumberOfUnits() + 1);
+			
+			jsonPostObject = JSONObjectFactory.produceFromProduct(productToUpdate);
+			
+			if (jsonPostObject != null) {				
+				try {
+					restClient.updateJSONObject(idToUpdate, jsonPostObject);
+					setRestStatusText(restClient.getStatusCode() + " >>> Produkt " + idToUpdate + " updated.", false);
+				} catch (ProductNotFoundException e) {
+					setRestStatusText(restClient.getStatusCode() + " >>> Produkt " + idToUpdate + " nicht gefunden.", true);
+					return;
+				} catch (Exception e) {
+					setRestStatusText(restClient.getStatusCode() + " >>> Fehler aufgetreten.", true);
+					return;
+				}			
+			}
+		} else {
+			setRestStatusText(restClient.getStatusCode() + " >>> Fehler aufgetreten.", true);
+			return;
 		}
 		
 		refreshRestTable();		
