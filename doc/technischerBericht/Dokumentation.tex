@@ -45,6 +45,13 @@
 
 % schöne Tabelle zeichnen
 \usepackage{booktabs}
+\renewcommand{\arraystretch}{1.2} %Die Zeilenabstände in Tabllen angepasst.
+
+% für variable Breiten
+\usepackage{tabularx}
+
+% Durchgestrichener Text
+\usepackage[normalem]{ulem} %emphasize weiterhin kursiv
 
 % This is now the recommended way for checking for PDFLaTeX:
 \usepackage{ifpdf}
@@ -160,8 +167,8 @@
     Termin & Datum & Ort \\
     \midrule
     14. 12. 2010 & Kick-off Meeting & Panter Inc\\
-    12. 01. 2010 & Design-Review Meeting & HSZ-T\\
-    Feb 2011 & Schlusspräsentation & HSZ-T\\
+    12. 01. 2011 & Design-Review Meeting & HSZ-T\\
+    02. 03. 2011 & Schlusspräsentation & HSZ-T\\
     \bottomrule
   \end{tabular}
   
@@ -177,6 +184,7 @@
     07. 12. 2010 & Die Arbeit ist freigegeben & Olaf Stern\\
     07. 12. 2010 & Der Kickoff-Termin wurde reserviert & Roman Würsch\\
     14. 12. 2010 & Freigabe Kick-Off & Beat Seeliger\\
+    12. 01. 2011 & Freigabe Desgin-Review & Beat Seeliger\\
     \bottomrule
   \end{tabular}
   
@@ -260,7 +268,10 @@
     \begin{itemize}
       \item Beschreibung der Ausgangslage
       \item Konzeptionelle Gegenüberstellung von \ac{REST} und Hessian
-      \item Gegenüberstellung der Einsatzgebiete von \ac{REST} und Hessian
+      \item \sout{Gegenüberstellung der Einsatzgebiete von \ac{REST} und
+      Hessian}\footnote[4]{
+        Im Design-Review hat man sich auf den Verzicht dieses Kapitels
+        geeinigt.}
       \item Definition der Anforderungen an den Prototyp 
       \item Zusammenfassung zur Entwicklung des Prototypen
       \item Ergebnisse der Tests und Abdeckung der Testszenarios
@@ -296,11 +307,6 @@
   
   \newpage
   
-  \section{Gegenüberstellung der Einsatzgebiete von REST und Hessian}
-  
-  
-  \newpage
-  
   \section{Definition der Anforderungen an den Prototyp}
   
   Die Definition der Anforderungen an die Prototypen werden mit der Technik der
@@ -320,6 +326,9 @@
   Stories aufgeteilt werden, welche genug simpel sind, um wiederum in drei
   Sätzen beschrieben zu werden.
   
+  Jeder User Story wird mit einer eindeutigen Nummer versehen: US-\{User Story
+  Nummer\}
+  
   \subsection{Anforderungen an den Prototyp}
   
   Im folgenden werden die Anforderungen an den Prototypen spezifziert. Die
@@ -335,28 +344,29 @@
   
   Der Anwender stellt ein Mensch dar, der nur die Sicht auf die
   Clientapplikation hat. Normalerweise hat ein Anwender keinerleit technische
-  Hintergründe.
-  
-  \newcounter{userStoriesZaehler}
-  
-  \begin{enumerate}
-    \item Ich als Anwender will ein hochwertiges \ac{GUI}.
-    \item Ich als Anwender will meine Applikation überall verwenden können.
-    \item Ich als Anwender will eine stabile Applikation.
-    \item Ich als Anwender will ein ausgewähltes Datenobjekt vom Server an mein
-    Androidgerät übertragen und darstellen können.
-    \item Ich als Anwender will eine komplette Liste von Datenobjekten vom
-    Server an mein Androidgerät übertragen und darstellen können.
-    \item Ich als Anwender will ein ausgewähltes Datenobjekt auf dem Server
-    löschen können.
-    \item Ich als Anwender will ein ausgewähltes Datenobjekt auf dem Server
-    editieren können.
-    \item Ich als Anwender will ein neues Datenobjekt an den Server übertragen
+  Hintergründe.\\
+  \\
+  \begin{tabular}{cp{13cm}l}
+    \toprule
+    User Story & Beschreibung \\
+    \midrule
+    US-1 & Ich als Anwender will ein hochwertiges \ac{GUI}. \\
+    US-2 & Ich als Anwender will meine Applikation überall verwenden können. \\
+    US-3 & Ich als Anwender will eine stabile Applikation. \\
+    US-4 & Ich als Anwender will ein ausgewähltes Datenobjekt vom Server an mein
+    Androidgerät übertragen und darstellen können. \\
+    US-5 & Ich als Anwender will eine komplette Liste von Datenobjekten vom
+    Server an mein Androidgerät übertragen und darstellen können. \\
+    US-6 & Ich als Anwender will ein ausgewähltes Datenobjekt auf dem Server
+    löschen können. \\
+    US-7 & Ich als Anwender will ein ausgewähltes Datenobjekt auf dem Server
+    editieren können. \\
+    US-8 & Ich als Anwender will ein neues Datenobjekt an den Server übertragen
     können. Dieses Datenobjekt soll für zukünftige Zugriffe auf dem Server
-    gespeichert werden.
-    \item Ich als Anwender will über Übertragungsfehler informiert werden.
-    \setcounter{userStoriesZaehler}{\value{enumi}}
-  \end{enumerate}
+    gespeichert werden. \\
+    US-9 & Ich als Anwender will über Übertragungsfehler informiert werden. \\
+    \bottomrule
+  \end{tabular}
   
   \subsection{Aus der Sicht des Informatikstudenten}
   
@@ -367,39 +377,43 @@
   
   \subsubsection{Clientapplikation}
   
-  \begin{enumerate}
-    \setcounter{enumi}{\value{userStoriesZaehler}}
-    \item Ich als Informatikstudenten will, dass für die Übertragung eines
-    Datenobjekts möglichst wenig Rohdaten gesendet und empfangen werden.
-    \item Ich als Informatikstudenten will, dass die Clientapplikation für
-    Geräte mit der Android Version 2.2 lauffähig ist.
-    \item Ich als Informatikstudenten will, dass die Clientapplikation
-    unabhängig von der Serverapplikation ausgeliefert werden kann.
-    \setcounter{userStoriesZaehler}{\value{enumi}}
-  \end{enumerate}
+  \begin{tabular}{cp{13cm}l}
+    \toprule
+    User Story & Beschreibung \\
+    \midrule
+    US-10 & Ich als Informatikstudenten will, dass für die Übertragung eines
+    Datenobjekts möglichst wenig Rohdaten gesendet und empfangen werden. \\
+    US-11 & Ich als Informatikstudenten will, dass die Clientapplikation für
+    Geräte mit der Android Version 2.2 lauffähig ist. \\
+    US-12 & Ich als Informatikstudenten will, dass die Clientapplikation
+    unabhängig von der Serverapplikation ausgeliefert werden kann. \\
+    \bottomrule
+  \end{tabular}
   
   \subsubsection{Serverapplikation}
   
-  \begin{enumerate}
-    \setcounter{enumi}{\value{userStoriesZaehler}}
-    \item Ich als Informatikstudent will, dass die Serverapplikation auf einem
-    GlassFish Applikationsserver läuft.
-    \item Ich als Informatikstudent will, dass die Serverapplikation sowohl
+  \begin{tabular}{cp{13cm}l}
+    \toprule
+    User Story & Beschreibung \\
+    \midrule
+    US-13 & Ich als Informatikstudent will, dass die Serverapplikation auf einem
+    GlassFish Applikationsserver läuft. \\
+    US-14 & Ich als Informatikstudent will, dass die Serverapplikation sowohl
     Requests über das \ac{REST} Protokoll wie auch über das Hessian
-    Protokoll bearbeiten kann.
-    \item Ich als Informatikstudent will, dass Datenobjekte auf der
+    Protokoll bearbeiten kann. \\
+    US-15 & Ich als Informatikstudent will, dass Datenobjekte auf der
     Serverapplikation gespeichert werden können. Diese Daten sollen nur solange
-    gespeichert sein, wie der Server läuft.
-    \item Ich als Informatikstudent will, dass mehrere Clientapplikationen
-    gleichzeitig mit der Serverapplikation bedient werden können.
-    \item Ich als Informatikstudent will, dass die Serverapplikation
-    auf dem Internet zugänglich ist.
-    \item Ich als Informatikstudent will, dass die Serverapplikation immer
-    verfügbar ist.
-    \item Ich als Informatikstudent will, dass die Serverapplikation
-    unabhängig von der Clientapplikation ausgeliefert werden kann.
-    \setcounter{userStoriesZaehler}{\value{enumi}}
-  \end{enumerate}
+    gespeichert sein, wie der Server läuft. \\
+    US-16 & Ich als Informatikstudent will, dass mehrere Clientapplikationen
+    gleichzeitig mit der Serverapplikation bedient werden können. \\
+    US-17 & Ich als Informatikstudent will, dass die Serverapplikation
+    auf dem Internet zugänglich ist. \\
+    US-18 & Ich als Informatikstudent will, dass die Serverapplikation immer
+    verfügbar ist. \\
+    US-19 & Ich als Informatikstudent will, dass die Serverapplikation
+    unabhängig von der Clientapplikation ausgeliefert werden kann. \\
+    \bottomrule
+  \end{tabular}
   
   \subsection{Priorisierung aller User Stories}
   
@@ -414,15 +428,15 @@
     \toprule
     User Story & Umsetzung & Priorisierung \\
     \midrule
-    1 & Nein & --- \\
-    2 & Ja & mittel \\
-    3 & Ja & tief \\
-    4 & Ja & hoch \\
-    5 & Ja & hoch \\
-    6 & Ja & hoch \\
-    7 & Ja & hoch \\
-    8 & Ja & hoch \\
-    9 & Ja & tief \\
+    US-1 & Nein & --- \\
+    US-2 & Ja & mittel \\
+    US-3 & Ja & tief \\
+    US-4 & Ja & hoch \\
+    US-5 & Ja & hoch \\
+    US-6 & Ja & hoch \\
+    US-7 & Ja & hoch \\
+    US-8 & Ja & hoch \\
+    US-9 & Ja & tief \\
     \bottomrule
   \end{tabular}
   
@@ -432,30 +446,30 @@
     \toprule
     User Story & Umsetzung & Priorisierung \\
     \midrule
-    10 & Ja & mittel \\
-    11 & Ja & mittel \\
-    12 & Ja & tief \\
-    13 & Ja & mittel \\
-    14 & Ja & hoch \\
-    15 & Ja & hoch \\
-    16 & Ja & tief \\
-    17 & Nein & --- \\
-    18 & Nein & --- \\
-    19 & Ja & tief \\
+    US-10 & Ja & mittel \\
+    US-11 & Ja & mittel \\
+    US-12 & Ja & tief \\
+    US-13 & Ja & mittel \\
+    US-14 & Ja & hoch \\
+    US-15 & Ja & hoch \\
+    US-16 & Ja & tief \\
+    US-17 & Nein & --- \\
+    US-18 & Nein & --- \\
+    US-19 & Ja & tief \\
     \bottomrule
   \end{tabular}
   
-  \subsubsection{Stories die nicht umgesetzt werden}
+  \subsection{Stories die nicht umgesetzt werden}
   
   \begin{itemize}
-    \item User Story 1: Es wurde auf die Umsetzung eines hochwertigen
+    \item User Story US-1: Es wurde auf die Umsetzung eines hochwertigen
     \ac{GUI}'s für den Androidclient verzichtet, da es den Aufwand einer
     Semesterarbeit übersteigt.
-    \item User Story 17: Der Server soll nicht über das Internet zugänglich
+    \item User Story US-17: Der Server soll nicht über das Internet zugänglich
     sein, da eine lauffähige Instanz eines GlassFish Servers, der von überall
     her im Internet zugänglich ist, Geld kosten würde. Ich bin nicht bereit für
     eine Semesterarbeit einen solchen Hosting Vertrag abzuschliessen.
-    \item User Story 18: Der Server kann nicht immer verfügbar sein, da die
+    \item User Story US-18: Der Server kann nicht immer verfügbar sein, da die
     Instanz des GlassFish Servers auf meinen Notebook laufen wird.
   \end{itemize}
   
@@ -474,25 +488,64 @@
 
   \subsubsection{Priorität hoch}
   
-  \begin{itemize}
-    \item User Story 15
-    \item User Story 14
-    \item User Story 4
-    \item User Story 5
-    \item User Story 8
-    \item User Story 6
-    \item User Story 7
-  \end{itemize}
+  \newcounter{userStoriesZaehler}
+  
+  \begin{enumerate}
+    \item User Story US-15
+    \item User Story US-14
+    \item User Story US-4
+    \item User Story US-5
+    \item User Story US-8
+    \item User Story US-6
+    \item User Story US-7
+    \setcounter{userStoriesZaehler}{\value{enumi}}
+  \end{enumerate}
   
   \subsubsection{Priorität mittel}
   
-  \begin{itemize}
-    \item User Story 13
-    \item User Story 11
-    \item User Story 10
-    \item User Story 2
-  \end{itemize}
+  \begin{enumerate}
+    \setcounter{enumi}{\value{userStoriesZaehler}}
+    \item User Story US-13
+    \item User Story US-11
+    \item User Story US-10
+    \item User Story US-2
+  \end{enumerate}
   
+  \subsection{Testszenario}
+  
+  Aus den priorisierten User Stories können nun Akzeptanztests abgeleitet
+  werden. Eine Userstory ist dann fertig, wenn sie technisch umgesetzt wurde und
+  die dazu definierten Akzeptanztests abgenommen wurden. Jedem
+  Akzeptanztest wird ein Typ zugewiesen. Der Typ definiert, ob es sich
+  dabei um einen Unit-Test [U] oder einen manuell auszuführenden Test [M]
+  handelt. Jeder Akzeptanztest wird mit einer eindeutigen Nummer versehen: T-\{User Story\}.\{Testnummer\}\\
+  \\
+  \begin{tabular}{cccp{11.3cm}l}
+    \toprule
+    TN & US & Typ & Beschreibung \\
+    \midrule
+    T-15.1 & US-15 & M & Es soll ein Datenobjekt auf dem Server gespeichert
+    werden. Die Referenz des Datenobjekts soll man sich merken.\\
+    T-15.2 & US-15 & M & Es soll ein Datenobjekt auf dem Server über
+    die Referenz gelesen werden. Es soll die Gleichheit der beiden Datenobjekte
+    geprüft werden.\\
+    T-14.1 & US-14 & M & Es soll ein \ac{REST} Request auf dem Server abgesetzt
+    und auf ein erfolgreiche Rückmeldung geprüft werden.\\
+    T-14.2 & US-14 & U & Es soll ein Hessian Request auf dem Server abgesetzt
+    und auf ein erfolgreiche Rückmeldung geprüft werden.\\
+    T-4.1 & US-4 & M & Es soll ein \ac{REST} GET Request mit der Referenz auf
+    eine bekannte Ressource von Prototypen aus auf dem Server abgesetzt und auf
+    ein erfolgreiche Rückmeldung geprüft werden.\\
+    T-4.2 & US-4 & U & Es soll ein Hessian GET Request mit der Referenz auf
+    eine bekannte Ressource auf dem Server abgesetzt und auf ein erfolgreiche
+    Rückmeldung geprüft werden.\\
+    T-5.1 & US-5 & M & Es soll ein \ac{REST} GET Request auf die
+    Listenansicht einer bekannte Ressource von Prototypen aus auf dem Server
+    abgesetzt und auf ein erfolgreiche Rückmeldung geprüft werden.\\
+    T-5.2 & US-5 & U & Es soll ein Hessian allProducts Request mit der auf dem
+    Server abgesetzt und auf ein erfolgreiche Rückmeldung geprüft werden.\\
+    \bottomrule
+  \end{tabular}
   
   \newpage
   
@@ -501,7 +554,7 @@
   
   \newpage
   
-  \section{Ergebnisse der Tests und Abdeckung der Testszenarios}
+  \section{Ergebnisse der Tests und Abdeckung des Testszenarios}
   
   
   % ===========================================================================
