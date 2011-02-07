@@ -182,9 +182,10 @@
     ausgeschrieben und wartet auf einen Studierenden der diese Arbeit
     durchführt & Roman Würsch\\
     07. 12. 2010 & Die Arbeit ist freigegeben & Olaf Stern\\
-    07. 12. 2010 & Der Kickoff-Termin wurde reserviert & Roman Würsch\\
     14. 12. 2010 & Freigabe Kick-Off & Beat Seeliger\\
     12. 01. 2011 & Freigabe Desgin-Review & Beat Seeliger\\
+    16. 02. 2011 & Abgabe der Dokumentation & Roman Würsch\\
+    02. 03. 2011 & Präsentation der Arbeit & Roman Würsch\\
     \bottomrule
   \end{tabular}
   
@@ -381,11 +382,9 @@
     \toprule
     User Story & Beschreibung \\
     \midrule
-    US-10 & Ich als Informatikstudenten will, dass für die Übertragung eines
-    Datenobjekts möglichst wenig Rohdaten gesendet und empfangen werden. \\
-    US-11 & Ich als Informatikstudenten will, dass die Clientapplikation für
+    US-10 & Ich als Informatikstudenten will, dass die Clientapplikation für
     Geräte mit der Android Version 2.2 lauffähig ist. \\
-    US-12 & Ich als Informatikstudenten will, dass die Clientapplikation
+    US-11 & Ich als Informatikstudenten will, dass die Clientapplikation
     unabhängig von der Serverapplikation ausgeliefert werden kann. \\
     \bottomrule
   \end{tabular}
@@ -396,21 +395,21 @@
     \toprule
     User Story & Beschreibung \\
     \midrule
-    US-13 & Ich als Informatikstudent will, dass die Serverapplikation auf einem
-    GlassFish Applikationsserver läuft. \\
-    US-14 & Ich als Informatikstudent will, dass die Serverapplikation sowohl
+    US-12 & Ich als Informatikstudent will, dass die Serverapplikation auf
+    einem Java EE 6 fähigen GlassFish Applikationsserver läuft. \\
+    US-13 & Ich als Informatikstudent will, dass die Serverapplikation sowohl
     Requests über das \ac{REST} Protokoll wie auch über das Hessian
     Protokoll bearbeiten kann. \\
-    US-15 & Ich als Informatikstudent will, dass Datenobjekte auf der
+    US-14 & Ich als Informatikstudent will, dass Datenobjekte auf der
     Serverapplikation gespeichert werden können. Diese Daten sollen nur solange
     gespeichert sein, wie der Server läuft. \\
-    US-16 & Ich als Informatikstudent will, dass mehrere Clientapplikationen
+    US-15 & Ich als Informatikstudent will, dass mehrere Clientapplikationen
     gleichzeitig mit der Serverapplikation bedient werden können. \\
-    US-17 & Ich als Informatikstudent will, dass die Serverapplikation
+    US-16 & Ich als Informatikstudent will, dass die Serverapplikation
     auf dem Internet zugänglich ist. \\
-    US-18 & Ich als Informatikstudent will, dass die Serverapplikation immer
+    US-17 & Ich als Informatikstudent will, dass die Serverapplikation immer
     verfügbar ist. \\
-    US-19 & Ich als Informatikstudent will, dass die Serverapplikation
+    US-18 & Ich als Informatikstudent will, dass die Serverapplikation
     unabhängig von der Clientapplikation ausgeliefert werden kann. \\
     \bottomrule
   \end{tabular}
@@ -447,15 +446,14 @@
     User Story & Umsetzung & Priorisierung \\
     \midrule
     US-10 & Ja & mittel \\
-    US-11 & Ja & mittel \\
-    US-12 & Ja & tief \\
-    US-13 & Ja & mittel \\
+    US-11 & Ja & tief \\
+    US-12 & Ja & mittel \\
+    US-13 & Ja & hoch \\
     US-14 & Ja & hoch \\
-    US-15 & Ja & hoch \\
-    US-16 & Ja & tief \\
+    US-15 & Ja & tief \\
+    US-16 & Nein & --- \\
     US-17 & Nein & --- \\
-    US-18 & Nein & --- \\
-    US-19 & Ja & tief \\
+    US-18 & Ja & tief \\
     \bottomrule
   \end{tabular}
   
@@ -465,11 +463,11 @@
     \item User Story US-1: Es wurde auf die Umsetzung eines hochwertigen
     \ac{GUI}'s für den Androidclient verzichtet, da es den Aufwand einer
     Semesterarbeit übersteigt.
-    \item User Story US-17: Der Server soll nicht über das Internet zugänglich
+    \item User Story US-16: Der Server soll nicht über das Internet zugänglich
     sein, da eine lauffähige Instanz eines GlassFish Servers, der von überall
     her im Internet zugänglich ist, Geld kosten würde. Ich bin nicht bereit für
     eine Semesterarbeit einen solchen Hosting Vertrag abzuschliessen.
-    \item User Story US-18: Der Server kann nicht immer verfügbar sein, da die
+    \item User Story US-17: Der Server kann nicht immer verfügbar sein, da die
     Instanz des GlassFish Servers auf meinen Notebook laufen wird.
   \end{itemize}
   
@@ -491,8 +489,8 @@
   \newcounter{userStoriesZaehler}
   
   \begin{enumerate}
-    \item User Story US-15
     \item User Story US-14
+    \item User Story US-13
     \item User Story US-4
     \item User Story US-5
     \item User Story US-8
@@ -505,8 +503,7 @@
   
   \begin{enumerate}
     \setcounter{enumi}{\value{userStoriesZaehler}}
-    \item User Story US-13
-    \item User Story US-11
+    \item User Story US-12
     \item User Story US-10
     \item User Story US-2
   \end{enumerate}
@@ -515,47 +512,131 @@
   
   Aus den priorisierten User Stories können nun Akzeptanztests abgeleitet
   werden. Eine Userstory ist dann fertig, wenn sie technisch umgesetzt wurde und
-  die dazu definierten Akzeptanztests abgenommen wurden. Jedem
-  Akzeptanztest wird ein Typ zugewiesen. Der Typ definiert, ob es sich
-  dabei um einen Unit-Test [U] oder einen manuell auszuführenden Test [M]
-  handelt. Jeder Akzeptanztest wird mit einer eindeutigen Nummer versehen: T-\{User Story\}.\{Testnummer\}\\
-  \\
-  \begin{tabular}{cccp{11.3cm}l}
-    \toprule
-    TN & US & Typ & Beschreibung \\
-    \midrule
-    T-15.1 & US-15 & M & Es soll ein Datenobjekt auf dem Server gespeichert
-    werden. Die Referenz des Datenobjekts soll man sich merken.\\
-    T-15.2 & US-15 & M & Es soll ein Datenobjekt auf dem Server über
-    die Referenz gelesen werden. Es soll die Gleichheit der beiden Datenobjekte
-    geprüft werden.\\
-    T-14.1 & US-14 & M & Es soll ein \ac{REST} Request auf dem Server abgesetzt
-    und auf ein erfolgreiche Rückmeldung geprüft werden.\\
-    T-14.2 & US-14 & U & Es soll ein Hessian Request auf dem Server abgesetzt
-    und auf ein erfolgreiche Rückmeldung geprüft werden.\\
-    T-4.1 & US-4 & M & Es soll ein \ac{REST} GET Request mit der Referenz auf
-    eine bekannte Ressource von Prototypen aus auf dem Server abgesetzt und auf
-    ein erfolgreiche Rückmeldung geprüft werden.\\
-    T-4.2 & US-4 & U & Es soll ein Hessian GET Request mit der Referenz auf
-    eine bekannte Ressource auf dem Server abgesetzt und auf ein erfolgreiche
-    Rückmeldung geprüft werden.\\
-    T-5.1 & US-5 & M & Es soll ein \ac{REST} GET Request auf die
-    Listenansicht einer bekannte Ressource von Prototypen aus auf dem Server
-    abgesetzt und auf ein erfolgreiche Rückmeldung geprüft werden.\\
-    T-5.2 & US-5 & U & Es soll ein Hessian allProducts Request mit der auf dem
-    Server abgesetzt und auf ein erfolgreiche Rückmeldung geprüft werden.\\
-    \bottomrule
-  \end{tabular}
-  
-  \newpage
-  
-  \section{Zusammenfassung zur Entwicklung des Prototypen}
-  
+  die dazu definierten Akzeptanztests abgenommen wurden. Jeder Akzeptanztest
+  wird mit einer eindeutigen Nummer versehen: T-\{User Story\}.\{Testnummer\}
+    
+  \begin{description}
+
+    % DB Save
+    \item[T-14.1] Es soll ein Datenobjekt auf dem Server gespeichert werden.
+    Die Referenz des Datenobjekts soll man sich merken. Es soll das Datenobjekt
+    welches man isch gemerkt hat über die ID wieder gelesen werden. Es soll die
+    Gleichheit der beiden Datenobjekte geprüft werden.
+
+    % REST & Hessian Request test
+    \item[T-13.1] Es soll irgendein \ac{REST} Request auf dem Server abgesetzt
+    und auf ein erfolgreiche Rückmeldung geprüft werden.
+    
+    \item[T-13.2] Es soll irgendein Hessian Request auf dem Server abgesetzt
+    und auf ein erfolgreiche Rückmeldung geprüft werden.
+    
+    % GET Request Test
+    \item[T-4.1] Es soll ein \ac{REST} HTTP-GET Request mit der Referenz
+    auf eine bekannte Ressource von Prototypen aus auf dem Server abgesetzt und
+    auf ein erfolgreiche Rückmeldung HTTP-Response-Message 200 geprüft werden.
+    
+    \item[T-4.2] Es soll ein Hessian 
+    \begin{verbatim}Product get(Long id)\end{verbatim} 
+    Request mit der Referenz auf eine bekannte Ressource auf dem Server
+    abgesetzt und auf ein erfolgreiche Rückmeldung geprüft werden.
+    
+    % GET List Request Test
+    \item[T-5.1] Es soll ein \ac{REST} HTTP-GET Request auf die
+    Listenansicht einer bekannte Ressource, vom Prototypen aus, auf dem Server
+    abgesetzt und auf ein erfolgreiche Rückmeldung HTTP-Response-Message 200
+    geprüft werden.
+    
+    \item[T-5.2] Es soll ein Hessian 
+    \begin{verbatim}Product [] allProducts()\end{verbatim}
+    Request auf dem Server abgesetzt und auf ein erfolgreiche Rückmeldung
+    geprüft werden.
+    
+    % INSERT Request Test
+    \item[T-8.1] Es soll ein \ac{REST} HTTP-POST Request auf die
+    Listenansicht mit einer neuen Ressource, vom Prototypen aus,
+    auf dem Server abgesetzt und auf ein erfolgreiche Rückmeldung
+    HTTP-Response-Message 201 geprüft werden. Die registrierte Ressource soll
+    über ein \ac{REST} GET Request wieder geladen und verglichen werden.
+
+    \item[T-8.2] Es soll ein Hessian 
+    \begin{verbatim}Product register(Product product)\end{verbatim}
+    Request mit einer neuen Ressource auf dem Server abgesetzt und auf ein
+    erfolgreiche Rückmeldung geprüft werden. Die registrierte Ressource soll
+    über ein Hessian \begin{verbatim}Product get(Long id)\end{verbatim} wieder
+    geladen und verglichen werden.
+    
+    % DELETE Request Test
+    \item[T-6.1] Es soll ein \ac{REST} HTTP-DELETE Request auf
+    eine bestehende Ressource, vom Prototypen aus, auf dem Server abgesetzt und
+    auf ein erfolgreiche Rückmeldung HTTP-Response-Message 200 geprüft werden.
+    Die gelöschte Ressource soll über ein \ac{REST} HTTP-GET Request wieder
+    geladen werden. Es soll eine HTTP-Response-Message 404 zurückgeliefert werden.
+
+    \item[T-6.2] Es soll ein Hessian 
+    \begin{verbatim}Product delete(Long id)\end{verbatim}
+    Request auf eine bestehende Ressource auf dem Server abgesetzt und auf ein
+    erfolgreiche Rückmeldung geprüft werden. Die gelöschte Ressource
+    soll soll über ein Hessian 
+    \begin{verbatim}Product get(Long id)\end{verbatim} 
+    wieder geladen werden. Dabei soll eine EntityNotFoundException
+    zurückgeworfen werden.
+    
+    % UPDATE Request Test
+    \item[T-7.1] Es soll eine bestehende Ressource genommen und
+    verändert werden. Auf die bestehende Ressource soll ein \ac{REST} HTTP-PUT
+    Request vom Prototypen aus auf den Server abgesetzt werden. Es soll auf
+    ein erfolgreiche Rückmeldung HTTP-Response-Message 200 geprüft werden. Die
+    geänderte Ressource soll über ein \ac{REST} HTTP-GET Request wieder geladen
+    und verglichen werden.
+        
+    \item[T-7.2] Es soll eine bestehende Ressource genommen und
+    verändert werden. Es soll ein Hessian 
+    \begin{verbatim}Product update(Long id, Product product)\end{verbatim}
+    Request mit der ID der bestehenden Ressource auf dem Server abgesetzt und
+    auf ein erfolgreiche Rückmeldung geprüft werden. Die gelöschte Ressource
+    soll soll über ein Hessian
+    \begin{verbatim}Product get(Long id)\end{verbatim} 
+    wieder geladen und verglichen werden.
+    
+    % Server Deployment
+    \item[T-12.1] Die Serverapplikation soll auf einem GlassFish Application
+    Server deployed werden. Es soll geprüft werden, ob die Applikation läuft.
+         
+    % Client Android Version
+    \item[T-10.1] Die Clientapplikation soll auf einem Android 2.2 installiert
+    werden. Es soll geprüft werden, ob die Applikation läuft.
+    
+    % Use everywhere
+    \item[T-2.1] Die Clientapplikation soll über das Handynetzwerk mit dem
+    Server kommunizieren. Wenn das funktioniert, kann die Applikation von
+    überall her benutzt werden.
+    
+  \end{description}
   
   \newpage
   
   \section{Ergebnisse der Tests und Abdeckung des Testszenarios}
   
+  Da es sich hiermit um eine Semesterarbeit handelt wird nicht auf ein
+  vollständiges Testing eingegangen. Das definierte Testszenario soll wenn
+  möglich mit Unittests abgedeckt werden. Wenn es keine möglichkeit eines Unit
+  Tests gibt, kann ein Test auch manuell ausgeführt und auf einen Erfolg
+  geprüft werden.
+  
+  Unittests in Java werden normalerweist mit JUnit durchgeführt. Für das Android
+  Betriebsystem wird eine Testing-Engine mit dem SDK mitgeliefert, mit der man
+  Unittests definieren kann.
+  
+  Manuelle Tests werden von mir selber überprüft und nach Treu und Glauben für
+  korrekt oder fehlgeschlagen erklärt.
+  
+  \subsection{Testplan}
+  
+  
+  
+  \newpage
+  
+  \section{Zusammenfassung zur Entwicklung des Prototypen}
   
   % ===========================================================================
   % Anhang beginns here
