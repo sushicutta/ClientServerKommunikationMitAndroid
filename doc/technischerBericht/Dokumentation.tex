@@ -149,45 +149,6 @@
   
   \newpage
   
-  \section{Bewertungskriterien}
-  
-  Wie im Kick-off Meeting festgelegt werden die Bewertungskriterien aus dem
-  Bachelor Studiengang verwendet. 
-  
-  \section{Sprache}
-  
-  Der Bericht wird in deutscher Sprache verfasst. Englische Ausdrücke werden im
-  Context verwendet, wenn man davon ausgehen kann, dass es Ausdrücke aus dem
-  Gebiet der Informatik sind, die man verstehen sollte.
-  
-  \section{Termine}
-  
-  \begin{tabular}{lp{10cm}ll}
-    \toprule
-    Termin & Datum & Ort \\
-    \midrule
-    14. 12. 2010 & Kick-off Meeting & Panter Inc\\
-    12. 01. 2011 & Design-Review Meeting & HSZ-T\\
-    02. 03. 2011 & Schlusspräsentation & HSZ-T\\
-    \bottomrule
-  \end{tabular}
-  
-  \section{Projekthistorie}
-  
-  \begin{tabular}{lp{10cm}ll}
-    \toprule
-    Datum & Status & Wer \\
-    \midrule
-    06. 12. 2010 & Ein Dozierender hat die Arbeit inkl. Aufgabenstellung
-    ausgeschrieben und wartet auf einen Studierenden der diese Arbeit
-    durchführt & Roman Würsch\\
-    07. 12. 2010 & Die Arbeit ist freigegeben & Olaf Stern\\
-    14. 12. 2010 & Freigabe Kick-Off & Beat Seeliger\\
-    12. 01. 2011 & Freigabe Desgin-Review & Beat Seeliger\\
-    16. 02. 2011 & Abgabe der Dokumentation & Roman Würsch\\
-    02. 03. 2011 & Präsentation der Arbeit & Roman Würsch\\
-    \bottomrule
-  \end{tabular}
   
   \newpage
   
@@ -260,13 +221,13 @@
   \subsection{Erwartete Resultate}
   Die erwarteten Resultate ergeben sich aus der Aufgabenstellung:
   
-  \begin{itemize}
+  \begin{enumerate}
     \item Es wird die Versionskontrolle auf der Basis von GIT bei
           Github.com verwendet.
     \item Planung, Arbeitsnachweis und weitere Informationen werden im WIKI
           von Github.com geführt.
     \item Technischer Bericht
-    \begin{itemize}
+    \begin{enumerate}
       \item Beschreibung der Ausgangslage
       \item Konzeptionelle Gegenüberstellung von \ac{REST} und Hessian
       \item \sout{Gegenüberstellung der Einsatzgebiete von \ac{REST} und
@@ -274,17 +235,52 @@
         Im Design-Review hat man sich auf den Verzicht dieses Kapitels
         geeinigt.}
       \item Definition der Anforderungen an den Prototyp 
-      \item Zusammenfassung zur Entwicklung des Prototypen
       \item Ergebnisse der Tests und Abdeckung der Testszenarios
-    \end{itemize}
+      \item Zusammenfassung zur Entwicklung des Prototypen
+    \end{enumerate}
     \item Lauffähiger Prototyp:
-    \begin{itemize}
+    \begin{enumerate}
       \item Es soll ein lauffähiger Prototyp auf der Basis von
             Android 2.2 (Froyo) für beide Protokolle gemacht werden.
       \item Der Prototyp soll bei einem Server Daten lesen, erstellen,
             aktualisieren und löschen können.
-    \end{itemize}
-  \end{itemize}
+    \end{enumerate}
+  \end{enumerate}
+  
+  \newpage  
+  
+  \section{Erreichte Ziele}
+  
+  \begin{enumerate}
+    \item \textbf{Erreicht} Die Versionskontrolle liegt öffentlich zugänglich unter der
+          Adresse:\\
+          \url{https://github.com/sushicutta}
+    \item \textbf{Erreicht} Das Wiki ist öffentlich zugänglich unter der
+          Adresse:\\
+          \url{https://github.com/sushicutta/ClientServerKommunikationMitAndroid/wiki}
+    \item \textbf{Noch nicht Erreicht}Technischer Bericht
+    \begin{enumerate}
+      \item \textbf{Noch nicht Erreicht} Beschreibung der Ausgangslage
+      \item \textbf{Noch nicht Erreicht} Konzeptionelle Gegenüberstellung von
+            \ac{REST} und Hessian
+      \item \textbf{Erreicht} Dieses Ziel wurde beim Design-Review gestrichen. 
+      \item \textbf{Erreicht} Definition der Anforderungen an den Prototyp
+      \item \textbf{Erreicht} Ergebnisse der Tests und Abdeckung der Testszenarios
+      \item \textbf{Noch nicht Erreicht} Zusammenfassung zur Entwicklung des
+            Prototypen
+    \end{enumerate}
+    \item \textbf{Erreicht} Lauffähiger Prototyp:
+    \begin{enumerate}
+      \item \textbf{Erreicht} Der Sourcecode für den lauffähigen Prototypen des
+      Clients ist öffentlich zugänglich unter folgender Adresse, der gültige Branch
+      heisst: restWithGlassFish\\
+      \url{https://github.com/sushicutta/ClientServerKommunikationMitAndroid}
+      \item \textbf{Erreicht} Der Sourcecode für den lauffähigen Prototypen des
+      Servers ist öffentlich zugänglich unter folgender Adresse, der gültige Branch
+      heisst: jpa\\
+      \url{https://github.com/sushicutta/Semesterarbeit}
+    \end{enumerate}
+  \end{enumerate}
   
   \chapter{Technischer Bericht}
   
@@ -299,7 +295,79 @@
   \subsection{Wahl des Themas}
   
   Seit dem Siegeszug der Smartphones, welcher durch das iPhone von Apple
-  eingeläutet wurde. 
+  eingeläutet wurde interessiere ich mich für mobile Geräte. Durch das
+  Interesse an Linux und an freien und offenen Systemen bin ich bei Android als
+  Betriebsystem gelandet. Google versucht mit Android das zu erreichen, was
+  Apple mit dem iOS erreicht hat. Sie wollen Entwicklern eine einfach
+  Schnittstelle für die Entwicklung neuer Software bieten. Zudem soll die
+  Software über einen von Google gesteuerten Marktplatz zur Verfügung gestellt
+  werden.
+  
+  Die Entwicklung neuer Software für Android wird von Google mittels Tutorials
+  gefördert. Dabei habe ich persönlich keinen Hinweis auf die Datenkommunikation
+  zwischen Android und Fremdsystemen bekommen. Da eine solide
+  Datenkommunikation heutzutage zu den Grundbedürfnissen in der
+  Softwareentwicklung gehört, wollte ich die Möglichkeit zweier
+  systemunabhängigen Methoden näher betrachten.
+  
+  Bei der Auswahl der beiden Protokolle bin ich schnell auf \ac{REST} gestossen,
+  da es sich in den letzten paar Jahren zu einer populären Methode entwickelt
+  hatte. Von Hessian als kommunikations Protokoll hatte ich nur schon gehört,
+  ich wusste aber, dass es für die meisten gängigen Programmiersprachen eine
+  Implementation gibt, somit ist es in den Kreis meiner Auswahl gefallen.
+  
+  %TODO
+  
+  \subsection{Bewertungskriterien}
+  
+  Wie im Kick-off Meeting festgelegt werden die Bewertungskriterien aus dem
+  Bachelor Studiengang verwendet. 
+  
+  \subsection{Sprache}
+  
+  Der Bericht wird in deutscher Sprache verfasst. Englische Ausdrücke werden im
+  Context verwendet, wenn man davon ausgehen kann, dass es Ausdrücke aus dem
+  Gebiet der Informatik sind, die man versteht.
+  
+  \subsection{Termine}
+  
+  \begin{tabular}{lp{10cm}ll}
+    \toprule
+    Termin & Datum & Ort \\
+    \midrule
+    14. 12. 2010 & Kick-off Meeting & Panter Inc\\
+    12. 01. 2011 & Design-Review Meeting & HSZ-T\\
+    16. 02. 2011 & Abgabe der Dokumentation & HSZ-T\\
+    02. 03. 2011 & Schlusspräsentation & HSZ-T\\
+    \bottomrule
+  \end{tabular}
+  
+  \subsection{Projekthistorie}
+  
+  \begin{tabular}{lp{10cm}ll}
+    \toprule
+    Datum & Status & Wer \\
+    \midrule
+    06. 12. 2010 & Ein Dozierender hat die Arbeit inkl. Aufgabenstellung
+    ausgeschrieben und wartet auf einen Studierenden der diese Arbeit
+    durchführt & Roman Würsch\\
+    07. 12. 2010 & Die Arbeit ist freigegeben & Olaf Stern\\
+    14. 12. 2010 & Freigabe Kick-Off & Beat Seeliger\\
+    12. 01. 2011 & Freigabe Desgin-Review & Beat Seeliger\\
+    16. 02. 2011 & Abgabe der Dokumentation & Roman Würsch\\
+    02. 03. 2011 & Präsentation der Arbeit & Roman Würsch\\
+    \bottomrule
+  \end{tabular}
+  
+  \subsection{Richtlinien}
+  Folgende Dokumente mit Richtlinien der Hochschule für Technik Zürich 
+  wurden für die Semesterarbeit berücksichtigt:
+
+  \begin{itemize}
+      \item Reglement \cite{hsz_reglement}
+      \item Ablauf \cite{hsz_ablauf}
+      \item Bewertungskriterien \cite{hsz_bewertungskriterien}
+  \end{itemize} 
   
   \newpage
   
@@ -600,11 +668,13 @@
     
     % Server Deployment
     \item[T-12.1] Die Serverapplikation soll auf einem GlassFish Application
-    Server deployed werden. Es soll geprüft werden, ob die Applikation läuft.
+    Server, welcher Java EE 6 kompatibel ist, deployed werden. Es soll geprüft
+    werden, ob die Applikation läuft.
          
     % Client Android Version
-    \item[T-10.1] Die Clientapplikation soll auf einem Android 2.2 installiert
-    werden. Es soll geprüft werden, ob die Applikation läuft.
+    \item[T-10.1] Die Clientapplikation soll auf einem Android 2.2
+    kompatiblen Gerät installiert werden. Es soll geprüft werden, ob die
+    Applikation läuft.
     
     % Use everywhere
     \item[T-2.1] Die Clientapplikation soll über das Handynetzwerk mit dem
@@ -619,20 +689,52 @@
   
   Da es sich hiermit um eine Semesterarbeit handelt wird nicht auf ein
   vollständiges Testing eingegangen. Das definierte Testszenario soll wenn
-  möglich mit Unittests abgedeckt werden. Wenn es keine möglichkeit eines Unit
-  Tests gibt, kann ein Test auch manuell ausgeführt und auf einen Erfolg
-  geprüft werden.
+  möglich mit Unittests abgedeckt werden. Ein Test kann auch manuell ausgeführt
+  und auf einen Erfolg geprüft werden.
   
-  Unittests in Java werden normalerweist mit JUnit durchgeführt. Für das Android
-  Betriebsystem wird eine Testing-Engine mit dem SDK mitgeliefert, mit der man
-  Unittests definieren kann.
+  Unittests in Java werden normalerweist mit JUnit durchgeführt. Für das Java
+  EE Projekt kann JUnit verwendet werden. Für das Android Betriebsystem wird
+  eine Testing-Engine mit dem SDK mitgeliefert, mit der man Unittests definieren kann.
   
-  Manuelle Tests werden von mir selber überprüft und nach Treu und Glauben für
-  korrekt oder fehlgeschlagen erklärt.
+  Manuelle Tests werden vom Studenten persölich durchgeführt und überprüft und
+  nach Treu und Glauben für korrekt oder fehlgeschlagen erklärt.
   
   \subsection{Testplan}
   
+  Für das definierte Testszenario wird ein Testplan aufgestellt, dabei wird die
+  Art und Weise der Durchführung ob es sich um eine Unittest oder um einen
+  manuelle Test handel aufgelistet. Zudem wird für jeden Test das Datum der
+  Durchführung und das Ergebnis gezeigt.\\
+  \\
+
+  \begin{tabular}{cccc}
+    \toprule
+    Akzeptanztest & Durchgeführt & Wann & Ergebnis \\
+    \midrule
+    T-14.1 & Manuell & 08.02.2011 & Erfolgreich \\
+    T-13.1 & Manuell & 08.02.2011 & Erfolgreich \\
+    T-13.2 & Unittest & 08.02.2011 & Erfolgreich \\
+    T-4.1 & Manuell & 08.02.2011 & Erfolgreich \\
+    T-4.2 & Unittest & 08.02.2011 & Erfolgreich \\
+    T-5.1 & Manuell & 08.02.2011 & Erfolgreich \\
+    T-5.2 & Unittest & 08.02.2011 & Erfolgreich \\
+    T-8.1 & Manuell & 08.02.2011 & Erfolgreich \\
+    T-8.2 & Unittest & 08.02.2011 & Erfolgreich \\
+    T-6.1 & Manuell & 08.02.2011 & Erfolgreich \\
+    T-6.2 & Unittest & 08.02.2011 & Erfolgreich \\
+    T-7.1 & Manuell & 08.02.2011 & Erfolgreich \\
+    T-7.2 & Unittest & 08.02.2011 & Erfolgreich \\
+    T-12.1 & Manuell & 08.02.2011 & Erfolgreich \\
+    T-10.1 & Manuell & 08.02.2011 & Erfolgreich \\
+    T-2.1 & Manuell & 08.02.2011 & Erfolgreich \\
+    \bottomrule
+  \end{tabular}
   
+  \subsection{Abdeckung des Testszenarios}
+  
+  Da alle definierten Akzeptanztest, welche aus den Userstories abgeleitet
+  wurden am 08.02.2011 erfolgreich durchgeführt wurden ist das Testszenario zu
+  100\% abgedeckt.
   
   \newpage
   
