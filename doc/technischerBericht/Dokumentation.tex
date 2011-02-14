@@ -7,7 +7,8 @@
 % Documentdefinition  beginns here
 % =============================================================================
 
-\documentclass[listof=totocnumbered, bibliography=totocnumbered]{scrreprt}
+\documentclass[abstracton, listof=totocnumbered,
+bibliography=totocnumbered]{scrreprt}
 % \documentclass[listof=totoc,bibliography=totoc]{scrreprt}
 \usepackage[ngerman]{babel}
 
@@ -19,6 +20,9 @@
 
 % Setup for fullpage use
 \usepackage{fullpage}
+
+% Silbentrennung kann unterdrückt werden
+\usepackage{hyphenat}
 
 % Running Headers and footers
 %\usepackage{fancyhdr}
@@ -90,7 +94,7 @@
 	\\
 	HSZ-T - Technische Hochschule Zürich}
 
-\date{\today}
+\date{Dezember 2010 bis März 2011}
 
 % =============================================================================
 % Documenttext beginns here
@@ -110,21 +114,40 @@
   
   \maketitle
   
-  \pagenumbering{Roman}
+  % ===========================================================================
+  % Abstract beginns here
+  % ===========================================================================
+  
+  \pagenumbering{Alph}
+  
+  \begin{abstract}
+    In dieser Semesterarbeit wird untersucht, wie eine Kommunikation zwischen
+    dem Android Betriebsystem und einem Serversystem funktioniert. Es wird
+    anhand der plattformunabhängigen Kommunikationsprotokolle REST und Hessian
+    ein Prototyp implementiert, der eine grundlegende Funktionalität bietet. Der
+    Prototyp soll soweit ausgereift sein, damit man in der Praxis auf ihn
+    aufbauen könnte.
+    Zudem werden diese beiden Protokolle in einer Gegenüberstellung verglichen.
+  \end{abstract}
   
   % ===========================================================================
   % Inahltsverzeichnis beginns here
   % ===========================================================================
+
+  \pagenumbering{Roman}
   
   \tableofcontents
+  
+  \clearpage
+  
+  \pagenumbering{arabic}
+  
   
   % ===========================================================================
   % Kapitel Administratives beginns here
   % ===========================================================================
   
-  \chapter{Administratives}
-  
-  \section{Personalienblatt}
+  \chapter{Personalienblatt}
   \begin{tabbing}
     \hspace*{6cm}\= \kill
     Name, Vorname: \> {\bf Roman Würsch} \\
@@ -152,15 +175,15 @@
   
   \newpage
   
-  \section{Aufgabenstellung}
+  \chapter{Aufgabenstellung}
   
-  \subsection{Ausgangslage}
+  \section{Ausgangslage}
   Die App-Stores der Mobil-Hersteller boomen. Die Art und Weise wie man Apps
   programmieren soll wird von den Mobil-Hersteller meist klar vorgegeben.
   Sobald jedoch eine App mit einem Server im Internet kommunizieren soll, gibt
   es keine Vorschriften zur Implementierung.
   
-  \subsection{Ziel der Arbeit}
+  \section{Ziel der Arbeit}
   Es soll eine Client-Server-Kommunikation am Beispiel des Android
   Betriebsystems gezeigt werden. Das Android Betriebsystem nimmt den
   Platz des Clients ein. Als Server wird ein Java EE Applikationsserver
@@ -206,7 +229,7 @@
   
   \newpage
   
-  \subsection{Aufgabenstellung}
+  \section{Aufgabenstellung}
   
   \begin{itemize}
     \item Gegenüberstellung der beiden Protokollkonzepte
@@ -218,7 +241,7 @@
     \item Durchführen der definierten Tests der beiden Prototypen
   \end{itemize}
   
-  \subsection{Erwartete Resultate}
+  \section{Erwartete Resultate}
   Die erwarteten Resultate ergeben sich aus der Aufgabenstellung:
   
   \begin{enumerate}
@@ -249,7 +272,7 @@
   
   \newpage  
   
-  \section{Erreichte Ziele}
+  \chapter{Erreichte Ziele}
   
   \begin{enumerate}
     \item \textbf{Erreicht} Die Versionskontrolle liegt öffentlich zugänglich unter der
@@ -260,9 +283,9 @@
           \url{https://github.com/sushicutta/ClientServerKommunikationMitAndroid/wiki}
     \item \textbf{Noch nicht Erreicht}Technischer Bericht
     \begin{enumerate}
-      \item \textbf{Noch nicht Erreicht} Beschreibung der Ausgangslage
-      \item \textbf{Noch nicht Erreicht} Konzeptionelle Gegenüberstellung von
-            \ac{REST} und Hessian
+      \item \textbf{Erreicht} Beschreibung der Ausgangslage
+      \item \textbf{Erreicht} Konzeptionelle Gegenüberstellung von \ac{REST} und
+            Hessian
       \item \textbf{Erreicht} Dieses Ziel wurde beim Design-Review gestrichen. 
       \item \textbf{Erreicht} Definition der Anforderungen an den Prototyp
       \item \textbf{Erreicht} Ergebnisse der Tests und Abdeckung der Testszenarios
@@ -282,17 +305,13 @@
     \end{enumerate}
   \end{enumerate}
   
-  \chapter{Technischer Bericht}
-  
-  \pagenumbering{arabic}
-  
-  \section{Beschreibung der Ausgangslage}
+  \chapter{Beschreibung der Ausgangslage}
   
   Für das Informatik Diplomstudium an der Fachhochschule Zürich für Technik
   HSZ-T wird von den Studenten verlangt eine Semesterarbeit eigenständig zu
   verfassen.
   
-  \subsection{Wahl des Themas}
+  \section{Wahl des Themas}
   
   Seit dem Siegeszug der Smartphones, welcher durch das iPhone von Apple
   eingeläutet wurde interessiere ich mich für mobile Geräte. Durch das
@@ -316,50 +335,69 @@
   ich wusste aber, dass es für die meisten gängigen Programmiersprachen eine
   Implementation gibt, somit ist es in den Kreis meiner Auswahl gefallen.
   
-  %TODO
-  
-  \subsection{Bewertungskriterien}
+  \section{Bewertungskriterien}
   
   Wie im Kick-off Meeting festgelegt werden die Bewertungskriterien aus dem
   Bachelor Studiengang verwendet. 
   
-  \subsection{Sprache}
+  \section{Sprache}
   
   Der Bericht wird in deutscher Sprache verfasst. Englische Ausdrücke werden im
   Context verwendet, wenn man davon ausgehen kann, dass es Ausdrücke aus dem
   Gebiet der Informatik sind, die man versteht.
   
-  \subsection{Termine}
+  \newpage
   
-  \begin{tabular}{lp{10cm}ll}
-    \toprule
-    Termin & Datum & Ort \\
-    \midrule
-    14. 12. 2010 & Kick-off Meeting & Panter Inc\\
-    12. 01. 2011 & Design-Review Meeting & HSZ-T\\
-    16. 02. 2011 & Abgabe der Dokumentation & HSZ-T\\
-    02. 03. 2011 & Schlusspräsentation & HSZ-T\\
-    \bottomrule
-  \end{tabular}
+  \section{Projekt Termine}
   
-  \subsection{Projekthistorie}
+  Die Projekt Termine wurden alle eingehalten, siehe Tabelle \ref{tab:termine}.
+  \newline
   
-  \begin{tabular}{lp{10cm}ll}
-    \toprule
-    Datum & Status & Wer \\
-    \midrule
-    06. 12. 2010 & Ein Dozierender hat die Arbeit inkl. Aufgabenstellung
-    ausgeschrieben und wartet auf einen Studierenden der diese Arbeit
-    durchführt & Roman Würsch\\
-    07. 12. 2010 & Die Arbeit ist freigegeben & Olaf Stern\\
-    14. 12. 2010 & Freigabe Kick-Off & Beat Seeliger\\
-    12. 01. 2011 & Freigabe Desgin-Review & Beat Seeliger\\
-    16. 02. 2011 & Abgabe der Dokumentation & Roman Würsch\\
-    02. 03. 2011 & Präsentation der Arbeit & Roman Würsch\\
-    \bottomrule
-  \end{tabular}
+  \begin{table}[h]
+    \begin{center}
+      \begin{tabular}{lp{7cm}ll}
+        \toprule
+        Termin & Datum & Ort \\
+        \midrule
+        14. 12. 2010 & Kick-off Meeting & Panter GmbH\\
+        12. 01. 2011 & Design-Review Meeting & HSZ-T\\
+        16. 02. 2011 & Abgabe der Dokumentation & HSZ-T\\
+        02. 03. 2011 & Schlusspräsentation & HSZ-T\\
+        \bottomrule
+      \end{tabular}
+      \caption{Projekt Termine}
+      \label{tab:termine}
+    \end{center}
+  \end{table}
   
-  \subsection{Richtlinien}
+  \section{Projekt Historie}
+  
+  In der Projekt Historie sind die wichtigsten Meilensteine ersichtlich, siehe
+  Tabelle \ref{tab:projekthistorie}.
+  \newline
+  
+  \begin{table}[h]
+    \begin{center}
+      \begin{tabular}{lp{9cm}ll}
+        \toprule
+        Datum & Status & Wer \\
+        \midrule
+        06. 12. 2010 & Ein Dozierender hat die Arbeit inkl. Aufgabenstellung
+        ausgeschrieben und wartet auf einen Studierenden der diese Arbeit
+        durchführt & Roman Würsch\\
+        07. 12. 2010 & Die Arbeit ist freigegeben & Olaf Stern\\
+        14. 12. 2010 & Freigabe Kick-Off & Beat Seeliger\\
+        12. 01. 2011 & Freigabe Desgin-Review & Beat Seeliger\\
+        16. 02. 2011 & Abgabe der Dokumentation & Roman Würsch\\
+        02. 03. 2011 & Präsentation der Arbeit & Roman Würsch\\
+        \bottomrule
+      \end{tabular}
+      \caption{Projekt Historie}
+      \label{tab:projekthistorie}
+    \end{center}
+  \end{table}
+  
+  \section{Richtlinien}
   Folgende Dokumente mit Richtlinien der Hochschule für Technik Zürich 
   wurden für die Semesterarbeit berücksichtigt:
 
@@ -371,17 +409,181 @@
   
   \newpage
   
-  \section{Konzeptionelle Gegenüberstellung von REST und Hessian}
+  \chapter{Konzeptionelle Gegenüberstellung von REST und Hessian}
   
+  \section{REST – Representational State Transfer}
+  
+  \ac{REST} stammt aus der Dissertation von Roy Fielding in der er den Erfolg
+  des \ac{WWW} auf bestimmte Eigenschaften der verwendeten Mechanismen und
+  Protokolle (z. B. \ac{HTTP}) zurückführt.
+  
+  \subsection{Was ist REST}
+  
+  Der Client ändert den Status mit jeder Ressource Repräsentation.
+  
+  \begin{enumerate}
+    \item Ein Client referenziert eine Web Ressource über eine \ac{URL}.
+    \item Der Server lieferte eine Repräsentation der Ressource in einer vom
+    Client akzeptierten Form, z.B. als ein \ac{HTML} Dokument oder als \ac{XML}.
+    \item Die vom Server geladene Ressource versetzt den Client in einen neuen
+    Status und bietet evtl. Links zu neuen Ressourcen an.
+    \item Der Client lädt eine ihm neue bekannte Ressource über die \ac{URL},
+    was wieder in einem Ressource Access endet.
+    \item Die vom Server geladene Ressource versetzt den Client wieder in einen
+    neuen Status.
+  \end{enumerate}
+  
+  \subsection{Wie funktioniert REST}
+  
+  \begin{itemize}
+    \item \ac{REST} verwendet \ac{URL} um Ressourcen zu adressieren
+    \item \ac{REST} verwendet (a) HTTP-PUT, (b) HTTP-GET, (c) HTTP-POST und
+    (d) HTTP-DELETE Requests um Daten zu (a) kreieren, (b) lesen,
+    (c) aktualisieren und (d) zu löschen.
+    \item \ac{REST} verwendet Standard Ressource Repräsentationen wie \ac{HTML},
+    \ac{XML}, \ac{JSON}, usw.
+    \item \ac{REST} verwendet \ac{HTTP} Header ``Content-type'' wie text/html,
+    application/xml, application/json, usw. um die Codierung der Ressourcen zu
+    deklarieren.
+    \item \ac{REST} liefert die codierten Ressourcen aufgrund des \ac{HTTP} Header
+    ``Accept''.
+    \item \ac{REST} liefert bei einem Request \ac{HTTP} Statuscodes. 2xx bei einem
+    erfolgreichen Request oder 4xx wenn der Request fehlgeschlagen ist. Es
+    können auch weitere Statuscodes, wie 3xx oder 5xx, zurückgegeben werden, je
+    nach Definition.
+  \end{itemize}
+  
+  \subsection{Wieso REST}
+  
+  Das \ac{WWW} hat sich in den letzten Jahren bewährt. Das \ac{WWW} ist
+  skalierbar und einfach zu verstehen. Wenn die Kommunikation von Maschine zu Mensch
+  funktioniert, dann ist sie sicher gut genug um auch von Maschine zu Maschine
+  zu funktionieren.
+  
+  Fast jede Plattform unterstützt die Standards des \ac{WWW}, damit macht es
+  eine Plattform übergreifende Kommunikation möglich.
+  
+  Im \ac{WWW} gibt es Standards für Security (z.B. \ac{HTTPS}) und Caches (z.B.
+  \ac{HTTP} ETag), welche mit \ac{REST} verwendet werden können. 
+  
+  \section{Hessian}
+  
+  Hessian ist ein leichtgewichtiges Kommunikationsprotokoll, das von Caucho
+  Technology, Inc. entwickelt wurde.
+  
+  \subsection{Was ist Hessian}
+  
+  Hessian ist ein binäres Netzwerkprotokoll, dass für \ac{RPC} und
+  Datenkommunikation zwischen Computersystemen verwendet werden kann. Hessian wird üblicherweise
+  über \ac{HTTP} übertragen. Hessian definiert keine \ac{IDL} oder ein externes
+  Schema wie man das aus \ac{SOAP} oder \ac{CORBA} kennt. Die Schnittstelle (sprich
+  Methoden Interfaces) des Servers muss beim Client bekannt sein.
+  
+  \subsection{Was beinhaltet Hessian}
+  
+  Hessian definiert hauptsächlich zwei Dinge.
+  
+  \begin{enumerate}
+    \item Wie ein Remote Procedur Call ausgeführt wird. Dabei wird
+    definiert, wie eine Methode auf einem Objekt aufgerufen wird und wie die
+    dazugehörigen Argumente übergeben werden. Zudem wird auch definiert wie der
+    Reply der Methode aussieht. Zudem werden im Fehlerfall so genannte Faults
+    zurückgegeben, was nichts anderes ist als eine Exception.
+    \item Die Serialisierung von Daten. Es werden neun primitive zwei
+    kombinierte und spezielle Konstrukte unterstützt. Bei den primitiven
+    Datentypen handelt es sich um folgende:
+    \begin{itemize}
+      \item boolean
+      \item 32-bit int
+      \item 64-bit long
+      \item 64-bit double
+      \item 64-bit date
+      \item UTF8-encoded string
+      \item UTF8-encoded xml
+      \item raw binary data
+      \item remote objects
+    \end{itemize}
+    Kombinierte Konstrukte sind:
+    \begin{itemize}
+      \item list für Listen und Arrays
+      \item map für Objects und Hashtabellen
+    \end{itemize}
+    Die speziellen Konstrukte sind:
+    \begin{itemize}
+      \item null für null values
+      \item ref Referenzen auf ein object in einer list oder map
+    \end{itemize}
+  \end{enumerate}
+  
+  \subsection{Wieso Hessian}
+  
+  Als binäres Protokoll ist Hessian insbesondere für die Versendung von
+  Binärdaten geeignet. Binäre Protokolle wie RMI und Hessian sind darüber
+  hinaus wesentlich performanter als XML basierte Protokolle, wie z.B. \ac{SOAP}
+  oder XML-RPC.
+
+  Hessian wurde von den Erfindern für verschieden Programmiersprachen portiert,
+  damit macht es eine Plattform übergreifende Kommunikation möglich.
+
+  \section{Konklusion}
   
   \newpage
   
-  \section{Definition der Anforderungen an den Prototyp}
+  \section{Gegenüberstellung}
+  
+  In der Tabelle \ref{tab:gegenueberstellungRestHessian} werden die wichtigsten
+  Eigenschaften verglichen.
+  \newline
+  
+  \begin{table}[h]
+    \begin{center}
+      \begin{tabular}{p{2.4cm}p{6.1cm}p{6.1cm}}
+        \toprule
+        Aspekt & REST & Hessian \\
+        \midrule
+        \nohyphens{Standard} & Kein Standard, verwendet existierende Standards wie
+        RFC2616 HTTP 1.1 & Kein Standard, wurde von Caucho Technology, Inc entwickelt\\
+        \cmidrule{2-3}
+        \nohyphens{Ressource Adressierung} & Jede Ressource hat ihre eigene \ac{URL}
+        & Indirekt über Hessian funktionen\\
+        \cmidrule{2-3}
+        \nohyphens{URL} & Wird verwendet für die Adressierung der einzelnen
+        Ressourcen & Wird für den Hessian Endpoint (Servlet) verwendet\\
+        \cmidrule{2-3}
+        \nohyphens{Error handling} & Server Statuscodes 4xx und 5xx im Response &
+        Hessian Fault\\
+        \cmidrule{2-3}
+        \nohyphens{Daten Repräsentation} & Alle Encodings von \ac{HTTP} definiert,
+        wie (Text, \ac{HTML}, \ac{XML}, \ac{JSON}, usw.) & Serialisierung
+        gemäss Hessian Protokoll\\
+        \cmidrule{2-3}
+        \nohyphens{HTTP} & PUT, GET, POST, DELETE sind auf Funktionen gemappt & POST
+        wird für den Transport verwendet\\
+        \cmidrule{2-3}
+        \nohyphens{State} & Stateless, serverseitig wird nichts gespeichert &
+        Stateful, jede Hessian funktion ist ein Teil einer definierten Applikation\\
+        \cmidrule{2-3}
+        \nohyphens{Interface} & \ac{HTTP} PUT, GET, POST, DELETE & Keine \ac{IDL}
+        wie bei \ac{CORBA}, das Interface muss aber bekannt sein.\\
+        \cmidrule{2-3}
+        \nohyphens{Transaktionen} & Nicht direkt unterstützt, eine Transaktion
+        könnte über Ressourcen abgebildet werden. & Transaktion Context kann im Header übergeben
+        werden\\
+        \bottomrule
+      \end{tabular}
+      \caption{Gegenüberstellung von REST und Hessian}
+      \label{tab:gegenueberstellungRestHessian}
+    \end{center}
+  \end{table}
+  
+  \newpage
+  
+  \chapter{Definition der Anforderungen an den Prototyp}
   
   Die Definition der Anforderungen an die Prototypen werden mit der Technik der
   User Sto\-ries\cite{UserStories} gemacht.
   
-  \subsection{Was sind User Stories}
+  \section{Was sind User Stories}
   
   User Stories beschreiben Anforderungen an eine Software in einer für Jedermann
   verständlichen Sprache. Es sollen keine technischen Details genannt, sondern
@@ -398,7 +600,7 @@
   Jeder User Story wird mit einer eindeutigen Nummer versehen: US-\{User Story
   Nummer\}
   
-  \subsection{Anforderungen an den Prototyp}
+  \section{Anforderungen an den Prototyp}
   
   Im folgenden werden die Anforderungen an den Prototypen spezifziert. Die
   Anforderungen werden aus zwei Blickwinkeln definiert. Aus der Sicht eines
@@ -409,123 +611,180 @@
   Nachfolgend ist die Rede von Datenobjekten. Bei einem Datenobjekt wie es hier
   aufgeführt wird, handelt es sich um ein \ac{POJO}. 
   
-  \subsection{Aus der Sicht des Anwenders}
+  \newpage
+  
+  \section{Aus der Sicht des Anwenders}
   
   Der Anwender stellt ein Mensch dar, der nur die Sicht auf die
   Clientapplikation hat. Normalerweise hat ein Anwender keinerleit technische
-  Hintergründe.\\
-  \\
-  \begin{tabular}{cp{13cm}l}
-    \toprule
-    User Story & Beschreibung \\
-    \midrule
-    US-1 & Ich als Anwender will ein hochwertiges \ac{GUI}. \\
-    US-2 & Ich als Anwender will meine Applikation überall verwenden können. \\
-    US-3 & Ich als Anwender will eine stabile Applikation. \\
-    US-4 & Ich als Anwender will ein ausgewähltes Datenobjekt vom Server an mein
-    Androidgerät übertragen und darstellen können. \\
-    US-5 & Ich als Anwender will eine komplette Liste von Datenobjekten vom
-    Server an mein Androidgerät übertragen und darstellen können. \\
-    US-6 & Ich als Anwender will ein ausgewähltes Datenobjekt auf dem Server
-    löschen können. \\
-    US-7 & Ich als Anwender will ein ausgewähltes Datenobjekt auf dem Server
-    editieren können. \\
-    US-8 & Ich als Anwender will ein neues Datenobjekt an den Server übertragen
-    können. Dieses Datenobjekt soll für zukünftige Zugriffe auf dem Server
-    gespeichert werden. \\
-    US-9 & Ich als Anwender will über Übertragungsfehler informiert werden. \\
-    \bottomrule
-  \end{tabular}
+  Hintergründe. Die definierten User Stories aus der Sicht des Anwenders sind in
+  der Tabelle \ref{tab:anwenderUserStories} ersichtlich.
+  \newline
   
-  \subsection{Aus der Sicht des Informatikstudenten}
+  \begin{table}[h]
+    \begin{center}
+      \begin{tabular}{cp{13cm}l}
+        \toprule
+        User Story & Beschreibung \\
+        \midrule
+        US-1 & Ich als Anwender will ein hochwertiges \ac{GUI}. \\
+        US-2 & Ich als Anwender will meine Applikation überall verwenden können. \\
+        US-3 & Ich als Anwender will eine stabile Applikation. \\
+        US-4 & Ich als Anwender will ein ausgewähltes Datenobjekt vom Server an mein
+        Androidgerät übertragen und darstellen können. \\
+        US-5 & Ich als Anwender will eine komplette Liste von Datenobjekten vom
+        Server an mein Androidgerät übertragen und darstellen können. \\
+        US-6 & Ich als Anwender will ein ausgewähltes Datenobjekt auf dem Server
+        löschen können. \\
+        US-7 & Ich als Anwender will ein ausgewähltes Datenobjekt auf dem Server
+        editieren können. \\
+        US-8 & Ich als Anwender will ein neues Datenobjekt an den Server übertragen
+        können. Dieses Datenobjekt soll für zukünftige Zugriffe auf dem Server
+        gespeichert werden. \\
+        US-9 & Ich als Anwender will über Übertragungsfehler informiert werden. \\
+        \bottomrule
+      \end{tabular}
+      \caption{User Stories eines Anwenders}
+      \label{tab:anwenderUserStories}
+    \end{center}
+  \end{table}
+  
+  \newpage
+  
+  \section{Aus der Sicht des Informatikstudenten}
   
   Der Informatikstudent stellt ein Mensch dar, der sowohl die Sicht auf den
   Client, wie auch auf den Server der Applikation hat. Der Informatikstudent
   versucht durch technische Hilfsmittel die Anforderungen eines Anwenders zu
   erfüllen.
   
-  \subsubsection{Clientapplikation}
+  \subsection{Clientapplikation}
   
-  \begin{tabular}{cp{13cm}l}
-    \toprule
-    User Story & Beschreibung \\
-    \midrule
-    US-10 & Ich als Informatikstudenten will, dass die Clientapplikation für
-    Geräte mit der Android Version 2.2 lauffähig ist. \\
-    US-11 & Ich als Informatikstudenten will, dass die Clientapplikation
-    unabhängig von der Serverapplikation ausgeliefert werden kann. \\
-    \bottomrule
-  \end{tabular}
+  Die definierten User Stories zum Client aus der Sicht des Informatikstudent
+  sind in der Tabelle \ref{tab:clientUserStories} ersichtlich.
+  \newline
   
-  \subsubsection{Serverapplikation}
+  \begin{table}[h]
+    \begin{center}
+      \begin{tabular}{cp{13cm}l}
+        \toprule
+        User Story & Beschreibung \\
+        \midrule
+        US-10 & Ich als Informatikstudenten will, dass die Clientapplikation für
+        Geräte mit der Android Version 2.2 lauffähig ist. \\
+        US-11 & Ich als Informatikstudenten will, dass die Clientapplikation
+        unabhängig von der Serverapplikation ausgeliefert werden kann. \\
+        \bottomrule
+      \end{tabular}
+      \caption{User Stories eines Informatikstudenten zum Client}
+      \label{tab:clientUserStories}
+    \end{center}  
+  \end{table}
   
-  \begin{tabular}{cp{13cm}l}
-    \toprule
-    User Story & Beschreibung \\
-    \midrule
-    US-12 & Ich als Informatikstudent will, dass die Serverapplikation auf
-    einem Java EE 6 fähigen GlassFish Applikationsserver läuft. \\
-    US-13 & Ich als Informatikstudent will, dass die Serverapplikation sowohl
-    Requests über das \ac{REST} Protokoll wie auch über das Hessian
-    Protokoll bearbeiten kann. \\
-    US-14 & Ich als Informatikstudent will, dass Datenobjekte auf der
-    Serverapplikation gespeichert werden können. Diese Daten sollen nur solange
-    gespeichert sein, wie der Server läuft. \\
-    US-15 & Ich als Informatikstudent will, dass mehrere Clientapplikationen
-    gleichzeitig mit der Serverapplikation bedient werden können. \\
-    US-16 & Ich als Informatikstudent will, dass die Serverapplikation
-    auf dem Internet zugänglich ist. \\
-    US-17 & Ich als Informatikstudent will, dass die Serverapplikation immer
-    verfügbar ist. \\
-    US-18 & Ich als Informatikstudent will, dass die Serverapplikation
-    unabhängig von der Clientapplikation ausgeliefert werden kann. \\
-    \bottomrule
-  \end{tabular}
+  \subsection{Serverapplikation}
   
-  \subsection{Priorisierung aller User Stories}
+  Die definierten User Stories zum Server aus der Sicht des Informatikstudent
+  sind in der Tabelle \ref{tab:serverUserStories} ersichtlich.
+  \newline
+  
+  \begin{table}[h]
+    \begin{center}
+      \begin{tabular}{cp{13cm}l}
+        \toprule
+        User Story & Beschreibung \\
+        \midrule
+        US-12 & Ich als Informatikstudent will, dass die Serverapplikation auf
+        einem Java EE 6 fähigen GlassFish Applikationsserver läuft. \\
+        US-13 & Ich als Informatikstudent will, dass die Serverapplikation sowohl
+        Requests über das \ac{REST} Protokoll wie auch über das Hessian
+        Protokoll bearbeiten kann. \\
+        US-14 & Ich als Informatikstudent will, dass Datenobjekte auf der
+        Serverapplikation gespeichert werden können. Diese Daten sollen nur solange
+        gespeichert sein, wie der Server läuft. \\
+        US-15 & Ich als Informatikstudent will, dass mehrere Clientapplikationen
+        gleichzeitig mit der Serverapplikation bedient werden können. \\
+        US-16 & Ich als Informatikstudent will, dass die Serverapplikation
+        auf dem Internet zugänglich ist. \\
+        US-17 & Ich als Informatikstudent will, dass die Serverapplikation immer
+        verfügbar ist. \\
+        US-18 & Ich als Informatikstudent will, dass die Serverapplikation
+        unabhängig von der Clientapplikation ausgeliefert werden kann. \\
+        \bottomrule
+      \end{tabular}
+      \caption{User Stories eines Informatikstudenten zum Server}
+      \label{tab:serverUserStories}
+    \end{center}
+  \end{table}
+  
+  \section{Priorisierung aller User Stories}
   
   Da es sich bei dieser Arbeit und eine Semesterarbeit handelt, kann nicht auf
   jede Anforderung eingegangen werden. Die User Stories werden aus meiner Sicht
   priorisiert. Für jede Story, die in dieser Semesterarbeit nicht umgesetzt
   wird, werde ich eine kurze Begründung dazu abgeben.
   
-  \subsubsection{Aus der Sicht des Anwenders}
+  \subsection{Aus der Sicht des Anwenders}
   
-  \begin{tabular}{ccc}
-    \toprule
-    User Story & Umsetzung & Priorisierung \\
-    \midrule
-    US-1 & Nein & --- \\
-    US-2 & Ja & mittel \\
-    US-3 & Ja & tief \\
-    US-4 & Ja & hoch \\
-    US-5 & Ja & hoch \\
-    US-6 & Ja & hoch \\
-    US-7 & Ja & hoch \\
-    US-8 & Ja & hoch \\
-    US-9 & Ja & tief \\
-    \bottomrule
-  \end{tabular}
+  Die Priorisierung der User Stories aus der Sicht des Anwenders sind in der
+  Tabelle \ref{tab:anwenderUserStoriesPriorisierung} ersichtlich.
+  \newline
   
-  \subsubsection{Aus der Sicht des Informatikstudenten}
+  \begin{table}[h]
+    \begin{center}  
+      \begin{tabular}{ccc}
+        \toprule
+        User Story & Umsetzung & Priorisierung \\
+        \midrule
+        US-1 & Nein & --- \\
+        US-2 & Ja & mittel \\
+        US-3 & Ja & tief \\
+        US-4 & Ja & hoch \\
+        US-5 & Ja & hoch \\
+        US-6 & Ja & hoch \\
+        US-7 & Ja & hoch \\
+        US-8 & Ja & hoch \\
+        US-9 & Ja & tief \\
+        \bottomrule
+      \end{tabular}
+      \caption{Priorisierung der Anwender User Stories}
+      \label{tab:anwenderUserStoriesPriorisierung}
+    \end{center}
+  \end{table}
   
-  \begin{tabular}{ccc}
-    \toprule
-    User Story & Umsetzung & Priorisierung \\
-    \midrule
-    US-10 & Ja & mittel \\
-    US-11 & Ja & tief \\
-    US-12 & Ja & mittel \\
-    US-13 & Ja & hoch \\
-    US-14 & Ja & hoch \\
-    US-15 & Ja & tief \\
-    US-16 & Nein & --- \\
-    US-17 & Nein & --- \\
-    US-18 & Ja & tief \\
-    \bottomrule
-  \end{tabular}
+  \subsection{Aus der Sicht des Informatikstudenten}
   
-  \subsection{Stories die nicht umgesetzt werden}
+  Die Priorisierung der User Stories aus der Sicht des Informatikstudenten sind
+  in der Tabelle \ref{tab:informatikstudentUserStoriesPriorisierung}
+  ersichtlich.
+  \newline
+  
+  \enlargethispage{3cm}
+  
+  \begin{table}[h]
+    \begin{center} 
+      \begin{tabular}{ccc}
+        \toprule
+        User Story & Umsetzung & Priorisierung \\
+        \midrule
+        US-10 & Ja & mittel \\
+        US-11 & Ja & tief \\
+        US-12 & Ja & mittel \\
+        US-13 & Ja & hoch \\
+        US-14 & Ja & hoch \\
+        US-15 & Ja & tief \\
+        US-16 & Nein & --- \\
+        US-17 & Nein & --- \\
+        US-18 & Ja & tief \\
+        \bottomrule
+      \end{tabular}
+      \caption{Priorisierung der Informatikstudent User Stories}
+      \label{tab:informatikstudentUserStoriesPriorisierung}
+    \end{center}  
+  \end{table}
+  
+  \clearpage
+  
+  \section{Stories die nicht umgesetzt werden}
   
   \begin{itemize}
     \item User Story US-1: Es wurde auf die Umsetzung eines hochwertigen
@@ -539,7 +798,7 @@
     Instanz des GlassFish Servers auf meinen Notebook laufen wird.
   \end{itemize}
   
-  \subsection{Planung der User Stories die umgesetzt werden}
+  \section{Planung der User Stories die umgesetzt werden}
   
   Es werden alle User Stories mit der Priorität hoch und mittel umgesetzt. Die
   Reihenfolge der Umsetztung wird von mir festgelegt. Ich versuche die
@@ -548,11 +807,11 @@
   
   Falls die Zeit reicht, werden auch noch die tief priorisierten Users Stories
   umgesetzt. Es wird keine Reihenfolge für tief priorisierte User Stories
-  festgelegt. Die Reihenfolge der Umsetzung darf somit frei gewählt werden.\newline
-  
+  festgelegt. Die Reihenfolge der Umsetzung darf somit frei gewählt werden.\\
+  \\
   Es wird folgende Reihenfolge für die Umsetzung definiert:
 
-  \subsubsection{Priorität hoch}
+  \subsection{Priorität hoch}
   
   \newcounter{userStoriesZaehler}
   
@@ -567,7 +826,7 @@
     \setcounter{userStoriesZaehler}{\value{enumi}}
   \end{enumerate}
   
-  \subsubsection{Priorität mittel}
+  \subsection{Priorität mittel}
   
   \begin{enumerate}
     \setcounter{enumi}{\value{userStoriesZaehler}}
@@ -576,12 +835,19 @@
     \item User Story US-2
   \end{enumerate}
   
-  \subsection{Testszenario}
+  \newpage
+  
+  \section{Testszenario}
   
   Aus den priorisierten User Stories können nun Akzeptanztests abgeleitet
   werden. Eine Userstory ist dann fertig, wenn sie technisch umgesetzt wurde und
   die dazu definierten Akzeptanztests abgenommen wurden. Jeder Akzeptanztest
   wird mit einer eindeutigen Nummer versehen: T-\{User Story\}.\{Testnummer\}
+    
+  \subsection{Auflistung der Akzeptanztests}
+  
+  Gemäss den hoch und mittel priorisierten User Stories ergeben sich folgende
+  Akzeptanztests:
     
   \begin{description}
 
@@ -590,34 +856,41 @@
     Die Referenz des Datenobjekts soll man sich merken. Es soll das Datenobjekt
     welches man isch gemerkt hat über die ID wieder gelesen werden. Es soll die
     Gleichheit der beiden Datenobjekte geprüft werden.
+    \newline
 
     % REST & Hessian Request test
     \item[T-13.1] Es soll irgendein \ac{REST} Request auf dem Server abgesetzt
     und auf ein erfolgreiche Rückmeldung geprüft werden.
+    \newline
     
     \item[T-13.2] Es soll irgendein Hessian Request auf dem Server abgesetzt
     und auf ein erfolgreiche Rückmeldung geprüft werden.
+    \newline
     
     % GET Request Test
     \item[T-4.1] Es soll ein \ac{REST} HTTP-GET Request mit der Referenz
     auf eine bekannte Ressource von Prototypen aus auf dem Server abgesetzt und
     auf ein erfolgreiche Rückmeldung HTTP-Response-Message 200 geprüft werden.
+    \newline
     
     \item[T-4.2] Es soll ein Hessian 
     \begin{verbatim}Product get(Long id)\end{verbatim} 
     Request mit der Referenz auf eine bekannte Ressource auf dem Server
     abgesetzt und auf ein erfolgreiche Rückmeldung geprüft werden.
+    \newline
     
     % GET List Request Test
     \item[T-5.1] Es soll ein \ac{REST} HTTP-GET Request auf die
     Listenansicht einer bekannte Ressource, vom Prototypen aus, auf dem Server
     abgesetzt und auf ein erfolgreiche Rückmeldung HTTP-Response-Message 200
     geprüft werden.
+    \newline
     
     \item[T-5.2] Es soll ein Hessian 
     \begin{verbatim}Product [] allProducts()\end{verbatim}
     Request auf dem Server abgesetzt und auf ein erfolgreiche Rückmeldung
     geprüft werden.
+    \newline
     
     % INSERT Request Test
     \item[T-8.1] Es soll ein \ac{REST} HTTP-POST Request auf die
@@ -625,6 +898,7 @@
     auf dem Server abgesetzt und auf ein erfolgreiche Rückmeldung
     HTTP-Response-Message 201 geprüft werden. Die registrierte Ressource soll
     über ein \ac{REST} GET Request wieder geladen und verglichen werden.
+    \newline
 
     \item[T-8.2] Es soll ein Hessian 
     \begin{verbatim}Product register(Product product)\end{verbatim}
@@ -632,6 +906,7 @@
     erfolgreiche Rückmeldung geprüft werden. Die registrierte Ressource soll
     über ein Hessian \begin{verbatim}Product get(Long id)\end{verbatim} wieder
     geladen und verglichen werden.
+    \newline
     
     % DELETE Request Test
     \item[T-6.1] Es soll ein \ac{REST} HTTP-DELETE Request auf
@@ -639,6 +914,7 @@
     auf ein erfolgreiche Rückmeldung HTTP-Response-Message 200 geprüft werden.
     Die gelöschte Ressource soll über ein \ac{REST} HTTP-GET Request wieder
     geladen werden. Es soll eine HTTP-Response-Message 404 zurückgeliefert werden.
+    \newline
 
     \item[T-6.2] Es soll ein Hessian 
     \begin{verbatim}Product delete(Long id)\end{verbatim}
@@ -648,6 +924,7 @@
     \begin{verbatim}Product get(Long id)\end{verbatim} 
     wieder geladen werden. Dabei soll eine EntityNotFoundException
     zurückgeworfen werden.
+    \newline
     
     % UPDATE Request Test
     \item[T-7.1] Es soll eine bestehende Ressource genommen und
@@ -656,6 +933,7 @@
     ein erfolgreiche Rückmeldung HTTP-Response-Message 200 geprüft werden. Die
     geänderte Ressource soll über ein \ac{REST} HTTP-GET Request wieder geladen
     und verglichen werden.
+    \newpage
         
     \item[T-7.2] Es soll eine bestehende Ressource genommen und
     verändert werden. Es soll ein Hessian 
@@ -665,16 +943,19 @@
     soll soll über ein Hessian
     \begin{verbatim}Product get(Long id)\end{verbatim} 
     wieder geladen und verglichen werden.
+    \newline
     
     % Server Deployment
     \item[T-12.1] Die Serverapplikation soll auf einem GlassFish Application
     Server, welcher Java EE 6 kompatibel ist, deployed werden. Es soll geprüft
     werden, ob die Applikation läuft.
+    \newline
          
     % Client Android Version
     \item[T-10.1] Die Clientapplikation soll auf einem Android 2.2
     kompatiblen Gerät installiert werden. Es soll geprüft werden, ob die
     Applikation läuft.
+    \newline
     
     % Use everywhere
     \item[T-2.1] Die Clientapplikation soll über das Handynetzwerk mit dem
@@ -685,7 +966,7 @@
   
   \newpage
   
-  \section{Ergebnisse der Tests und Abdeckung des Testszenarios}
+  \chapter{Ergebnisse der Tests und Abdeckung des Testszenarios}
   
   Da es sich hiermit um eine Semesterarbeit handelt wird nicht auf ein
   vollständiges Testing eingegangen. Das definierte Testszenario soll wenn
@@ -699,46 +980,62 @@
   Manuelle Tests werden vom Studenten persölich durchgeführt und überprüft und
   nach Treu und Glauben für korrekt oder fehlgeschlagen erklärt.
   
-  \subsection{Testplan}
+  \section{Testplan}
   
   Für das definierte Testszenario wird ein Testplan aufgestellt, dabei wird die
-  Art und Weise der Durchführung ob es sich um eine Unittest oder um einen
-  manuelle Test handel aufgelistet. Zudem wird für jeden Test das Datum der
-  Durchführung und das Ergebnis gezeigt.\\
-  \\
+  Art und Weise der Durchführung, ob es sich um eine Unittest oder um einen
+  manuelle Test handel, aufgelistet. Zudem wird für jeden Test das Datum der
+  Durchführung und das Ergebnis gezeigt. Der Testplan ist in der Tabelle
+  \ref{tab:testergebnisse} ersichtlich.
+  \newline
 
-  \begin{tabular}{cccc}
-    \toprule
-    Akzeptanztest & Durchgeführt & Wann & Ergebnis \\
-    \midrule
-    T-14.1 & Manuell & 08.02.2011 & Erfolgreich \\
-    T-13.1 & Manuell & 08.02.2011 & Erfolgreich \\
-    T-13.2 & Unittest & 08.02.2011 & Erfolgreich \\
-    T-4.1 & Manuell & 08.02.2011 & Erfolgreich \\
-    T-4.2 & Unittest & 08.02.2011 & Erfolgreich \\
-    T-5.1 & Manuell & 08.02.2011 & Erfolgreich \\
-    T-5.2 & Unittest & 08.02.2011 & Erfolgreich \\
-    T-8.1 & Manuell & 08.02.2011 & Erfolgreich \\
-    T-8.2 & Unittest & 08.02.2011 & Erfolgreich \\
-    T-6.1 & Manuell & 08.02.2011 & Erfolgreich \\
-    T-6.2 & Unittest & 08.02.2011 & Erfolgreich \\
-    T-7.1 & Manuell & 08.02.2011 & Erfolgreich \\
-    T-7.2 & Unittest & 08.02.2011 & Erfolgreich \\
-    T-12.1 & Manuell & 08.02.2011 & Erfolgreich \\
-    T-10.1 & Manuell & 08.02.2011 & Erfolgreich \\
-    T-2.1 & Manuell & 08.02.2011 & Erfolgreich \\
-    \bottomrule
-  \end{tabular}
+  \enlargethispage{3cm}
+
+  \begin{table}[h]
+    \begin{center}
+      \begin{tabular}{cccc}
+        \toprule
+        Akzeptanztest & Durchgeführt & Wann & Ergebnis \\
+        \midrule
+        T-14.1 & Manuell & 08.02.2011 & Erfolgreich \\
+        T-13.1 & Manuell & 08.02.2011 & Erfolgreich \\
+        T-13.2 & Unittest & 08.02.2011 & Erfolgreich \\
+        T-4.1 & Manuell & 08.02.2011 & Erfolgreich \\
+        T-4.2 & Unittest & 08.02.2011 & Erfolgreich \\
+        T-5.1 & Manuell & 08.02.2011 & Erfolgreich \\
+        T-5.2 & Unittest & 08.02.2011 & Erfolgreich \\
+        T-8.1 & Manuell & 08.02.2011 & Erfolgreich \\
+        T-8.2 & Unittest & 08.02.2011 & Erfolgreich \\
+        T-6.1 & Manuell & 08.02.2011 & Erfolgreich \\
+        T-6.2 & Unittest & 08.02.2011 & Erfolgreich \\
+        T-7.1 & Manuell & 08.02.2011 & Erfolgreich \\
+        T-7.2 & Unittest & 08.02.2011 & Erfolgreich \\
+        T-12.1 & Manuell & 08.02.2011 & Erfolgreich \\
+        T-10.1 & Manuell & 08.02.2011 & Erfolgreich \\
+        T-2.1 & Manuell & 08.02.2011 & Erfolgreich \\
+        \bottomrule
+      \end{tabular}
+      \caption{Testergebnisse des Testszenarios}
+      \label{tab:testergebnisse}
+     \end{center}  
+  \end{table}
   
-  \subsection{Abdeckung des Testszenarios}
+  \clearpage
+  
+  \section{Abdeckung des Testszenarios}
   
   Da alle definierten Akzeptanztest, welche aus den Userstories abgeleitet
-  wurden am 08.02.2011 erfolgreich durchgeführt wurden ist das Testszenario zu
+  wurden, am 08.02.2011 erfolgreich durchgeführt wurden, ist das Testszenario zu
   100\% abgedeckt.
+  
+  Im Testszenario wurden die User Stories, welche tief priorisiert wurden, nicht
+  berücksicht, da es sich dabei um optionale Akzeptanztests handelt.
   
   \newpage
   
-  \section{Zusammenfassung zur Entwicklung des Prototypen}
+  \chapter{Zusammenfassung zur Entwicklung des Prototypen}
+  
+  
   
   % ===========================================================================
   % Anhang beginns here
@@ -763,6 +1060,15 @@
     \acro{POJO}{Plain Old Java Object}
     \acro{XML}{Extensible Markup Language}
     \acro{JSON}{JavaScript Object Notation}
+    \acro{WWW}{World Wide Web}
+    \acro{HTTPS}{Hypertext Transfer Protocol Secure}
+    \acro{HTTP}{Hypertext Transfer Protocol}
+    \acro{RPC}{Remote Procedure Call}
+    \acro{SOAP}{Simple Object Access Protocol}
+    \acro{CORBA}{Common Object Request Broker Architecture}
+    \acro{IDL}{Interface Definition Language}
+    \acro{HTML}{Hypertext Markup Language}
+    \acro{URL}{Uniform Resource Locator}
   \end{acronym}
   
   % ===========================================================================
