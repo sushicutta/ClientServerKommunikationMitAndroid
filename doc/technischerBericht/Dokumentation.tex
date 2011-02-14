@@ -524,10 +524,8 @@ bibliography=totocnumbered]{scrreprt}
 
   Hessian wurde von den Erfindern für verschieden Programmiersprachen portiert,
   damit macht es eine Plattform übergreifende Kommunikation möglich.
-
-  \section{Konklusion}
   
-  \newpage
+  \enlargethispage{3cm}
   
   \section{Gegenüberstellung}
   
@@ -575,6 +573,127 @@ bibliography=totocnumbered]{scrreprt}
       \label{tab:gegenueberstellungRestHessian}
     \end{center}
   \end{table}
+  
+  \clearpage
+ 
+  \section{Persönliche Meinung}
+  
+  Da ich mich nun tiefer mit beiden Protokollen beschäftigt habe, möchte ich
+  noch meine Meinung dazu abgeben.
+  
+  \subsection{REST ist cool, aber der Teufel steckt im Detail}
+  
+  
+  
+  
+  
+  \subsection{Hessian ist leichtgewichtig, aber leider kein Standard}
+  
+  Ganz nach dem KISS-Prinzip\cite{KISS} wurde dieses Protokoll geschaffen. Es
+  soll so einfach wie möglich anzuwenden sein, und das ist es auch. Für den
+  Serverteil, reicht ein Interface, und die ausprogrammierte Klasse ist auch
+  schon in ein paar Zeilen Code geschrieben. Dann noch die nötige Konfiguration
+  für den Servlet-Container. Die ganze Magie, der Methodinvocation und
+  Serialisierung der Daten, wird über das Package com.caucho.hessian.*
+  abgewickelt, davon sieht man als Softwareentwickler nichts mehr. Der Client
+  ist wird wie der Server auch gleich kurzerhand realisiert. Die aktuelle
+  Version 4.0.7 ist als JAR File gerade einmal 383 Kilobyte gross und
+  beinhaltet alle Klassen um als Server oder als Client zu fungieren. Ein
+  Beispiel Code in Java könnte in etwa so aussehen:\\
+
+  Das Interface:
+  
+\begin{verbatim}
+package example;  
+
+public interface Basic {
+
+  public String hello();
+  
+}
+\end{verbatim}
+
+  Die ausprogrammierte Klasse:
+
+\begin{verbatim}
+package example;  
+  
+import com.caucho.hessian.server.HessianServlet;
+
+public class BasicServiceEndpoint extends HessianServlet implements Basic {
+
+  @Override
+  public String hello() {
+    return "Hello World";
+  }
+      
+}
+\end{verbatim}
+
+  Dann fehlt nur noch die Konfiguration für den Servlet-Container im web.xml,
+  und schon kann über die \ac{URL} http://www.examplehost.com/BasicService auf
+  den Server zugegriffen werden.:
+  
+\begin{verbatim}
+<web-app>  
+  <servlet>
+    <servlet-name>BasicService</servlet-name>
+    <servlet-class>example.BasicServiceEndpoint</servlet-class>
+    </servlet>
+  <servlet-mapping>
+      <servlet-name>BasicService</servlet-name>
+      <url-pattern>/BasicService</url-pattern>
+  </servlet-mapping>
+</web-app>
+\end{verbatim}
+
+  Der Client kommt auch schön schlank daher:
+
+\begin{verbatim}  
+package example;
+
+import com.caucho.hessian.client.HessianProxyFactory;
+
+public class BasicClient {
+
+  public static void main(String []args) throws Exception {
+  
+    String url = "http://www.examplehost.com/BasicService";
+
+    HessianProxyFactory factory = new HessianProxyFactory();
+    Basic basic = (Basic) factory.create(Basic.class, url);
+
+    System.out.println(basic.hello());
+    
+  }
+  
+}
+\end{verbatim}  
+  
+  Als Nachteil sehe ich den geringen Bekanntheitsgrad von Hessian und zudem,
+  dass Hessian kein Standard ist. In einem grösseren Entwicklungprojekt, dürfte
+  ein Webservice wohl mit \ac{SOAP} oder einer ähnlichen Technik umgesetzt
+  werden, da es sich dabei effektiv um einen Standard handelt. Zudem dürfte es
+  komplizierter werden, wenn man Datentypen verwendet, die im Protokoll nicht
+  für die Serialisierung vorgesehen sind
+  
+  \subsection{Fazit}
+  
+  Für kleine Projekte, oder Projekte wo die Grösse des ausgelieferten Packets
+  eine Rolle spielen würde ich auf Hessian setzten. Durch die
+  Leichtgewichtigkeit und die Einfachheit der Implementierung hat man mit
+  Hessian ein mächtiges Werkzeug.
+  
+  Bei einem Projekt, wo man nicht nur eine Kommunikation von Maschine zu
+  Maschine bauen soll, sondern auch eine Schnittstelle für Menschen
+  bereitstellt, würde ich auf \ac{REST} setzten. Da man die Repräsentation
+  gleich für maschinentaugliche, wie auch für browsertaugliche (was ja von
+  Menschen verwendet wird) Formate bereitstellen kann. Sprich, die Ressourcen in
+  \ac{XML} und gleich in \ac{HTML} zu präsentrieren, macht da keinen grossen
+  Unterschied mehr. Zudem fällt eine Dokumentation der Schnittstelle fast
+  komplett weg, oder wenn wirklich nötig, kann die Dokumentation der
+  Schnittstelle gleich als eigene Ressource über eine \ac{URL} zugänglich
+  gemacht werden.
   
   \newpage
   
