@@ -286,7 +286,7 @@ bibliography=totocnumbered]{scrreprt}
     \item \textbf{Erreicht} Das Wiki ist öffentlich zugänglich unter der
           Adresse:\\
           \url{https://github.com/sushicutta/ClientServerKommunikationMitAndroid/wiki}
-    \item \textbf{Noch nicht Erreicht} Technischer Bericht
+    \item \textbf{Erreicht} Technischer Bericht
     \begin{enumerate}
       \item \textbf{Erreicht} Beschreibung der Ausgangslage
       \item \textbf{Erreicht} Konzeptionelle Gegenüberstellung von \ac{REST} und
@@ -294,8 +294,7 @@ bibliography=totocnumbered]{scrreprt}
       \item \textbf{Erreicht} Dieses Ziel wurde beim Design-Review gestrichen. 
       \item \textbf{Erreicht} Definition der Anforderungen an den Prototyp
       \item \textbf{Erreicht} Ergebnisse der Tests und Abdeckung der Testszenarios
-      \item \textbf{Noch nicht Erreicht} Zusammenfassung zur Entwicklung des
-            Prototypen
+      \item \textbf{Erreicht} Zusammenfassung zur Entwicklung des Prototypen
     \end{enumerate}
     \item \textbf{Erreicht} Lauffähiger Prototyp:
     \begin{enumerate}
@@ -474,7 +473,10 @@ bibliography=totocnumbered]{scrreprt}
   \section{Hessian}
   
   Hessian ist ein leichtgewichtiges Kommunikationsprotokoll, das von Caucho
-  Technology, Inc. entwickelt wurde.
+  Technology, Inc. entwickelt wurde. Es existieren zwei Protokolldefinitionen
+  Hessian 1.0.x und Hessian 2.0. Ich habe mich in dieser Arbeit nur mit
+  Hessian 1.0.x beschäftigt. Hessian 2.0 bietet zum RPC-Teil (synchron) auch
+  eine Nachrichtenbasierte Kommunikation (asynchron) an.
   
   \subsection{Was ist Hessian}
   
@@ -530,7 +532,7 @@ bibliography=totocnumbered]{scrreprt}
   Hessian wurde von den Erfindern für verschiedene Programmiersprachen portiert,
   damit macht es eine Plattform übergreifende Kommunikation möglich.
   
-  \enlargethispage{3cm}
+  \newpage
   
   \section{Gegenüberstellung}
   
@@ -572,6 +574,9 @@ bibliography=totocnumbered]{scrreprt}
         \nohyphens{Transaktionen} & Nicht direkt unterstützt, eine Transaktion
         könnte über Ressourcen abgebildet werden. & Transaktionskontext kann im Header übergeben
         werden\\
+        \cmidrule{2-3}
+        \nohyphens{Asynchrone Kommunikation} & Nicht direkt unterstützt. &
+        Hessian 2.0 bietet diese Möglichkeit\\
         \bottomrule
       \end{tabular}
       \caption{Gegenüberstellung von REST und Hessian}
@@ -579,8 +584,8 @@ bibliography=totocnumbered]{scrreprt}
     \end{center}
   \end{table}
   
-  \clearpage
- 
+  \newpage
+  
   \section{Persönliche Meinung}
   
   Da ich mich nun tiefer mit beiden Protokollen beschäftigt habe, möchte ich
@@ -622,11 +627,11 @@ bibliography=totocnumbered]{scrreprt}
   ich anhand einer Grafik \ref{restPrinzip} zeigen:
   
   \begin{figure}[h]
-      \begin{center}
-          \includegraphics[width=0.7\textwidth]{./image/rest.png}
-          \caption{Ein Produktservice mit REST bereitgestellt}
-          \label{restPrinzip}
-      \end{center}
+    \begin{center}
+      \includegraphics[width=0.7\textwidth]{./image/rest.png}
+      \caption{Ein Produktservice mit REST bereitgestellt}
+      \label{restPrinzip}
+    \end{center}
   \end{figure}
   
   \subsection{Hessian ist leichtgewichtig, aber leider kein Standard}
@@ -1196,7 +1201,207 @@ public class BasicClient {
   
   \chapter{Zusammenfassung zur Entwicklung des Prototypen}
   
+  Da es sich bei dieser Semesterarbeit auch um eine praktische Arbeit handelt,
+  werde ich in diesem Kapitel eine Zusammenfassung zur geleisteten Entwicklung
+  geben. Ich werde auf die Nachvollziehbarkeit eingeben, zudem werde ich mich
+  zu den verwendeten Tools äussern und die Zusammenfassung wird in der Form
+  eines Erfahrungsberichts geschrieben.
+  
+  \section{Nachvollziehbarkeit}
+  
+  Die Nachvollziehbarkeit ist aufgrund des Versionierungssystems GIT\cite{GIT}
+  gesichert. In der Network-Ansicht von github kann man das inkrementelle
+  Wachstum der Sourcen anhand der versionierten Commits verfolgt, auch
+  kann man sehen, dass ich alles selbständig entwickelt habe.
+  
+  \section{Verwendete Tools}
+  
+  Da der Server- und der Client-Prototyp beide auf JAVA basieren habe ich die
+  Entwicklung, teils auf meinem Heimrechner, teils auf meinem Notebook, gemacht.
+  Auf meinem Heimrechner läuft das Betriebsystem Windows XP, auf meinem Notebook
+  Mac OS X. Ich werde hier nur auf die Tools eingehen, welche ich auf meinem
+  Heimrechner, mit Windows XP, verwendet habe.
+  
+  \subsection{Für das Server- und das Clientprojekt}
+  
+  \begin{itemize}
+    \item Windows XP Service Pack 3, von Microsoft, als Betriebsystem
+    \item JAVA \ac{JDK} 1.6.0\_22, von Oracle, als Laufzeitumgebung
+    \item www.github.com, für die Verwalung des Sourcecodes
+    \item Eclipse Helios Service Release 1, Build id: 20100917-0705, als
+    Entwicklungsumgebung
+  \end{itemize}
+  
+  \subsection{Für das Serverprojekt}
+  
+  \begin{itemize}
+    \item Oracle GlassFish Server 3.0.1, als Java EE Applikationsserver
+    \item Oracle GlassFish Server Plugin for Eclipse, für die Verwaltung
+    des Applikationsservers
+    \item Rest Client 2.3.3 von http://code.google.com/p/rest-client/, zur
+    Überprüfung der Schnittstelle
+    \item Dynamischer Domain-Name-Service von no-ip.com, um den GlassFish Server
+    auch von ausserhalb zu erreichen
+    \item Derby DB für die Persistenz der Daten, wird mit dem GlassFish Server
+    mitgeliefert
+    \item \ac{JPA} 2.0 für die Abstaktion des Persistenzzugriffs, wird mit dem
+    GlassFish Server mitgeliefert
+    \item \ac{EJB} 3.1, für die Verwaltung von Enterprise Beans, wird mit dem
+    GlassFish Server mitgeliefert
+    \item Jersey, für den REST Webservice, wird mit dem GlassFish Server
+    mitgeliefert
+    \item \ac{JAXB}, für das Objectmapping von \ac{JSON} oder \ac{XML} zu
+    \ac{POJO} und umgekehrt, wird mit dem GlassFish Server mitgeliefert
+    \item Java Server Faces 2.0, für die Repräsentation von Daten in \ac{HTML}
+    \item JUnit 4.8.2, für die Unittests
+    \item Hessian 4.0.7, für den Hessian Webservice
+  \end{itemize}
+  
+  \subsection{Für das Client}
+  
+  \begin{itemize}
+    \item Android SDK r08, für die Android Version 2.2 Entwicklung
+    \item Android Development Tools Plugin for Eclipse, für die Integration des
+    Android SDK in die Entwicklungsumgebung
+    \item Jackson 1.6.2, für das Objectmapping von \ac{JSON} zu \ac{POJO} und
+    umgekehrt
+    \item hessdroid 0.8.1, von http://code.google.com/p/hessdroid/, für den
+    Hessian Webservice
+  \end{itemize}
+  
+  \subsection{Für die Dokumentation}
+  
+  \begin{itemize}
+    \item TeXnicCenter 1.0 Stable Release, für die \LaTeX{} Entwicklung
+    \item MiKTeX 2.9, für das erstellen von PDF-Dokumenten aus \LaTeX{} 
+  \end{itemize}
+  
+  \section{Erfahrungsbericht}
+  
+  Die detailierte Umsetzung ist im Sourcecode nachzuvollziehen. Ich beschränke
+  mich hier auf einen groben Überblick.
+  
+  \subsection{REST Client}
+  
+  Als erstes habe ich mich an den REST Client auf Android gewagt, ich wollte
+  mich so schnell wie möglich in das Thema Android einarbeiten. Dabei habe ich
+  die Entwicklung gegen einen bestehenden RESTful Webservice auf Ruby on Rails
+  Basis gemacht. 
+  
+  Schnell habe ich festgestellt, dass ich auf der Androidplattform kein JAXB
+  Framework zur Verfügung habe, auch existierte keine Möglichkeit die Referenz
+  Implementierung für einen REST Client von JAVA, namens Jersey, in die
+  Androidplattform einzubinden. Das Problem dabei war die Dalvik Virtual
+  Machine, auf die die Androidplattform aufbaut. Sie akzeptiert nur ein Teil
+  aller Java Packages. Wenn eine Abhängigkeit zu einem Java Package besteht, das
+  nicht unterstützt wird, muss man einen anderen Weg finden, um zum Ziel zu
+  kommen.
+  
+  Für das Objektmapping und die Kommunikation mit einer REST Schnittstelle
+  habe ich mich dann für die Standardkomponenten der Androidplattform entschieden.
+  Dies sind die Klassen:
+  
+  \begin{itemize}
+    \item org.json.JSONArray und org.json.JSONObject
+    \item org.apache.http.impl.client.DefaultHttpClient
+  \end{itemize}
+  
+  Nun habe ich noch ein kleines GUI für die Ansteuerung der REST Funktionen
+  gebaut.
+  
+  \subsection{REST Server}
+  
+  Nach einer erfolgreichen Umsetztung des Clients habe ich mich an den
+  Serverteil gemacht. Ich habe die REST Schnittstelle strikte nach dem Konzept von Jersey
+  implementiert. Zudem habe ich einen Persistenzlayer für den Zugang zur
+  Datenbank geschaffen. Um die REST Funktionen einfach zu testen, habe ich
+  auch ein kleines GUI auf Basis von Java Server Faces 2.0 programmiert. In der
+  Grafik \ref{restPrinzip} ist ersichtlich wie die REST Funktionen anzusprechen
+  sind.
+  
+  Die Serverseitige Konfiguration beschränkt sich dabei auf eine Javaklasse,
+  in der der Einstiegspunkt zum REST Service definiert ist. Diese Klasse sieht
+  so aus:
+
+\begin{verbatim}   
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
+
+@ApplicationPath("")
+public class RESTServlet extends Application {
+
+}
+\end{verbatim}
+
+  Der GlassFish Applikationsserver erkennt über die Annotation
+  @ApplicationPath(''''), dass REST Requests an die Jersey implementierung
+  weitergereicht werden sollen, sofern eine existiert.
+  
+  \subsection{Hessian Server}
+  
+  Den Hessian Service habe ich ganz nach der Anleitung der Hessian Dokumentation
+  implementiert. Der Service beschränkt sich auf eine Klasse namens
+  ProductRegistrationServiceEndpoint welche von der Klasse HessianServlet
+  ableitet und das Interface der Schnittstelle implementiert, siehe Grafik
+  \ref{hessianService}. Da ich bereits ein Persistenzlayer zur Datenbank
+  geschaffen habe, konnte ich diesen wieder verwenden, um Datenobjekte zu
+  persistieren, zu aktualisieren, zu löschen oder zu laden.
+  
+  \begin{figure}
+    \begin{center}
+      \includegraphics[width=0.7\textwidth]{./image/hessian.png}
+      \caption{Ein Produktservice mit Hessian bereitgestellt}
+      \label{hessianService}
+    \end{center}
+  \end{figure}
+  
+  Die Konfiguration ist mit zwei Einträgen im web.xml File gemacht, siehe
+  \ref{hessianConfig}.
+  
+  \begin{figure}
+    \begin{center}
+      \includegraphics[width=0.4\textwidth]{./image/hessianConfiguration.png}
+      \caption{Konfiguration für den Hessian Service}
+      \label{hessianConfig}
+    \end{center}
+  \end{figure}
+  
+  \subsection{Hessian Client}
+  
+  Für den Hessian Client, der wiederum auf der Androidplattform laufen soll,
+  funktionierte die Hessian Library nicht sofort. Mit der Unterstützung von
+  Google bin ich auf das Projekt Hessdroid gestossen. Dieses Projekt zielt
+  darauf ab, die Hessian Sourcen soweit anzupassen, damit sie auf der Dalvik
+  Virtual Machine zum Laufen kommen. Ich habe mich daran gemacht, den
+  bestehenden Hessian Service anzubinden. Wesentlich gibt es nur zwei
+  Knackpunkte die zu erwähnen sind.
+  
+  \begin{enumerate}
+    \item Die HessianProxyFactory musste nach meinen Erkenntnissen auf die
+    Hessian Protokoll Version 1.0 gestellt werden.
+    \item In der ProxyFactory Create Methode muss
+    Thread.currentThread().getContextClassLoader() für den ClassLoader
+    verwendet werden.
+  \end{enumerate}
+  
   \chapter{Reflektion}
+
+  Für mich hat von Anfang an der Schwerpunkt der Semesterarbeit immer auf der
+  Entwicklung der Prototypen gelegen. Der Grund dafür war, dass ich davon am
+  meisten profitieren konnte. Ich habe mich mit zwei Techniken vertraut gemacht,
+  welche ich nun in der Praxis einsetzten kann. Zudem habe ich meine \LaTeX{}
+  Kenntnisse gravierend vertiefen können.
+  
+  Rückblickend war es schade, dass ich diese Arbeit zu diesem Zeitpunkt
+  schreiben musste, da mein Sohn Linus im Dezember zur Welt gekommen ist, und
+  ich insgesammt über 100 Stunden vor meinen Rechnern verbracht habe, um alles
+  zu vollenden. Natürlich liegt die Schuld voll und ganz bei mir selber, da ich
+  viel früher mit der Semesterarbeit hätte beginnen können.
+  
+  Schlussendlich war die Arbeit in meinen Auge ein voller Erfolg, da ich alle
+  Ziele erreicht und viel gelernt habe, und dank der unkomplizierten Art und Weise von
+  Beat Seeliger, in der Betreuerrolle, mein Bestes zum Vorschein gebracht habe.
+  Ich bin glücklich, dass es vorbei ist, und bereit für die Diplomarbeit.
   
   % ===========================================================================
   % Anhang beginns here
@@ -1204,10 +1409,10 @@ public class BasicClient {
   
   \appendix
   
-  \chapter{Ein Testanhang}
-  
-  Im Anhang kann auf Implementierungsaspekte wie Datenbankschemata
-  oder Programmcode eingegangen werden.
+%  \chapter{Ein Testanhang}
+%  
+%  Im Anhang kann auf Implementierungsaspekte wie Datenbankschemata
+%  oder Programmcode eingegangen werden.
   
   % ===========================================================================
   % Abkürzungsverzeichnis beginns here
@@ -1230,6 +1435,10 @@ public class BasicClient {
     \acro{IDL}{Interface Definition Language}
     \acro{HTML}{Hypertext Markup Language}
     \acro{URL}{Uniform Resource Locator}
+    \acro{JPA}{Java Persistence API}
+    \acro{EJB}{Enterprise JavaBeans}
+    \acro{JAXB}{Java Architecture for XML Binding}
+    \acro{JDK}{Java Development Kit}
   \end{acronym}
   
   % ===========================================================================
