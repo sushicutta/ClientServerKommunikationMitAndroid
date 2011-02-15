@@ -549,7 +549,7 @@ bibliography=totocnumbered]{scrreprt}
         RFC2616 HTTP 1.1 & Kein Standard, wurde von Caucho Technology, Inc entwickelt\\
         \cmidrule{2-3}
         \nohyphens{Ressource Adressierung} & Jede Ressource hat ihre eigene \ac{URL}
-        & Indirekt über Hessian funktionen\\
+        & Indirekt über Hessian Funktionen\\
         \cmidrule{2-3}
         \nohyphens{URL} & Wird verwendet für die Adressierung der einzelnen
         Ressourcen & Wird für den Hessian Endpoint (Servlet) verwendet\\
@@ -565,7 +565,7 @@ bibliography=totocnumbered]{scrreprt}
         wird für den Transport verwendet\\
         \cmidrule{2-3}
         \nohyphens{State} & Stateless, serverseitig wird nichts gespeichert &
-        Stateful, jede Hessian funktion ist ein Teil einer definierten Applikation\\
+        Stateful, jede Hessian Funktion ist ein Teil einer definierten Applikation\\
         \cmidrule{2-3}
         \nohyphens{Interface} & \ac{HTTP} PUT, GET, POST, DELETE & Keine \ac{IDL}
         wie bei \ac{CORBA}, das Interface muss aber bekannt sein.\\
@@ -636,7 +636,7 @@ bibliography=totocnumbered]{scrreprt}
   soll so einfach wie möglich anzuwenden sein, und das ist es auch. Für den
   Serverteil, reicht ein Interface, und die ausprogrammierte Klasse ist auch
   schon in ein paar Zeilen Code geschrieben. Dann noch die nötige Konfiguration
-  für den Servlet-Container. Die ganze Magie, der Methodinvocation und
+  für den Servlet-Container. Die ganze Magie, der Method-Invocation und
   Serialisierung der Daten, wird über das Package com.caucho.hessian.*
   abgewickelt, davon sieht man als Softwareentwickler nichts mehr. Der Client
   ist wird wie der Server auch gleich kurzerhand realisiert. Die aktuelle
@@ -714,7 +714,7 @@ public class BasicClient {
 \end{verbatim}  
   
   Als Nachteil sehe ich den geringen Bekanntheitsgrad von Hessian und zudem,
-  dass Hessian kein Standard ist. In einem grösseren Entwicklungprojekt, dürfte
+  dass Hessian kein Standard ist. In einem grösseren Entwicklungsprojekt, dürfte
   ein Webservice wohl mit \ac{SOAP} oder einer ähnlichen Technik umgesetzt
   werden, da es sich dabei effektiv um einen Standard handelt. Zudem dürfte es
   komplizierter werden, wenn man Datentypen verwendet, die im Protokoll nicht
@@ -722,7 +722,7 @@ public class BasicClient {
   
   \subsection{Fazit}
   
-  Für kleine Projekte, oder Projekte wo die Grösse des ausgelieferten Packets
+  Für kleine Projekte, oder Projekte wo die Grösse des ausgelieferten Pakets
   eine Rolle spielen würde ich auf Hessian setzten. Durch die
   Leichtgewichtigkeit und die Einfachheit der Implementierung hat man mit
   Hessian ein mächtiges Werkzeug.
@@ -732,7 +732,7 @@ public class BasicClient {
   bereitstellt, würde ich auf \ac{REST} setzten. Da man die Repräsentation
   gleich für maschinentaugliche, wie auch für browsertaugliche (was ja von
   Menschen verwendet wird) Formate bereitstellen kann. Sprich, die Ressourcen in
-  \ac{XML} und gleich in \ac{HTML} zu präsentrieren, macht da keinen grossen
+  \ac{XML} und gleich in \ac{HTML} zu präsentieren, macht da keinen grossen
   Unterschied mehr. Zudem fällt eine Dokumentation der Schnittstelle fast
   komplett weg, oder wenn wirklich nötig, kann die Dokumentation der
   Schnittstelle gleich als eigene Ressource über eine \ac{URL} zugänglich
@@ -754,7 +754,7 @@ public class BasicClient {
   man die jeweiligen Akzeptanztests\cite{AcceptanceTests} ableiten.
   
   Eine User Story sollte nicht mehr als drei Sätze haben. Das kommt daher, dass
-  eine User Story nie zu komplex sein darf. Wenn man mehr als drei Sätz für die
+  eine User Story nie zu komplex sein darf. Wenn man mehr als drei Sätze für die
   Beschreibung einer User Story braucht, sollte diese in mehrere kleinere User
   Stories aufgeteilt werden, welche genug simpel sind, um wiederum in drei
   Sätzen beschrieben zu werden.
@@ -764,11 +764,11 @@ public class BasicClient {
   
   \section{Anforderungen an den Prototyp}
   
-  Im folgenden werden die Anforderungen an den Prototypen spezifziert. Die
+  Im folgenden werden die Anforderungen an den Prototypen spezifiziert. Die
   Anforderungen werden aus zwei Blickwinkeln definiert. Aus der Sicht eines
   Anwenders und aus der Sicht eines Informatikstudenten. Diese beiden
   Sichtweisen werde jeweils ich vertreten, da ich mich davon abgegrenzt habe,
-  irgenwelche Erhebungen durchzuführen.
+  irgendwelche Erhebungen durchzuführen.
   
   Nachfolgend ist die Rede von Datenobjekten. Bei einem Datenobjekt wie es hier
   aufgeführt wird, handelt es sich um ein \ac{POJO}. 
@@ -778,7 +778,7 @@ public class BasicClient {
   \section{Aus der Sicht des Anwenders}
   
   Der Anwender stellt ein Mensch dar, der nur die Sicht auf die
-  Clientapplikation hat. Normalerweise hat ein Anwender keinerleit technische
+  Clientapplikation hat. Normalerweise hat ein Anwender keinerlei technische
   Hintergründe. Die definierten User Stories aus der Sicht des Anwenders sind in
   der Tabelle \ref{tab:anwenderUserStories} ersichtlich.
   \newline
@@ -793,9 +793,9 @@ public class BasicClient {
         US-2 & Ich als Anwender will meine Applikation überall verwenden können. \\
         US-3 & Ich als Anwender will eine stabile Applikation. \\
         US-4 & Ich als Anwender will ein ausgewähltes Datenobjekt vom Server an mein
-        Androidgerät übertragen und darstellen können. \\
+        Android Gerät übertragen und darstellen können. \\
         US-5 & Ich als Anwender will eine komplette Liste von Datenobjekten vom
-        Server an mein Androidgerät übertragen und darstellen können. \\
+        Server an mein Android Gerät übertragen und darstellen können. \\
         US-6 & Ich als Anwender will ein ausgewähltes Datenobjekt auf dem Server
         löschen können. \\
         US-7 & Ich als Anwender will ein ausgewähltes Datenobjekt auf dem Server
@@ -950,12 +950,12 @@ public class BasicClient {
   
   \begin{itemize}
     \item User Story US-1: Es wurde auf die Umsetzung eines hochwertigen
-    \ac{GUI}'s für den Androidclient verzichtet, da es den Aufwand einer
+    \ac{GUI}'s für den Android Client verzichtet, da es den Aufwand einer
     Semesterarbeit übersteigt.
     \item User Story US-16: Der Server soll nicht über das Internet zugänglich
     sein, da eine lauffähige Instanz eines GlassFish Servers, der von überall
     her im Internet zugänglich ist, Geld kosten würde. Ich bin nicht bereit für
-    eine Semesterarbeit einen solchen Hosting Vertrag abzuschliessen.
+    eine Semesterarbeit einen solchen Hosting-Vertrag abzuschliessen.
     \item User Story US-17: Der Server kann nicht immer verfügbar sein, da die
     Instanz des GlassFish Servers auf meinen Notebook laufen wird.
   \end{itemize}
@@ -963,7 +963,7 @@ public class BasicClient {
   \section{Planung der User Stories die umgesetzt werden}
   
   Es werden alle User Stories mit der Priorität hoch und mittel umgesetzt. Die
-  Reihenfolge der Umsetztung wird von mir festgelegt. Ich versuche die
+  Reihenfolge der Umsetzung wird von mir festgelegt. Ich versuche die
   Reihenfolge so festzulegen, damit es ein Sinnvoller Ablauf in der Entwicklung
   der einzelnen User Stories gibt.
   
@@ -1016,7 +1016,7 @@ public class BasicClient {
     % DB Save
     \item[T-14.1] Es soll ein Datenobjekt auf dem Server gespeichert werden.
     Die Referenz des Datenobjekts soll man sich merken. Es soll das Datenobjekt
-    welches man isch gemerkt hat über die ID wieder gelesen werden. Es soll die
+    welches man sich gemerkt hat über die ID wieder gelesen werden. Es soll die
     Gleichheit der beiden Datenobjekte geprüft werden.
     \newline
 
@@ -1082,7 +1082,7 @@ public class BasicClient {
     \begin{verbatim}Product delete(Long id)\end{verbatim}
     Request auf eine bestehende Ressource auf dem Server abgesetzt und auf ein
     erfolgreiche Rückmeldung geprüft werden. Die gelöschte Ressource
-    soll soll über ein Hessian 
+    soll über ein Hessian 
     \begin{verbatim}Product get(Long id)\end{verbatim} 
     wieder geladen werden. Dabei soll eine EntityNotFoundException
     zurückgeworfen werden.
@@ -1102,7 +1102,7 @@ public class BasicClient {
     \begin{verbatim}Product update(Long id, Product product)\end{verbatim}
     Request mit der ID der bestehenden Ressource auf dem Server abgesetzt und
     auf ein erfolgreiche Rückmeldung geprüft werden. Die gelöschte Ressource
-    soll soll über ein Hessian
+    soll über ein Hessian
     \begin{verbatim}Product get(Long id)\end{verbatim} 
     wieder geladen und verglichen werden.
     \newline
@@ -1135,18 +1135,18 @@ public class BasicClient {
   möglich mit Unittests abgedeckt werden. Ein Test kann auch manuell ausgeführt
   und auf einen Erfolg geprüft werden.
   
-  Unittests in Java werden normalerweist mit JUnit durchgeführt. Für das Java
+  Unittests in Java werden normalerweise mit JUnit durchgeführt. Für das Java
   EE Projekt kann JUnit verwendet werden. Für das Android Betriebsystem wird
-  eine Testing-Engine mit dem SDK mitgeliefert, mit der man Unittests definieren kann.
+  eine Test-Engine mit dem SDK mitgeliefert, mit der man Unittests definieren kann.
   
-  Manuelle Tests werden vom Studenten persölich durchgeführt und überprüft und
+  Manuelle Tests werden vom Studenten persönlich durchgeführt und überprüft und
   nach Treu und Glauben für korrekt oder fehlgeschlagen erklärt.
   
   \section{Testplan}
   
   Für das definierte Testszenario wird ein Testplan aufgestellt, dabei wird die
   Art und Weise der Durchführung, ob es sich um eine Unittest oder um einen
-  manuelle Test handel, aufgelistet. Zudem wird für jeden Test das Datum der
+  manuelle Test handelt, aufgelistet. Zudem wird für jeden Test das Datum der
   Durchführung und das Ergebnis gezeigt. Der Testplan ist in der Tabelle
   \ref{tab:testergebnisse} ersichtlich.
   \newline
@@ -1186,12 +1186,12 @@ public class BasicClient {
   
   \section{Abdeckung des Testszenarios}
   
-  Da alle definierten Akzeptanztest, welche aus den Userstories abgeleitet
+  Da alle definierten Akzeptanztest, welche aus den User Stories abgeleitet
   wurden, am 08.02.2011 erfolgreich durchgeführt wurden, ist das Testszenario zu
   100\% abgedeckt.
   
   Im Testszenario wurden die User Stories, welche tief priorisiert wurden, nicht
-  berücksicht, da es sich dabei um optionale Akzeptanztests handelt.
+  berücksichtigt, da es sich dabei um optionale Akzeptanztests handelt.
   
   \newpage
   
