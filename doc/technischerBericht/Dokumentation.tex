@@ -24,6 +24,9 @@ bibliography=totocnumbered]{scrreprt}
 % Silbentrennung kann unterdrückt werden
 \usepackage{hyphenat}
 
+% Tradmark
+\def\TTra{\textsuperscript{\texttrademark}}
+
 % Running Headers and footers
 %\usepackage{fancyhdr}
 
@@ -273,6 +276,9 @@ bibliography=totocnumbered]{scrreprt}
   \newpage  
   
   \chapter{Erreichte Ziele}
+  
+  Es wurden alle Ziele gemäss den erwarteten Resultaten der Aufgabenstellung
+  erreicht.
   
   \begin{enumerate}
     \item \textbf{Erreicht} Die Versionskontrolle liegt öffentlich zugänglich unter der
@@ -581,11 +587,48 @@ bibliography=totocnumbered]{scrreprt}
   Da ich mich nun tiefer mit beiden Protokollen beschäftigt habe, möchte ich
   noch meine Meinung dazu abgeben.
   
-  \subsection{REST ist cool, aber der Teufel steckt im Detail}
+  \subsection{REST ist ``cool'', aber der Teufel steckt im Detail}
   
+  REST ist in aller Munde. Seit gut drei Jahren höre ich immer wieder, wie
+  einfach dass eine Schnittstelle mit REST zu implementieren ist. Das mag auch
+  sein, wenn man sich an einen Standard wie JSR-000311\cite{JSR311} hält, und
+  den Server, wie auch den Client, nach diesem Schema umsetzt. Leider aber sieht
+  es schon anders aus, wenn der Server in Ruby on Rails\cite{RoR} geschrieben
+  wurde und der Client in Java implementiert wird. Diese Erfahrung habe ich
+  gemacht, als ich das im Rahmen der Semesterarbeit versucht habe. Die
+  Unterschiede zeigen sich in den Finessen, wie zum Beispiel ein
+  HTTP-Responsecode aussieht, wenn ich auf die \ac{URL} einer ehemals
+  publizierten Ressource, welche mit Ruby on Rails bereitgestellt wurde,
+  zugreife, die aber schon einmal gelöscht wurde. Da kann es durchaus
+  vorkommen, dass dann nicht ein Responsecode 404 (Not Found), wie erwartet, 
+  sonder ein Responsecode 406 (Not Acceptable) zurückgegeben wird. Zudem kommen
+  optionale Headerfelder, die in einem HTTP-Request oder HTTP-Response Objekt verpackt
+  werden können, und so weiter. Wie man hier sieht, gibt es viele verschiedene
+  Arten, wie man ein RESTful Webservice auslegen kann.
   
+  Wenn man demnach versucht eine plattformunabhängige
+  Kommunikationsschnittstelle zur Verfügung zu stellen, oder eine solche
+  anzubinden, muss man alle möglichen Fälle von Ressourcezugriffen untersuchen,
+  und auch deren Fehlerfälle alle korrekt abarbeiten, nur so kann man
+  gewährleisten, dass man eine ``coole'' Schnittstelle gebaut hat.
   
+  Natürlich gibt es auch die Vorteile, welche nicht vernachlässigt werden
+  dürfen. Da sehe ich die weit aus Grössten in der Repräsentation der Daten und
+  der Verständlichkeit der einzelnen Zugriffe über einzelne \ac{URL}'s. Hinzu
+  kommt, dass namhafte Firmen wie Amazon oder Yahoo bereits Schnittstellen zu
+  ihren Systemen über REST bereitstellen, was den Akzeptanzfaktor in einem
+  möglichen Projekt enorm erhöht.
+
+  Wie die Schnittstelle eines möglichen Produktservices aussehen würde, möchte
+  ich anhand einer Grafik \ref{restPrinzip} zeigen:
   
+  \begin{figure}[h]
+      \begin{center}
+          \includegraphics[width=0.7\textwidth]{./image/rest.png}
+          \caption{Ein Produktservice mit REST bereitgestellt}
+          \label{restPrinzip}
+      \end{center}
+  \end{figure}
   
   \subsection{Hessian ist leichtgewichtig, aber leider kein Standard}
   
@@ -1154,7 +1197,7 @@ public class BasicClient {
   
   \chapter{Zusammenfassung zur Entwicklung des Prototypen}
   
-  
+  \chapter{Reflektion}
   
   % ===========================================================================
   % Anhang beginns here
