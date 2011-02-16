@@ -419,8 +419,8 @@ bibliography=totocnumbered]{scrreprt}
   
   \section{REST – Representational State Transfer}
   
-  \ac{REST} stammt aus der Dissertation von Roy Fielding in der er den Erfolg
-  des \ac{WWW} auf bestimmte Eigenschaften der verwendeten Mechanismen und
+  \ac{REST} stammt aus der Dissertation von Roy Fielding\cite{REST} in der er
+  den Erfolg des \ac{WWW} auf bestimmte Eigenschaften der verwendeten Mechanismen und
   Protokolle (z. B. \ac{HTTP}) zurückführt.
   
   \subsection{Was ist REST}
@@ -528,8 +528,8 @@ bibliography=totocnumbered]{scrreprt}
   
   Als binäres Protokoll ist Hessian insbesondere für die Versendung von
   Binärdaten geeignet. Binäre Protokolle wie RMI und Hessian sind darüber
-  hinaus wesentlich performanter als XML basierte Protokolle, wie z.B. \ac{SOAP}
-  oder XML-RPC.
+  hinaus wesentlich performanter als \ac{XML} basierte Protokolle, wie z.B.
+  \ac{SOAP} oder XML-RPC.
 
   Hessian wurde von den Erfindern für verschiedene Programmiersprachen portiert,
   damit macht es eine Plattform übergreifende Kommunikation möglich.
@@ -595,9 +595,9 @@ bibliography=totocnumbered]{scrreprt}
   
   \subsection{REST ist ``cool'', aber der Teufel steckt im Detail}
   
-  REST ist in aller Munde. Seit gut drei Jahren höre ich immer wieder, wie
-  einfach dass eine Schnittstelle mit REST zu implementieren ist. Das mag auch
-  sein, wenn man sich an einen Standard wie JSR-000311\cite{JSR311} hält, und
+  \ac{REST} ist in aller Munde. Seit gut drei Jahren höre ich immer wieder, wie
+  einfach dass eine Schnittstelle mit \ac{REST} zu implementieren ist. Das mag
+  auch sein, wenn man sich an einen Standard wie JSR-000311\cite{JSR311} hält, und
   den Server, wie auch den Client, nach diesem Schema umsetzt. Leider aber sieht
   es schon anders aus, wenn der Server in Ruby on Rails\cite{RoR} geschrieben
   wurde und der Client in Java implementiert wird. Diese Erfahrung habe ich
@@ -622,7 +622,7 @@ bibliography=totocnumbered]{scrreprt}
   dürfen. Da sehe ich die weit aus Grössten in der Repräsentation der Daten und
   der Verständlichkeit der einzelnen Zugriffe über einzelne \ac{URL}'s. Hinzu
   kommt, dass namhafte Firmen wie Amazon oder Yahoo bereits Schnittstellen zu
-  ihren Systemen über REST bereitstellen, was den Akzeptanzfaktor in einem
+  ihren Systemen über \ac{REST} bereitstellen, was den Akzeptanzfaktor in einem
   möglichen Projekt enorm erhöht.
 
   Wie die Schnittstelle eines möglichen Produktservices aussehen würde, möchte
@@ -726,7 +726,7 @@ public class BasicClient {
   komplizierter werden, wenn man Datentypen verwendet, die im Protokoll nicht
   für die Serialisierung vorgesehen sind.
   
-  \subsection{Fazit}
+  \section{Fazit}
   
   Für kleine Projekte, oder Projekte bei denen die Grösse des ausgelieferten Pakets
   eine Rolle spielen, würde ich auf Hessian setzen. Durch die
@@ -1250,7 +1250,7 @@ public class BasicClient {
     GlassFish Server mitgeliefert
     \item \ac{EJB} 3.1, für die Verwaltung von Enterprise Beans, wird mit dem
     GlassFish Server mitgeliefert
-    \item Jersey, für den REST Webservice, wird mit dem GlassFish Server
+    \item Jersey, für den \ac{REST} Webservice, wird mit dem GlassFish Server
     mitgeliefert
     \item \ac{JAXB}, für das Objectmapping von \ac{JSON} oder \ac{XML} zu
     \ac{POJO} und umgekehrt, wird mit dem GlassFish Server mitgeliefert
@@ -1285,21 +1285,21 @@ public class BasicClient {
   
   \subsection{REST Client}
   
-  Als erstes habe ich mich an den REST Client auf Android gewagt. Ich wollte
-  mich so schnell wie möglich in das Thema Android einarbeiten. Dabei habe ich
-  die Entwicklung gegen einen bestehenden RESTful Webservice auf Ruby on Rails
-  Basis gemacht. 
+  Als erstes habe ich mich an den \ac{REST} Client auf Android gewagt. Ich
+  wollte mich so schnell wie möglich in das Thema Android einarbeiten. Dabei
+  habe ich die Entwicklung gegen einen bestehenden RESTful Webservice auf Ruby
+  on Rails Basis gemacht. 
   
-  Schnell habe ich festgestellt, dass ich auf der Androidplattform kein JAXB
-  Framework zur Verfügung habe, auch existierte keine Möglichkeit die Referenz
-  Implementierung für einen REST Client von JAVA, namens Jersey, in die
-  Androidplattform einzubinden. Das Problem dabei war die Dalvik Virtual
-  Machine, auf die die Androidplattform aufbaut. Sie akzeptiert nur ein Teil
-  aller Java Packages. Wenn eine Abhängigkeit zu einem Java Package besteht, das
-  nicht unterstützt wird, muss man einen anderen Weg finden, um zum Ziel zu
-  kommen.
+  Schnell habe ich festgestellt, dass ich auf der Androidplattform kein
+  \ac{JAXB} Framework zur Verfügung habe, auch existierte keine Möglichkeit die
+  Referenz Implementierung für einen \ac{REST} Client von JAVA, namens Jersey,
+  in die Androidplattform einzubinden. Das Problem dabei war die Dalvik Virtual
+  Machine\cite{Dalvik}, auf die die Androidplattform aufbaut. Sie akzeptiert
+  nur ein Teil aller Java Packages. Wenn eine Abhängigkeit zu einem Java
+  Package besteht, das nicht unterstützt wird, muss man einen anderen Weg
+  finden, um zum Ziel zu kommen.
   
-  Für das Objektmapping und die Kommunikation mit einer REST Schnittstelle
+  Für das Objektmapping und die Kommunikation mit einer \ac{REST} Schnittstelle
   habe ich mich dann für die Standardkomponenten der Androidplattform entschieden.
   Dies sind die Klassen:
   
@@ -1308,21 +1308,23 @@ public class BasicClient {
     \item org.apache.http.impl.client.DefaultHttpClient
   \end{itemize}
   
-  Nun habe ich noch ein kleines GUI für die Ansteuerung der REST Funktionen
+  Nun habe ich noch ein kleines \ac{GUI} für die Ansteuerung der \ac{REST} Funktionen
   gebaut.
   
   \subsection{REST Server}
   
   Nach einer erfolgreichen Umsetzung des Clients habe ich mich an den
-  Serverteil gemacht. Ich habe die REST Schnittstelle strikte nach dem Konzept von Jersey
-  Implementiert. Zudem habe ich einen Persistenzlayer für den Zugang zur
-  Datenbank geschaffen. Um die REST Funktionen einfach zu testen, habe ich
-  auch ein kleines GUI auf Basis von Java Server Faces 2.0 programmiert. In der
-  Grafik \ref{restPrinzip} ist ersichtlich wie die REST Funktionen anzusprechen
+  Serverteil gemacht. Ich habe die \ac{REST} Schnittstelle strikte nach dem
+  Konzept von Jersey Implementiert. Bei der Lösung habe ich mich vom Buch
+  ``Real World Java EE Patterns''\cite{RWJavaEEP} inspirieren lassen. Zudem
+  habe ich einen Persistenzlayer für den Zugang zur Datenbank geschaffen. Um
+  die \ac{REST} Funktionen einfach zu testen, habe ich auch ein kleines
+  \ac{GUI} auf Basis von Java Server Faces 2.0 programmiert. In der Grafik
+  \ref{restPrinzip} ist ersichtlich wie die \ac{REST} Funktionen anzusprechen
   sind.
   
   Die serverseitige Konfiguration beschränkt sich dabei auf eine Javaklasse,
-  in der der Einstiegspunkt zum REST Service definiert ist. Diese Klasse sieht
+  in der der Einstiegspunkt zum \ac{REST} Service definiert ist. Diese Klasse sieht
   so aus:
 
 \begin{verbatim}   
@@ -1336,18 +1338,18 @@ public class RESTServlet extends Application {
 \end{verbatim}
 
   Der GlassFish Applikationsserver erkennt über die Annotation
-  @ApplicationPath(''''), dass REST Requests an die Jersey implementierung
+  @ApplicationPath(''''), dass \ac{REST} Requests an die Jersey implementierung
   weitergereicht werden sollen, sofern eine existiert.
   
   \subsection{Hessian Server}
   
-  Den Hessian Service habe ich ganz nach der Anleitung der Hessian Dokumentation
-  implementiert. Der Service beschränkt sich auf eine Klasse namens
-  ProductRegistrationServiceEndpoint welche von der Klasse HessianServlet
-  ableitet und das Interface der Schnittstelle implementiert, siehe Grafik
-  \ref{hessianService}. Da ich bereits ein Persistenzlayer zur Datenbank
-  geschaffen habe, konnte ich diesen wieder verwenden, um Datenobjekte zu
-  persistieren, zu aktualisieren, zu löschen oder zu laden.
+  Den Hessian Service habe ich ganz nach der Anleitung der Hessian
+  Dokumentation\cite{Hessian} implementiert. Der Service beschränkt sich auf
+  eine Klasse namens ProductRegistrationServiceEndpoint welche von der Klasse
+  HessianServlet ableitet und das Interface der Schnittstelle implementiert,
+  siehe Grafik \ref{hessianService}. Da ich bereits ein Persistenzlayer zur
+  Datenbank geschaffen habe, konnte ich diesen wieder verwenden, um
+  Datenobjekte zu persistieren, zu aktualisieren, zu löschen oder zu laden.
   
   \begin{figure}
     \begin{center}
@@ -1423,24 +1425,24 @@ public class RESTServlet extends Application {
   \chapter{Abkürzungsverzeichnis}
   \begin{acronym}
     \setlength{\itemsep}{-\parsep}
-    \acro{GUI}{Graphical User Interface}
-    \acro{REST}{Representational State Transfer}
-    \acro{POJO}{Plain Old Java Object}
-    \acro{XML}{Extensible Markup Language}
-    \acro{JSON}{JavaScript Object Notation}
-    \acro{WWW}{World Wide Web}
-    \acro{HTTPS}{Hypertext Transfer Protocol Secure}
-    \acro{HTTP}{Hypertext Transfer Protocol}
-    \acro{RPC}{Remote Procedure Call}
-    \acro{SOAP}{Simple Object Access Protocol}
     \acro{CORBA}{Common Object Request Broker Architecture}
-    \acro{IDL}{Interface Definition Language}
-    \acro{HTML}{Hypertext Markup Language}
-    \acro{URL}{Uniform Resource Locator}
-    \acro{JPA}{Java Persistence API}
     \acro{EJB}{Enterprise JavaBeans}
+    \acro{GUI}{Graphical User Interface}
+    \acro{HTML}{Hypertext Markup Language}
+    \acro{HTTP}{Hypertext Transfer Protocol}
+    \acro{HTTPS}{Hypertext Transfer Protocol Secure}
+    \acro{IDL}{Interface Definition Language}
     \acro{JAXB}{Java Architecture for XML Binding}
     \acro{JDK}{Java Development Kit}
+    \acro{JPA}{Java Persistence API}
+    \acro{JSON}{JavaScript Object Notation}
+    \acro{POJO}{Plain Old Java Object}
+    \acro{REST}{Representational State Transfer}
+    \acro{RPC}{Remote Procedure Call}
+    \acro{SOAP}{Simple Object Access Protocol}
+    \acro{URL}{Uniform Resource Locator}
+    \acro{WWW}{World Wide Web}
+    \acro{XML}{Extensible Markup Language}
   \end{acronym}
   
   % ===========================================================================
