@@ -1229,7 +1229,7 @@ public class BasicClient {
   \begin{itemize}
     \item Windows XP Service Pack 3, von Microsoft, als Betriebsystem
     \item JAVA \ac{JDK} 1.6.0\_22, von Oracle, als Laufzeitumgebung
-    \item www.github.com, für die Verwalung des Sourcecodes
+    \item www.github.com, für die Verwaltung des Sourcecodes
     \item Eclipse Helios Service Release 1, Build id: 20100917-0705, als
     Entwicklungsumgebung
   \end{itemize}
@@ -1246,7 +1246,7 @@ public class BasicClient {
     auch von ausserhalb zu erreichen
     \item Derby DB für die Persistenz der Daten, wird mit dem GlassFish Server
     mitgeliefert
-    \item \ac{JPA} 2.0 für die Abstaktion des Persistenzzugriffs, wird mit dem
+    \item \ac{JPA} 2.0 für die Abstraktion des Persistenzzugriffs, wird mit dem
     GlassFish Server mitgeliefert
     \item \ac{EJB} 3.1, für die Verwaltung von Enterprise Beans, wird mit dem
     GlassFish Server mitgeliefert
@@ -1280,7 +1280,7 @@ public class BasicClient {
   
   \section{Erfahrungsbericht}
   
-  Die detailierte Umsetzung ist im Sourcecode nachzuvollziehen. Ich beschränke
+  Die detaillierte Umsetzung ist im Sourcecode nachzuvollziehen. Ich beschränke
   mich hier auf einen groben Überblick.
   
   \subsection{REST Client}
@@ -1313,9 +1313,9 @@ public class BasicClient {
   
   \subsection{REST Server}
   
-  Nach einer erfolgreichen Umsetztung des Clients habe ich mich an den
+  Nach einer erfolgreichen Umsetzung des Clients habe ich mich an den
   Serverteil gemacht. Ich habe die REST Schnittstelle strikte nach dem Konzept von Jersey
-  implementiert. Zudem habe ich einen Persistenzlayer für den Zugang zur
+  Implementiert. Zudem habe ich einen Persistenzlayer für den Zugang zur
   Datenbank geschaffen. Um die REST Funktionen einfach zu testen, habe ich
   auch ein kleines GUI auf Basis von Java Server Faces 2.0 programmiert. In der
   Grafik \ref{restPrinzip} ist ersichtlich wie die REST Funktionen anzusprechen
@@ -1396,7 +1396,7 @@ public class RESTServlet extends Application {
   
   Rückblickend war es schade, dass ich diese Arbeit zu diesem Zeitpunkt
   schreiben musste, da mein Sohn Linus im Dezember zur Welt gekommen ist, und
-  ich insgesammt über 100 Stunden vor meinen Rechnern verbracht habe, um alles
+  ich insgesamt über 100 Stunden vor meinen Rechnern verbracht habe, um alles
   zu vollenden. Natürlich liegt die Schuld voll und ganz bei mir selber, da ich
   viel früher mit der Semesterarbeit hätte beginnen können.
   
