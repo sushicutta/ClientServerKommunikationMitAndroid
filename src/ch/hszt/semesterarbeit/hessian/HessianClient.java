@@ -14,9 +14,9 @@ public class HessianClient {
 	
 	private ProductRegistration productRegistration = null;
 	
-	public HessianClient() throws MalformedURLException {
+	public HessianClient(String applicationServlet) throws MalformedURLException {
 		
-		String webServiceUrl = "http://192.168.0.135:8080/Semesterarbeit/ProductRegistrationService";
+		String webServiceUrl = applicationServlet + "/ProductRegistrationService";
 
 		HessianProxyFactory proxyFactory = new HessianProxyFactory();
 

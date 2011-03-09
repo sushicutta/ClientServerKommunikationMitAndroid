@@ -29,6 +29,9 @@ import ch.hszt.semesterarbeit.hessian.HessianClient;
 
 public class Semesterarbeit extends Activity implements OnClickListener {
 
+	private static String APPLICATION_SERVLET = "http://192.168.0.207:8080/Semesterarbeit";
+//	private static String APPLICATION_SERVLET = "http://sushicutta.no-ip.org:8080/Semesterarbeit";
+	
 	private static String TEXT_ADD_MESSAGE = "Add text here";
 	private static String NUMBER_ADD_MESSAGE = "Add number here";
 	private static String EMPTY_MESSAGE = "";
@@ -161,7 +164,7 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 	
 	private void setupRest() {
 		
-		restClient = new RestClient("http://192.168.0.135:8080/Semesterarbeit", "products");
+		restClient = new RestClient(APPLICATION_SERVLET, "products");
 		
 		restStatus = (TextView)findViewById(R.id.RestTextView06);
 		
@@ -207,7 +210,7 @@ public class Semesterarbeit extends Activity implements OnClickListener {
 	private void setupHessian() {
 		
 		try {
-			hessianClient = new HessianClient();
+			hessianClient = new HessianClient(APPLICATION_SERVLET);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
